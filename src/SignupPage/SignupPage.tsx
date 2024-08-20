@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import "./SignupPage.css";
 
 const SignupPage = () => {
+  const navigate = useNavigate();
   return (
     <div className="container-signup">
       <div className="warp-signup">
@@ -18,10 +20,15 @@ const SignupPage = () => {
           <input type="text" placeholder="Email..." />
           <div className="btn-signup">
             <div className="btn">
-              <p>Log In</p>
-            </div>
-            <div className="btn" onClick={() => {}}>
               <p>Sign In</p>
+            </div>
+            <div
+              className="btn"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              <p>Log In</p>
             </div>
           </div>
         </form>
