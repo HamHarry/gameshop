@@ -14,15 +14,16 @@ interface User {
 }
 
 const Profile = () => {
-  const [users, setUsers] = useState<User>();
+  const [user, setUser] = useState<User>();
   const { id } = useParams();
 
   const fetchuser = useCallback(async () => {
     const res = await axios.get(`https://www.melivecode.com/api/users/${id}`);
     const user = res.data.user;
     console.log(user);
-    setUsers(user);
+    setUser(user);
   }, [id]);
+
   useEffect(() => {
     fetchuser();
   }, [fetchuser]);
@@ -32,7 +33,7 @@ const Profile = () => {
       <Navbar />
       <div className="warp-container-profile">
         <div className="image">
-          <img src={users?.avatar} alt="LOGO" />
+          <img src={user?.avatar} alt="LOGO" />
           <div className="edit">
             <p>Edit profile</p>
           </div>
@@ -41,14 +42,14 @@ const Profile = () => {
           <div className="information">
             <div className="name">
               <p>
-                Name: {users?.fname} {users?.lname}
+                Name: {user?.fname} {user?.lname}
               </p>
             </div>
             <div className="id">
-              <p>ID: {users?.id}</p>
+              <p>ID: {user?.id}</p>
             </div>
             <div className="username">
-              <p>Username: {users?.username}</p>
+              <p>Username: {user?.username}</p>
             </div>
           </div>
           <div className="password">

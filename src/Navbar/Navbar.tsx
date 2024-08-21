@@ -66,15 +66,13 @@ const Navbar = () => {
               <i className="fa-solid fa-gear"></i>
               <p>Setting</p>
             </li>
-            <li>
+            <li
+              onClick={() => {
+                navigate("/");
+              }}
+            >
               <i className="fa-solid fa-right-from-bracket"></i>
-              <p
-                onClick={() => {
-                  navigate("/");
-                }}
-              >
-                Log out
-              </p>
+              <p>Log out</p>
             </li>
           </ul>
         </div>
