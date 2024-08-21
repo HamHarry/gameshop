@@ -11,12 +11,14 @@
   align-items: center;
 }
 .dropdown-menu h3 {
-  font-size: 24px;
+  font-size: 25px;
   margin-top: 20px;
   font-family: "REM", sans-serif;
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .dropdown-menu ul {
-  margin-top: 20px;
   width: 150px;
   font-family: "REM", sans-serif;
 }
