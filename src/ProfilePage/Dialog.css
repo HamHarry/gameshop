@@ -8,19 +8,37 @@
   background-color: black;
   border: 5px solid red;
   border-radius: 25px;
+}
+.nav-dialog {
+  display: flex;
+  justify-content: end;
+  height: 50px;
+}
+.fa-circle-xmark {
+  color: white;
+  font-size: 40px;
+  margin: 10px;
+  cursor: pointer;
+}
+.fa-circle-xmark:hover {
+  color: red;
+}
+.warp-dialog {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
 }
-.container-dialog h3 {
+.inputImage {
+  margin-top: 20px;
+}
+.inputImage h3 {
   color: white;
   font-size: 32px;
   margin-right: 110px;
   font-family: "REM", sans-serif;
 }
-.container-dialog input {
+.inputImage input {
   width: 400px;
   padding: 10px;
   border-radius: 25px;
@@ -33,15 +51,57 @@
   height: 50px;
   border: 2px solid red;
   border-radius: 25px;
-  margin-top: 50px;
-  cursor: pointer;
   color: white;
+  cursor: pointer;
 }
 .submit-image:hover {
   color: red;
 }
 .submit-image p {
-  font-size: 24px;
+  font-size: 25px;
   font-weight: bold;
   font-family: "REM", sans-serif;
+}
+.showImage {
+  width: 150px;
+  height: 150px;
+}
+.ImageUrl {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid red;
+}
+.uploadfile {
+  border-radius: 25px;
+  border: 2px solid red;
+  color: white;
+  width: 200px;
+  height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.uploadfile:hover {
+  color: red;
+}
+.uploadfile input {
+  display: none;
+}
+.uploadfile label {
+  cursor: pointer;
+  font-family: "REM", sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+}
+.btn-dialog {
+  display: flex;
+  height: 150px;
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }

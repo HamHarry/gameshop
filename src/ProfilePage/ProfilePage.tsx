@@ -18,6 +18,8 @@ interface User {
 const Profile = () => {
   const [user, setUser] = useState<User>();
   const [editImage, setEditImage] = useState<string>("");
+  const [image, setImage] = useState<File[]>([]);
+  const [imageUrl, setImageUrl] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
   const { id } = useParams();
 
@@ -57,18 +59,62 @@ const Profile = () => {
     setEditImage(value);
   };
 
+  // rederpage ========================================================================================
   const rendereditImage = () => {
     return (
       <dialog open={open}>
         <div className="container-dialog">
-          <h3>Edit Profile Image :</h3>
-          <input type="text" placeholder="Url..." onChange={handleImage} />
-          <div className="submit-image" onClick={handleeditimage}>
-            <p>SUBMIT</p>
+          <div className="nav-dialog">
+            <i
+              className="fa-solid fa-circle-xmark"
+              onClick={() => {
+                setOpen(!open);
+              }}
+            ></i>
+          </div>
+          <div className="warp-dialog">
+            <div className="showImage">
+              {imageUrl.map((imageSrc) => (
+                <img src={imageSrc} className="ImageUrl" />
+              ))}
+            </div>
+            <div className="inputImage">
+              <h3>Edit Profile Image :</h3>
+              <input type="text" placeholder="Url..." onChange={handleImage} />
+              <div className="btn-dialog">
+                <div className="submit-image" onClick={handleeditimage}>
+                  <p>SUBMIT</p>
+                </div>
+                <div className="uploadfile">
+                  <input
+                    type="file"
+                    multiple
+                    accept="imge/*"
+                    onChange={handleChangeImage}
+                    id="upload"
+                  />
+                  <label htmlFor="upload">Upload File</label>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </dialog>
     );
+  };
+
+  // upload Image =================================================================
+  useEffect(() => {
+    if (image.length < 1) return;
+    const newImageUrl: string[] = [];
+    image.forEach((image) => {
+      newImageUrl.push(URL.createObjectURL(image));
+    });
+    setImageUrl(newImageUrl);
+  }, [image]);
+  const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files as FileList;
+    setImage(Array.from(files));
   };
 
   return (
