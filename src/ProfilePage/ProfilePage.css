@@ -85,6 +85,21 @@
   font-size: 30px;
   font-family: "REM", sans-serif;
 }
+.email {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 700px;
+  background-color: black;
+  color: white;
+  border-radius: 25px;
+  border: 2px solid red;
+}
+.email p {
+  margin-left: 20px;
+  font-size: 30px;
+  font-family: "REM", sans-serif;
+}
 .username {
   display: flex;
   align-items: center;

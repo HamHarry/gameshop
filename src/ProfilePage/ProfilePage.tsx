@@ -9,6 +9,7 @@ interface User {
   id: number;
   fname: string;
   lname: string;
+  email: string;
   username: string;
   password: string;
   avatar: string;
@@ -87,13 +88,16 @@ const Profile = () => {
         </div>
         <div className="warp-information">
           <div className="information">
+            <div className="id">
+              <p>ID: {user?.id}</p>
+            </div>
             <div className="name">
               <p>
                 Name: {user?.fname} {user?.lname}
               </p>
             </div>
-            <div className="id">
-              <p>ID: {user?.id}</p>
+            <div className="email">
+              <p>Email: {user?.email}</p>
             </div>
             <div className="username">
               <p>Username: {user?.username}</p>
