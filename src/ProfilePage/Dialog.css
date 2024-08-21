@@ -23,25 +23,30 @@
 .fa-circle-xmark:hover {
   color: red;
 }
-.warp-dialog {
+.inputImageURL {
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
-.inputImage {
-  margin-top: 20px;
-}
-.inputImage h3 {
+.inputImageURL h3 {
   color: white;
   font-size: 32px;
-  margin-right: 110px;
+  margin-right: 280px;
   font-family: "REM", sans-serif;
+  margin-top: 20px;
 }
-.inputImage input {
+
+.inputImageURL input {
   width: 400px;
   padding: 10px;
   border-radius: 25px;
+}
+.URL {
+  display: flex;
+  gap: 20px;
 }
 .submit-image {
   display: flex;
@@ -62,13 +67,16 @@
   font-weight: bold;
   font-family: "REM", sans-serif;
 }
-.showImage {
-  width: 150px;
-  height: 150px;
+.inputImageFile {
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 .ImageUrl {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   border: 2px solid red;
 }
@@ -84,6 +92,7 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-left: 50px;
 }
 .uploadfile:hover {
   color: red;
@@ -97,11 +106,23 @@
   font-size: 25px;
   font-weight: bold;
 }
-.btn-dialog {
+.btn-upload {
   display: flex;
-  height: 150px;
-  width: 500px;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  width: 150px;
+  height: 50px;
+  border: 2px solid red;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.btn-upload p {
+  color: white;
+  font-family: "REM", sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-upload p:hover {
+  color: red;
 }

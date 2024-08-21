@@ -33,8 +33,8 @@ const Profile = () => {
     fetchuser();
   }, [fetchuser]);
 
-  //edit image =============================================================
-  const handleeditimage = async () => {
+  //edit image URL =============================================================
+  const handleeditimageURL = async () => {
     try {
       const item = {
         id: id,
@@ -53,10 +53,44 @@ const Profile = () => {
       console.log(error);
     }
   };
-
   const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setEditImage(value);
+  };
+
+  // upload Image =================================================================
+  useEffect(() => {
+    if (image.length < 1) return;
+    const newImageUrl: string[] = [];
+    image.forEach((image) => {
+      newImageUrl.push(URL.createObjectURL(image));
+    });
+    setImageUrl(newImageUrl);
+  }, [image]);
+  const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files as FileList;
+    setImage(Array.from(files));
+  };
+
+  //edit image File =============================================================
+  const handleeditimageFile = async () => {
+    try {
+      const item = {
+        id: id,
+        avatar: imageUrl[0],
+      };
+      const res = await axios.put(
+        "https://www.melivecode.com/api/users/update",
+        item
+      );
+      const user = res.data.user;
+      alert("updated image successfully");
+      setOpen(!open);
+      window.location.reload();
+      console.log(user);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // rederpage ========================================================================================
@@ -73,28 +107,37 @@ const Profile = () => {
             ></i>
           </div>
           <div className="warp-dialog">
-            <div className="showImage">
-              {imageUrl.map((imageSrc) => (
-                <img src={imageSrc} className="ImageUrl" />
-              ))}
-            </div>
-            <div className="inputImage">
+            <div className="inputImageURL">
               <h3>Edit Profile Image :</h3>
-              <input type="text" placeholder="Url..." onChange={handleImage} />
-              <div className="btn-dialog">
-                <div className="submit-image" onClick={handleeditimage}>
+              <div className="URL">
+                <input
+                  type="text"
+                  placeholder="Url..."
+                  onChange={handleImage}
+                />
+                <div className="submit-image" onClick={handleeditimageURL}>
                   <p>SUBMIT</p>
                 </div>
-                <div className="uploadfile">
-                  <input
-                    type="file"
-                    multiple
-                    accept="imge/*"
-                    onChange={handleChangeImage}
-                    id="upload"
-                  />
-                  <label htmlFor="upload">Upload File</label>
-                </div>
+              </div>
+            </div>
+            <div className="inputImageFile">
+              <div className="showImage">
+                {imageUrl.map((imageSrc, index) => (
+                  <img key={index} src={imageSrc} className="ImageUrl" />
+                ))}
+              </div>
+              <div className="uploadfile">
+                <input
+                  type="file"
+                  multiple
+                  accept="imge/*"
+                  onChange={handleChangeImage}
+                  id="upload"
+                />
+                <label htmlFor="upload">Upload File</label>
+              </div>
+              <div className="btn-upload" onClick={handleeditimageFile}>
+                <p>UPLOAD</p>
               </div>
             </div>
           </div>
@@ -103,19 +146,8 @@ const Profile = () => {
     );
   };
 
-  // upload Image =================================================================
-  useEffect(() => {
-    if (image.length < 1) return;
-    const newImageUrl: string[] = [];
-    image.forEach((image) => {
-      newImageUrl.push(URL.createObjectURL(image));
-    });
-    setImageUrl(newImageUrl);
-  }, [image]);
-  const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files as FileList;
-    setImage(Array.from(files));
-  };
+  console.log(imageUrl);
+  console.log(image);
 
   return (
     <div className="container-profile">
