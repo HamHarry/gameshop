@@ -4,6 +4,7 @@ const HomePage = () => {
   return (
     <div className="container-hompage">
       <Navbar />
+      <div>HomePage</div>
     </div>
   );
 };

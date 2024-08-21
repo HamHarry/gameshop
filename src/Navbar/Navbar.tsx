@@ -33,7 +33,7 @@ const Navbar = () => {
       <i
         className="fa-brands fa-steam"
         onClick={() => {
-          window.location.reload();
+          navigate(`/home/${users?.id}`);
         }}
       ></i>
       <div className="navbar-right">
@@ -50,13 +50,17 @@ const Navbar = () => {
             {users?.fname} {users?.lname}
           </h3>
           <ul>
-            <li>
+            <li
+              onClick={() => {
+                navigate(`/home/profile/${users?.id}`);
+              }}
+            >
               <i className="fa-solid fa-user"></i>
               <p>Profile</p>
             </li>
             <li>
-              <i className="fa-solid fa-user-pen"></i>
-              <p>Edit Profile</p>
+              <i className="fa-solid fa-gamepad"></i>
+              <p>Libary</p>
             </li>
             <li>
               <i className="fa-solid fa-gear"></i>
