@@ -1,0 +1,47 @@
+.container-dialog {
+  position: fixed;
+  left: 50%;
+  bottom: 50%;
+  transform: translate(-50%, 50%);
+  width: 800px;
+  height: 500px;
+  background-color: black;
+  border: 5px solid red;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.container-dialog h3 {
+  color: white;
+  font-size: 32px;
+  margin-right: 110px;
+  font-family: "REM", sans-serif;
+}
+.container-dialog input {
+  width: 400px;
+  padding: 10px;
+  border-radius: 25px;
+}
+.submit-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  border: 2px solid red;
+  border-radius: 25px;
+  margin-top: 50px;
+  cursor: pointer;
+  color: white;
+}
+.submit-image:hover {
+  color: red;
+}
+.submit-image p {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "REM", sans-serif;
+}

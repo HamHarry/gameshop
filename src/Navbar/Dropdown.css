@@ -11,6 +11,8 @@
   align-items: center;
 }
 .dropdown-menu h3 {
+  display: flex;
+  justify-content: center;
   font-size: 25px;
   margin-top: 20px;
   font-family: "REM", sans-serif;

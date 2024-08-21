@@ -3,6 +3,7 @@ import Navbar from "../Navbar/Navbar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./ProfilePage.css";
+import "./Dialog.css";
 
 interface User {
   id: number;
@@ -15,6 +16,8 @@ interface User {
 
 const Profile = () => {
   const [user, setUser] = useState<User>();
+  const [editImage, setEditImage] = useState<string>("");
+  const [open, setOpen] = useState(false);
   const { id } = useParams();
 
   const fetchuser = useCallback(async () => {
@@ -23,10 +26,49 @@ const Profile = () => {
     console.log(user);
     setUser(user);
   }, [id]);
-
   useEffect(() => {
     fetchuser();
   }, [fetchuser]);
+
+  //edit image =============================================================
+  const handleeditimage = async () => {
+    try {
+      const item = {
+        id: id,
+        avatar: editImage,
+      };
+      const res = await axios.put(
+        "https://www.melivecode.com/api/users/update",
+        item
+      );
+      const user = res.data.user;
+      alert("updated image successfully");
+      setOpen(!open);
+      window.location.reload();
+      console.log(user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEditImage(value);
+  };
+
+  const rendereditImage = () => {
+    return (
+      <dialog open={open}>
+        <div className="container-dialog">
+          <h3>Edit Profile Image :</h3>
+          <input type="text" placeholder="Url..." onChange={handleImage} />
+          <div className="submit-image" onClick={handleeditimage}>
+            <p>SUBMIT</p>
+          </div>
+        </div>
+      </dialog>
+    );
+  };
 
   return (
     <div className="container-profile">
@@ -34,7 +76,12 @@ const Profile = () => {
       <div className="warp-container-profile">
         <div className="image">
           <img src={user?.avatar} alt="LOGO" />
-          <div className="edit">
+          <div
+            className="edit"
+            onClick={() => {
+              setOpen(!open);
+            }}
+          >
             <p>Edit profile</p>
           </div>
         </div>
@@ -52,11 +99,12 @@ const Profile = () => {
               <p>Username: {user?.username}</p>
             </div>
           </div>
-          <div className="password">
-            <p>Change password</p>
+          <div className="changename">
+            <p>Change Name</p>
           </div>
         </div>
       </div>
+      {rendereditImage()}
     </div>
   );
 };
