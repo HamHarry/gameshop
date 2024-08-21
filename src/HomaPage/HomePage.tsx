@@ -1,4 +1,5 @@
 import Navbar from "../Navbar/Navbar";
+import "./HomePage.css";
 
 const HomePage = () => {
   return (

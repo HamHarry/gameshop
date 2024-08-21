@@ -8,8 +8,11 @@
 .fa-steam {
   margin-left: 20px;
   font-size: 50px;
-  color: white;
+  color: #9e9e9e;
   cursor: pointer;
+}
+.fa-steam:hover {
+  color: red;
 }
 .navbar-right {
   display: flex;
@@ -20,11 +23,17 @@
 }
 .fa-cart-shopping {
   font-size: 40px;
-  color: white;
+  color: #9e9e9e;
+}
+.fa-cart-shopping:hover {
+  color: red;
 }
 .navbar-right img {
   height: 50px;
   width: 50px;
   border-radius: 50%;
   cursor: pointer;
+}
+.navbar-right img:hover {
+  border: 2px solid red;
 }

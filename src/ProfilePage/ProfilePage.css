@@ -1,3 +1,8 @@
+.container-profile {
+  background-image: url("../image/container.jpg");
+  background-size: cover;
+  height: 100vh;
+}
 .warp-container-profile {
   display: flex;
   justify-content: space-between;
@@ -22,6 +27,7 @@
   width: 400px;
   height: 400px;
   border-radius: 50%;
+  border: 2px solid red;
 }
 .edit {
   display: flex;
@@ -33,9 +39,14 @@
   color: white;
   border-radius: 25px;
   cursor: pointer;
+  border: 2px solid red;
+}
+.edit:hover {
+  color: red;
 }
 .image p {
   font-size: 28px;
+  font-family: "REM", sans-serif;
 }
 .information {
   display: flex;
@@ -52,10 +63,12 @@
   background-color: black;
   color: white;
   border-radius: 25px;
+  border: 2px solid red;
 }
 .name p {
   margin-left: 20px;
   font-size: 30px;
+  font-family: "REM", sans-serif;
 }
 .id {
   display: flex;
@@ -65,10 +78,12 @@
   background-color: black;
   color: white;
   border-radius: 25px;
+  border: 2px solid red;
 }
 .id p {
   margin-left: 20px;
   font-size: 30px;
+  font-family: "REM", sans-serif;
 }
 .username {
   display: flex;
@@ -78,10 +93,12 @@
   background-color: black;
   color: white;
   border-radius: 25px;
+  border: 2px solid red;
 }
 .username p {
   margin-left: 20px;
   font-size: 30px;
+  font-family: "REM", sans-serif;
 }
 .password {
   display: flex;
@@ -94,7 +111,12 @@
   border-radius: 25px;
   margin-right: 600px;
   cursor: pointer;
+  border: 2px solid red;
 }
 .password p {
-  font-size: 30px;
+  font-size: 25px;
+  font-family: "REM", sans-serif;
+}
+.password:hover {
+  color: red;
 }

@@ -3,7 +3,7 @@
   top: 80px;
   right: 20px;
   border-radius: 20px;
-  background-color: red;
+  background-color: #9e9e9e;
   height: 300px;
   width: 200px;
   display: flex;
@@ -13,9 +13,12 @@
 .dropdown-menu h3 {
   font-size: 24px;
   margin-top: 20px;
+  font-family: "REM", sans-serif;
 }
 .dropdown-menu ul {
   margin-top: 20px;
+  width: 150px;
+  font-family: "REM", sans-serif;
 }
 .dropdown-menu li {
   margin-top: 20px;
@@ -26,16 +29,14 @@
   cursor: pointer;
 }
 .dropdown-menu p {
-  margin-left: 20px;
+  margin-left: 25px;
+  font-weight: bold;
 }
 .dropdown-menu p:hover {
   color: red;
 }
 .dropdown-menu .fa-solid {
   font-size: 30px;
-}
-.fa-user-pen {
-  margin-right: -10px;
 }
 .dropdown-menu::before {
   content: "";
@@ -44,8 +45,9 @@
   right: 15px;
   height: 10px;
   width: 20px;
-  background-color: red;
+  background-color: #9e9e9e;
   transform: rotate(45deg);
+  z-index: -1;
 }
 .dropdown-menu.active {
   opacity: 1;
@@ -58,4 +60,7 @@
   visibility: hidden;
   transform: translateY(-20);
   transition: 0.5s ease;
+}
+.fa-right-from-bracket {
+  margin-left: 5px;
 }
