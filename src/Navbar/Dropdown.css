@@ -1,0 +1,59 @@
+.dropdown-menu {
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  border-radius: 20px;
+  background-color: red;
+  height: 300px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dropdown-menu h3 {
+  font-size: 24px;
+  margin-top: 20px;
+}
+.dropdown-menu ul {
+  margin-top: 20px;
+}
+.dropdown-menu li {
+  margin-top: 20px;
+  list-style: none;
+  display: flex;
+  cursor: pointer;
+}
+.dropdown-menu p {
+  margin-left: 20px;
+}
+.dropdown-menu p:hover {
+  color: red;
+}
+.dropdown-menu .fa-solid {
+  font-size: 30px;
+}
+.fa-user-pen {
+  margin-right: -10px;
+}
+.dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -5;
+  right: 15px;
+  height: 10px;
+  width: 20px;
+  background-color: red;
+  transform: rotate(45deg);
+}
+.dropdown-menu.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: 0.5s ease;
+}
+.dropdown-menu.inactive {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20);
+  transition: 0.5s ease;
+}
