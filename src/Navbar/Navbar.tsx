@@ -46,9 +46,11 @@ const Navbar = () => {
           }}
         />
         <div className={`dropdown-menu ${open ? "active" : "inactive"}`}>
-          <h3>
-            {users?.fname} {users?.lname}
-          </h3>
+          <div className="user">
+            <h3>
+              {users?.fname} {users?.lname}
+            </h3>
+          </div>
           <ul>
             <li
               onClick={() => {
