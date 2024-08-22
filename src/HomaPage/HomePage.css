@@ -50,11 +50,12 @@
 }
 .gird-game {
   display: grid;
-  grid-template-columns: 2fr 3fr 1fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr 1fr;
   height: 80px;
   justify-content: center;
   font-size: 25px;
   font-family: "REM", sans-serif;
+  margin-top: 10px;
 }
 .imagegame img {
   height: 80px;
