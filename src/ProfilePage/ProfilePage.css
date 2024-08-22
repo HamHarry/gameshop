@@ -1,5 +1,5 @@
 .container-profile {
-  background-image: url("../image/container.jpg");
+  background-image: url("/public/assets/container.jpg");
   background-size: cover;
   height: 100vh;
 }
