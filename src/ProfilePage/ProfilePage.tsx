@@ -3,7 +3,8 @@ import Navbar from "../Navbar/Navbar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./ProfilePage.css";
-import "./Dialog.css";
+import "./DialogImage.css";
+import "./DialogChangeName.css";
 
 interface User {
   id: number;
@@ -20,7 +21,11 @@ const Profile = () => {
   const [editImage, setEditImage] = useState<string>("");
   const [image, setImage] = useState<File[]>([]);
   const [imageUrl, setImageUrl] = useState<string[]>([]);
-  const [open, setOpen] = useState(false);
+  const [openDialog1, setOpenDialog1] = useState(false);
+  const [openDialog2, setOpenDialog2] = useState(false);
+  const [editFname, setEditFname] = useState<string>("");
+  const [editLname, setEditLname] = useState<string>("");
+  const [editEmail, setEditEmail] = useState<string>("");
   const { id } = useParams();
 
   const fetchuser = useCallback(async () => {
@@ -46,7 +51,7 @@ const Profile = () => {
       );
       const user = res.data.user;
       alert("updated image successfully");
-      setOpen(!open);
+      setOpenDialog1(!openDialog1);
       window.location.reload();
       console.log(user);
     } catch (error) {
@@ -85,7 +90,7 @@ const Profile = () => {
       );
       const user = res.data.user;
       alert("updated image successfully");
-      setOpen(!open);
+      setOpenDialog1(!openDialog1);
       window.location.reload();
       console.log(user);
     } catch (error) {
@@ -93,61 +98,133 @@ const Profile = () => {
     }
   };
 
+  //edit handles ChangeName ===========================================================================
+  const handlechangeFname = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEditFname(value);
+  };
+  const handlechangeLname = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEditLname(value);
+  };
+  const handlechangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEditEmail(value);
+  };
+
+  //handleSubmit ==========================================================================================
+  const handleSubmit = async () => {
+    try {
+      const item = {
+        id: id,
+        fname: editFname,
+        lname: editLname,
+        email: editEmail,
+      };
+      const res = await axios.put(
+        "https://www.melivecode.com/api/users/update",
+        item
+      );
+      const userData = res.data.user;
+      console.log(userData);
+      alert("User updated successfully");
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // rederpage ========================================================================================
-  const rendereditImage = () => {
+  const renderEditImage = () => {
     return (
-      <dialog open={open}>
+      <dialog open={openDialog1}>
         <div className="container-dialog">
           <div className="nav-dialog">
             <i
               className="fa-solid fa-circle-xmark"
               onClick={() => {
-                setOpen(!open);
+                setOpenDialog1(!openDialog1);
               }}
             ></i>
           </div>
-          <div className="warp-dialog">
-            <div className="inputImageURL">
-              <h3>Edit Profile Image :</h3>
-              <div className="URL">
-                <input
-                  type="text"
-                  placeholder="Url..."
-                  onChange={handleImage}
-                />
-                <div className="submit-image" onClick={handleeditimageURL}>
-                  <p>SUBMIT</p>
-                </div>
+          <div className="inputImageURL">
+            <h3>Edit Profile Image :</h3>
+            <div className="URL">
+              <input type="text" placeholder="Url..." onChange={handleImage} />
+              <div className="submit-image" onClick={handleeditimageURL}>
+                <p>SUBMIT</p>
               </div>
             </div>
-            <div className="inputImageFile">
-              <div className="showImage">
-                {imageUrl.map((imageSrc, index) => (
-                  <img key={index} src={imageSrc} className="ImageUrl" />
-                ))}
-              </div>
-              <div className="uploadfile">
-                <input
-                  type="file"
-                  multiple
-                  accept="imge/*"
-                  onChange={handleChangeImage}
-                  id="upload"
-                />
-                <label htmlFor="upload">Upload File</label>
-              </div>
-              <div className="btn-upload" onClick={handleeditimageFile}>
-                <p>UPLOAD</p>
-              </div>
+          </div>
+          <div className="inputImageFile">
+            <div className="showImage">
+              {imageUrl.map((imageSrc, index) => (
+                <img key={index} src={imageSrc} className="ImageUrl" />
+              ))}
+            </div>
+            <div className="uploadfile">
+              <input
+                type="file"
+                multiple
+                accept="imge/*"
+                onChange={handleChangeImage}
+                id="upload"
+              />
+              <label htmlFor="upload">Upload File</label>
+            </div>
+            <div className="btn-upload" onClick={handleeditimageFile}>
+              <p>UPLOAD</p>
             </div>
           </div>
         </div>
       </dialog>
     );
   };
-
-  console.log(imageUrl);
-  console.log(image);
+  const renderChangeName = () => {
+    return (
+      <dialog open={openDialog2}>
+        <div className="container-dialog">
+          <div className="nav-dialog">
+            <i
+              className="fa-solid fa-circle-xmark"
+              onClick={() => {
+                setOpenDialog2(!openDialog2);
+              }}
+            ></i>
+          </div>
+          <div className="warp-dialog">
+            <div className="edit-fname">
+              <p>Frist Name:</p>
+              <input
+                type="text"
+                placeholder="Frist Name..."
+                onChange={handlechangeFname}
+              />
+            </div>
+            <div className="edit-lname">
+              <p>Last Name:</p>
+              <input
+                type="text"
+                placeholder="Last Name..."
+                onChange={handlechangeLname}
+              />
+            </div>
+            <div className="edit-email">
+              <p>Email:</p>
+              <input
+                type="text"
+                placeholder="Email..."
+                onChange={handlechangeEmail}
+              />
+            </div>
+            <div className="btn-edit-submit" onClick={handleSubmit}>
+              <p>SUBMIT</p>
+            </div>
+          </div>
+        </div>
+      </dialog>
+    );
+  };
 
   return (
     <div className="container-profile">
@@ -158,7 +235,7 @@ const Profile = () => {
           <div
             className="edit"
             onClick={() => {
-              setOpen(!open);
+              setOpenDialog1(!openDialog1);
             }}
           >
             <p>Edit profile</p>
@@ -169,6 +246,9 @@ const Profile = () => {
             <div className="id">
               <p>ID: {user?.id}</p>
             </div>
+            <div className="username">
+              <p>Username: {user?.username}</p>
+            </div>
             <div className="name">
               <p>
                 Name: {user?.fname} {user?.lname}
@@ -177,16 +257,19 @@ const Profile = () => {
             <div className="email">
               <p>Email: {user?.email}</p>
             </div>
-            <div className="username">
-              <p>Username: {user?.username}</p>
-            </div>
           </div>
-          <div className="changename">
+          <div
+            className="changename"
+            onClick={() => {
+              setOpenDialog2(!openDialog2);
+            }}
+          >
             <p>Change Name</p>
           </div>
         </div>
       </div>
-      {rendereditImage()}
+      {renderEditImage()}
+      {renderChangeName()}
     </div>
   );
 };

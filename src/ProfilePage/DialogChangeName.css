@@ -1,0 +1,86 @@
+.container-dialog {
+  position: fixed;
+  left: 50%;
+  bottom: 50%;
+  transform: translate(-50%, 50%);
+  width: 800px;
+  height: 500px;
+  background-color: black;
+  border: 5px solid red;
+  border-radius: 25px;
+}
+.nav-dialog {
+  display: flex;
+  justify-content: end;
+  height: 50px;
+}
+.fa-circle-xmark {
+  color: white;
+  font-size: 40px;
+  margin: 10px;
+  cursor: pointer;
+}
+.fa-circle-xmark:hover {
+  color: red;
+}
+.warp-dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "REM", sans-serif;
+  color: white;
+  gap: 20px;
+  font-size: 30px;
+  margin-top: 50px;
+}
+.edit-fname {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.edit-fname input {
+  width: 300px;
+  border-radius: 25px;
+  border: 2px solid red;
+  padding: 20px;
+}
+.edit-lname {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.edit-lname input {
+  width: 300px;
+  border-radius: 25px;
+  border: 2px solid red;
+  padding: 20px;
+}
+.edit-email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.edit-email input {
+  width: 300px;
+  border-radius: 25px;
+  border: 2px solid red;
+  padding: 20px;
+  margin-left: 70px;
+}
+.btn-edit-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 150px;
+  border: 2px solid red;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.btn-edit-submit:hover {
+  color: red;
+}
