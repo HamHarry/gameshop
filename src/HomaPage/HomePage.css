@@ -3,3 +3,85 @@
   background-size: cover;
   height: 100vh;
 }
+.warp-container-homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  height: 100px;
+  background-color: black;
+  border: 2px solid red;
+  border-radius: 25px;
+}
+.header h1 {
+  color: white;
+  font-family: "REM", sans-serif;
+  font-size: 62px;
+  text-align: center;
+}
+.container-table {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  width: 1500px;
+  background-color: black;
+  border: 2px solid red;
+  border-radius: 25px;
+}
+.table-game {
+  display: flex;
+  width: 1450px;
+  height: 550px;
+  background-color: #9e9e9e;
+}
+.gird-table {
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr 1fr;
+  gap: 10px;
+  width: 1450px;
+  height: 50px;
+  justify-content: center;
+}
+.imagegame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.namegame {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.pricegame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-buy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-buy p {
+  width: 80px;
+  height: 40px;
+  border: 2px solid red;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+}
+.btn-buy p:hover {
+  color: red;
+}
