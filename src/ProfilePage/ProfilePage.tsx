@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import "./ProfilePage.css";
 import "./DialogImage.css";
 import "./DialogChangeName.css";
+import { Controller, useForm } from "react-hook-form";
 
 interface User {
   id: number;
@@ -16,17 +17,25 @@ interface User {
   avatar: string;
 }
 
+interface UserForm {
+  fname: string;
+  lname: string;
+  email: string;
+  avatar: string;
+}
+
 const Profile = () => {
   const [user, setUser] = useState<User>();
-  const [editImage, setEditImage] = useState<string>("");
-  const [image, setImage] = useState<File[]>([]);
-  const [imageUrl, setImageUrl] = useState<string[]>([]);
   const [openDialog1, setOpenDialog1] = useState(false);
   const [openDialog2, setOpenDialog2] = useState(false);
-  const [editFname, setEditFname] = useState<string>("");
-  const [editLname, setEditLname] = useState<string>("");
-  const [editEmail, setEditEmail] = useState<string>("");
   const { id } = useParams();
+
+  const {
+    handleSubmit,
+    reset,
+    control,
+    formState: { isDirty },
+  } = useForm<UserForm>();
 
   const fetchuser = useCallback(async () => {
     const res = await axios.get(`https://www.melivecode.com/api/users/${id}`);
@@ -34,110 +43,35 @@ const Profile = () => {
     console.log(user);
     setUser(user);
   }, [id]);
+
   useEffect(() => {
     fetchuser();
   }, [fetchuser]);
 
-  //edit image URL =============================================================
-  const handleeditimageURL = async () => {
-    try {
-      const item = {
-        id: id,
-        avatar: editImage,
-      };
-      const res = await axios.put(
-        "https://www.melivecode.com/api/users/update",
-        item
-      );
-      const user = res.data.user;
-      alert("updated image successfully");
-      setOpenDialog1(!openDialog1);
-      window.location.reload();
-      console.log(user);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEditImage(value);
-  };
-
-  // upload Image =================================================================
-  useEffect(() => {
-    if (image.length < 1) return;
-    const newImageUrl: string[] = [];
-    image.forEach((image) => {
-      newImageUrl.push(URL.createObjectURL(image));
-    });
-    setImageUrl(newImageUrl);
-  }, [image]);
-  const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files as FileList;
-    setImage(Array.from(files));
-  };
-
-  //edit image File =============================================================
-  const handleeditimageFile = async () => {
-    try {
-      const item = {
-        id: id,
-        avatar: imageUrl[0],
-      };
-      const res = await axios.put(
-        "https://www.melivecode.com/api/users/update",
-        item
-      );
-      const user = res.data.user;
-      alert("updated image successfully");
-      setOpenDialog1(!openDialog1);
-      window.location.reload();
-      console.log(user);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  //edit handles ChangeName ===========================================================================
-  const handlechangeFname = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEditFname(value);
-  };
-  const handlechangeLname = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEditLname(value);
-  };
-  const handlechangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEditEmail(value);
-  };
-
   //handleSubmit ==========================================================================================
-  const handleSubmit = async () => {
-    try {
-      const item = {
-        id: id,
-        fname: editFname,
-        lname: editLname,
-        email: editEmail,
-      };
-      const res = await axios.put(
-        "https://www.melivecode.com/api/users/update",
-        item
-      );
-      const userData = res.data.user;
-      console.log(userData);
-      alert("User updated successfully");
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-    }
+  const onSubmit = async (value: UserForm) => {
+    setOpenDialog2(false);
+    setOpenDialog1(false);
+    const item = {
+      id: id,
+      ...value,
+    };
+    const res = await axios.put(
+      "https://www.melivecode.com/api/users/update",
+      item
+    );
+    const userData = res.data.user;
+    console.log(userData);
+    alert("User updated successfully");
+    reset();
+    fetchuser();
+    window.location.reload();
   };
 
   // rederpage ========================================================================================
   const renderEditImage = () => {
     return (
-      <dialog open={openDialog1}>
+      <dialog onClose={() => reset()} open={openDialog1}>
         <div className="container-dialog">
           <div className="nav-dialog">
             <i
@@ -150,30 +84,16 @@ const Profile = () => {
           <div className="inputImageURL">
             <h3>Edit Profile Image :</h3>
             <div className="URL">
-              <input type="text" placeholder="Url..." onChange={handleImage} />
-              <div className="submit-image" onClick={handleeditimageURL}>
-                <p>SUBMIT</p>
-              </div>
-            </div>
-          </div>
-          <div className="inputImageFile">
-            <div className="showImage">
-              {imageUrl.map((imageSrc, index) => (
-                <img key={index} src={imageSrc} className="ImageUrl" />
-              ))}
-            </div>
-            <div className="uploadfile">
-              <input
-                type="file"
-                multiple
-                accept="imge/*"
-                onChange={handleChangeImage}
-                id="upload"
+              <Controller
+                control={control}
+                name="avatar"
+                render={({ field }) => {
+                  return <input {...field} type="text" placeholder="Url..." />;
+                }}
               />
-              <label htmlFor="upload">Upload File</label>
-            </div>
-            <div className="btn-upload" onClick={handleeditimageFile}>
-              <p>UPLOAD</p>
+              <button type="submit" className="btn-upload" disabled={!isDirty}>
+                <p>SUBMIT</p>
+              </button>
             </div>
           </div>
         </div>
@@ -182,7 +102,7 @@ const Profile = () => {
   };
   const renderChangeName = () => {
     return (
-      <dialog open={openDialog2}>
+      <dialog onClose={() => reset()} open={openDialog2}>
         <div className="container-dialog">
           <div className="nav-dialog">
             <i
@@ -195,31 +115,47 @@ const Profile = () => {
           <div className="warp-dialog">
             <div className="edit-fname">
               <p>Frist Name:</p>
-              <input
-                type="text"
-                placeholder="Frist Name..."
-                onChange={handlechangeFname}
+              <Controller
+                control={control}
+                name="fname"
+                render={({ field }) => {
+                  return (
+                    <input {...field} type="text" placeholder="Frist Name..." />
+                  );
+                }}
               />
             </div>
             <div className="edit-lname">
               <p>Last Name:</p>
-              <input
-                type="text"
-                placeholder="Last Name..."
-                onChange={handlechangeLname}
+              <Controller
+                control={control}
+                name="lname"
+                render={({ field }) => {
+                  return (
+                    <input {...field} type="text" placeholder="Last Name..." />
+                  );
+                }}
               />
             </div>
             <div className="edit-email">
               <p>Email:</p>
-              <input
-                type="text"
-                placeholder="Email..."
-                onChange={handlechangeEmail}
+              <Controller
+                control={control}
+                name="email"
+                render={({ field }) => {
+                  return (
+                    <input {...field} type="text" placeholder="Email..." />
+                  );
+                }}
               />
             </div>
-            <div className="btn-edit-submit" onClick={handleSubmit}>
+            <button
+              type="submit"
+              className="btn-edit-submit"
+              disabled={!isDirty}
+            >
               <p>SUBMIT</p>
-            </div>
+            </button>
           </div>
         </div>
       </dialog>
@@ -268,8 +204,10 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      {renderEditImage()}
-      {renderChangeName()}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {renderEditImage()}
+        {renderChangeName()}
+      </form>
     </div>
   );
 };
