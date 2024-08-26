@@ -79,7 +79,12 @@
   width: 150px;
   border: 2px solid red;
   border-radius: 25px;
+  font-family: "REM", sans-serif;
+  font-weight: bold;
   cursor: pointer;
+  background-color: black;
+  color: white;
+  font-size: 24px;
 }
 .btn-edit-submit:hover {
   color: red;
