@@ -3,8 +3,16 @@ import Navbar from "../Navbar/Navbar";
 import "./HomePage.css";
 import { mockUp } from "../Data/MockUp";
 
+export interface Product {
+  id: number;
+  type: string;
+  name: string;
+  price: number;
+  image: string;
+}
+
 const HomePage = () => {
-  const [listData, setListData] = useState(mockUp);
+  const [listData] = useState<Product[]>(mockUp);
   return (
     <div className="container-hompage">
       <Navbar />
@@ -15,20 +23,24 @@ const HomePage = () => {
         <div className="container-table">
           <div className="table-game">
             <div className="table">
-              <div className="gird-game">
-                <div className="imagegame">
-                  <img src="/public/assets/gta-v-main.jpg" alt="logo" />
-                </div>
-                <div className="namegame">
-                  <h3>Grand Theft Auto V</h3>
-                </div>
-                <div className="pricegame">
-                  <h3>25 $</h3>
-                </div>
-                <div className="btn-buy">
-                  <p>buy</p>
-                </div>
-              </div>
+              {listData.map((item, index) => {
+                return (
+                  <div key={index} className="gird-game">
+                    <div className="imagegame">
+                      <img src="/public/assets/gta-v-main.jpg" alt="logo" />
+                    </div>
+                    <div className="namegame">
+                      <h3>{item.name}</h3>
+                    </div>
+                    <div className="pricegame">
+                      <h3>{item.price} THB</h3>
+                    </div>
+                    <div className="btn-buy">
+                      <p>buy</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

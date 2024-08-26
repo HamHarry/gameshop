@@ -74,6 +74,7 @@ const Profile = () => {
     alert("User updated successfully");
     reset();
     fetchuser();
+    window.location.reload();
   };
   // rederpage ========================================================================================
   const renderEditImage = () => {
