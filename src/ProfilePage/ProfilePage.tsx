@@ -23,19 +23,28 @@ interface UserForm {
   email: string;
   avatar: string;
 }
+const defaultValues: UserForm = {
+  fname: "",
+  lname: "",
+  email: "",
+  avatar: "",
+};
 
 const Profile = () => {
   const [user, setUser] = useState<User>();
-  const [openDialog1, setOpenDialog1] = useState(false);
-  const [openDialog2, setOpenDialog2] = useState(false);
+  const [openDialog1, setOpenDialog1] = useState<boolean>(false);
+  const [openDialog2, setOpenDialog2] = useState<boolean>(false);
   const { id } = useParams();
 
   const {
     handleSubmit,
     reset,
     control,
+    getValues,
     formState: { isDirty },
-  } = useForm<UserForm>();
+  } = useForm<UserForm>({
+    defaultValues,
+  });
 
   const fetchuser = useCallback(async () => {
     const res = await axios.get(`https://www.melivecode.com/api/users/${id}`);
@@ -65,9 +74,7 @@ const Profile = () => {
     alert("User updated successfully");
     reset();
     fetchuser();
-    window.location.reload();
   };
-
   // rederpage ========================================================================================
   const renderEditImage = () => {
     return (
@@ -81,7 +88,9 @@ const Profile = () => {
               }}
             ></i>
           </div>
-          <div className="showImage"></div>
+          <div className="showImage">
+            <img src={getValues("avatar")} alt="preview" />
+          </div>
           <div className="inputImageURL">
             <h3>Edit Profile Image :</h3>
             <div className="URL">
@@ -162,7 +171,6 @@ const Profile = () => {
       </dialog>
     );
   };
-
   return (
     <div className="container-profile">
       <Navbar />

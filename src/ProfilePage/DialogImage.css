@@ -127,3 +127,13 @@
 .btn-upload p:hover {
   color: red;
 }
+.showImage {
+  display: flex;
+  justify-content: center;
+}
+.showImage img {
+  width: 200px;
+  height: 200px;
+  border: 2px solid red;
+  border-radius: 50%;
+}

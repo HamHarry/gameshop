@@ -1,4 +1,4 @@
-const MockUp = [
+export const mockUp = [
   {
     id: 1,
     tpye: "open world",
@@ -70,5 +70,3 @@ const MockUp = [
     image: "",
   },
 ];
-
-export default MockUp;
