@@ -81,6 +81,7 @@ const Profile = () => {
               }}
             ></i>
           </div>
+          <div className="showImage"></div>
           <div className="inputImageURL">
             <h3>Edit Profile Image :</h3>
             <div className="URL">

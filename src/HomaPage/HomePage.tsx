@@ -7,7 +7,7 @@ const HomePage = () => {
       <Navbar />
       <div className="warp-container-homepage">
         <div className="header">
-          <h1>Welcome Game Shop</h1>
+          <h1>Welcome to Game Store</h1>
         </div>
         <div className="container-table">
           <div className="table-game">
