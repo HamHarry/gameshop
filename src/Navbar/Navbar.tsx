@@ -34,6 +34,7 @@ const Navbar = () => {
         className="fa-brands fa-steam"
         onClick={() => {
           navigate(`/home/${users?.id}`);
+          window.location.reload();
         }}
       ></i>
       <div className="navbar-right">
