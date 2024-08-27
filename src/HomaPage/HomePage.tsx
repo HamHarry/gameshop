@@ -27,13 +27,17 @@ const HomePage = () => {
                 return (
                   <div key={index} className="gird-game">
                     <div className="imagegame">
-                      <img src="/public/assets/gta-v-main.jpg" alt="logo" />
+                      <img src={item.image} alt="logo" />
                     </div>
                     <div className="namegame">
                       <h3>{item.name}</h3>
                     </div>
                     <div className="pricegame">
-                      <h3>{item.price} THB</h3>
+                      <h3>
+                        {item.price < 1
+                          ? "Free"
+                          : `${Intl.NumberFormat().format(item.price)} THB`}
+                      </h3>
                     </div>
                     <div className="btn-buy">
                       <p>buy</p>
