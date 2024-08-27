@@ -34,7 +34,7 @@ const HomePage = () => {
                     </div>
                     <div className="pricegame">
                       <h3>
-                        {item.price < 1
+                        {item.price <= 0
                           ? "Free"
                           : `${Intl.NumberFormat().format(item.price)} THB`}
                       </h3>

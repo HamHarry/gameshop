@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./LoginPage.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import Cookies from "universal-cookie";
 
 const LoginPage = () => {
   const [valueInput, setValueInput] = useState<string>("");
@@ -32,7 +34,14 @@ const LoginPage = () => {
         item
       );
       const userData = res.data;
-      console.log(userData);
+
+      const decodedToken = jwtDecode(userData.accessToken);
+      const cookies = new Cookies(null, {
+        path: "/",
+        maxAge: decodedToken.exp,
+      });
+      cookies.set("token", userData.accessToken);
+
       navigate(`/home/${userData.user.id}`);
     } catch (error) {
       alert("Username and password is wrong");

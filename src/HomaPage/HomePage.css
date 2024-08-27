@@ -46,8 +46,12 @@
 .table {
   width: 1450px;
   height: 550px;
+  overflow-y: hidden;
+}
+.table:hover {
   overflow-y: auto;
 }
+
 .gird-game {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr 1fr;
@@ -59,6 +63,7 @@
 }
 .imagegame img {
   height: 80px;
+  width: 150px;
 }
 .imagegame {
   display: flex;
