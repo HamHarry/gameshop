@@ -2,6 +2,8 @@ import { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./HomePage.css";
 import { mockUp } from "../Data/MockUp";
+import "./DialogPromotion.css";
+import { mockupImage } from "../Data/MockUpImage";
 
 export interface Product {
   id: number;
@@ -12,7 +14,72 @@ export interface Product {
 }
 
 const HomePage = () => {
+  const [open, setOpen] = useState(true);
+  const [listImage] = useState(mockupImage);
   const [listData] = useState<Product[]>(mockUp);
+  const [slide, setSlide] = useState(0);
+
+  const leftSlide = () => {
+    setSlide(slide === 0 ? listImage.length - 1 : slide - 1);
+  };
+
+  const rightSlide = () => {
+    setSlide(slide === listImage.length - 1 ? 0 : slide + 1);
+  };
+
+  // render =================================================================
+  const renderPromotion = () => {
+    return (
+      <dialog open={open}>
+        <div className="dialogPromotion-container">
+          <div className="nav-dialogPromotion">
+            <i
+              className="fa-solid fa-circle-xmark"
+              onClick={() => {
+                setOpen(!open);
+              }}
+            ></i>
+          </div>
+          <div className="warp-dialogPromotion">
+            <h1>New Game</h1>
+            <div className="warp-image">
+              <i className="fa-solid fa-circle-left" onClick={leftSlide}></i>
+              {listImage.map((item, index) => {
+                return (
+                  <img
+                    src={item.image}
+                    alt="logo"
+                    key={index}
+                    className={slide === index ? "slider" : "sliedr-hidden"}
+                  />
+                );
+              })}
+              <span className="indicators">
+                {listImage.map((_, index) => {
+                  return (
+                    <button
+                      key={index}
+                      className={
+                        slide === index ? "indicator" : "indicator-hidden"
+                      }
+                      onClick={() => {
+                        setSlide(index);
+                      }}
+                    />
+                  );
+                })}
+              </span>
+              <i className="fa-solid fa-circle-right" onClick={rightSlide}></i>
+            </div>
+            <div className="btn-promotion">
+              <h2>Buy</h2>
+            </div>
+          </div>
+        </div>
+      </dialog>
+    );
+  };
+
   return (
     <div className="container-hompage">
       <Navbar />
@@ -46,6 +113,7 @@ const HomePage = () => {
                 );
               })}
             </div>
+            {renderPromotion()}
           </div>
         </div>
       </div>
