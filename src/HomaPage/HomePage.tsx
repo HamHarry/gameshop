@@ -20,11 +20,13 @@ const HomePage = () => {
   const [slide, setSlide] = useState(0);
 
   const leftSlide = () => {
-    setSlide(slide === 0 ? listImage.length - 1 : slide - 1);
+    const number = slide === 0 ? listImage.length - 1 : slide - 1;
+    setSlide(number);
   };
 
   const rightSlide = () => {
-    setSlide(slide === listImage.length - 1 ? 0 : slide + 1);
+    const number = slide === listImage.length - 1 ? 0 : slide + 1;
+    setSlide(number);
   };
 
   // render =================================================================
@@ -41,19 +43,22 @@ const HomePage = () => {
             ></i>
           </div>
           <div className="warp-dialogPromotion">
-            <h1>New Game</h1>
+            <h1>
+              New Game <span className="text-red">Black Myth: Wukong</span>{" "}
+            </h1>
             <div className="warp-image">
-              <i className="fa-solid fa-circle-left" onClick={leftSlide}></i>
-              {listImage.map((item, index) => {
-                return (
-                  <img
-                    src={item.image}
-                    alt="logo"
-                    key={index}
-                    className={slide === index ? "slider" : "sliedr-hidden"}
-                  />
-                );
-              })}
+              <div className="animation">
+                {listImage.map((item, index) => {
+                  return (
+                    <img
+                      src={item.image}
+                      alt="logo"
+                      key={index}
+                      className={slide === index ? "slider" : "sliedr-hidden"}
+                    />
+                  );
+                })}
+              </div>
               <span className="indicators">
                 {listImage.map((_, index) => {
                   return (
@@ -69,6 +74,7 @@ const HomePage = () => {
                   );
                 })}
               </span>
+              <i className="fa-solid fa-circle-left" onClick={leftSlide}></i>
               <i className="fa-solid fa-circle-right" onClick={rightSlide}></i>
             </div>
             <div className="btn-promotion">
