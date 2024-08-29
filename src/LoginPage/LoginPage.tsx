@@ -1,33 +1,29 @@
-import { useState } from "react";
 import "./LoginPage.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "universal-cookie";
+import { Controller, useForm } from "react-hook-form";
+
+interface LoginForm {
+  username: string;
+  password: string;
+}
+
+const defaultValues: LoginForm = {
+  username: "",
+  password: "",
+};
 
 const LoginPage = () => {
-  const [valueInput, setValueInput] = useState<string>("");
-  const [valuePassword, setValuePassword] = useState<string>("");
   const navigate = useNavigate();
+  const { handleSubmit, control } = useForm<LoginForm>({ defaultValues });
 
-  //เก็บค่า input username and password =================================================================
-  const handleUser = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setValueInput(value);
-  };
-  const handlePass = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setValuePassword(value);
-  };
   //เมื่อกดปุ่ม login จะพาเข้าไปสู้หน้า home ===================================================================
-  const handleSubmit = async (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
+  const submit = async (value: LoginForm) => {
     try {
-      e.preventDefault();
       const item = {
-        username: valueInput,
-        password: valuePassword,
+        ...value,
       };
       const res = await axios.post(
         `https://www.melivecode.com/api/login`,
@@ -53,19 +49,35 @@ const LoginPage = () => {
     <div className="container-login">
       <div className="warp-login">
         <h1>LOG IN</h1>
-        <form>
-          <h2>Username</h2>
-          <input type="text" placeholder="Username..." onChange={handleUser} />
-          <h2>Password</h2>
-          <input
-            type="password"
-            placeholder="Password..."
-            onChange={handlePass}
+        <form onSubmit={handleSubmit(submit)}>
+          <Controller
+            name="username"
+            control={control}
+            render={({ field }) => {
+              return (
+                <>
+                  <h2>Username</h2>
+                  <input {...field} type="text" placeholder="Username..." />
+                </>
+              );
+            }}
+          />
+          <Controller
+            name="password"
+            control={control}
+            render={({ field }) => {
+              return (
+                <>
+                  <h2>Password</h2>
+                  <input {...field} type="password" placeholder="Password..." />
+                </>
+              );
+            }}
           />
           <div className="btn-login">
-            <div className="btn" onClick={handleSubmit}>
+            <button type="submit" className="btn">
               <p>Log In</p>
-            </div>
+            </button>
             <div
               className="btn"
               onClick={() => {

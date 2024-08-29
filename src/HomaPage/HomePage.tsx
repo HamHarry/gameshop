@@ -44,7 +44,7 @@ const HomePage = () => {
           </div>
           <div className="warp-dialogPromotion">
             <h1>
-              New Game <span className="text-red">Black Myth: Wukong</span>{" "}
+              New Game <span className="text-red">Black Myth: Wukong</span>
             </h1>
             <div className="warp-image">
               <div className="animation">

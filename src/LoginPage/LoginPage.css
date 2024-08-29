@@ -47,6 +47,17 @@
   font-family: "REM", sans-serif;
   font-size: 24px;
 }
+.btn-login button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  color: white;
+  text-shadow: 5px 5px 10px black;
+  font-family: "REM", sans-serif;
+  font-size: 24px;
+  border: none;
+}
 .btn {
   display: flex;
   justify-content: center;
