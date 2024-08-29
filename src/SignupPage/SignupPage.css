@@ -15,7 +15,7 @@
   gap: 20px;
   backdrop-filter: blur(10px);
   width: 600px;
-  height: 650px;
+  height: 800px;
   border: 2px solid red;
   font-family: "REM", sans-serif;
   border-radius: 25px;
@@ -46,6 +46,17 @@
   text-shadow: 5px 5px 10px black;
   font-family: "REM", sans-serif;
   font-size: 24px;
+}
+.btn-signup button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  color: white;
+  text-shadow: 5px 5px 10px black;
+  font-family: "REM", sans-serif;
+  font-size: 24px;
+  border: none;
 }
 .btn {
   display: flex;

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import Navbar from "../Navbar/Navbar";
+import Navbar, { User } from "../Navbar/Navbar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./ProfilePage.css";
@@ -7,34 +7,29 @@ import "./DialogImage.css";
 import "./DialogChangeName.css";
 import { Controller, useForm } from "react-hook-form";
 
-interface User {
-  id: number;
-  fname: string;
-  lname: string;
-  email: string;
-  username: string;
-  password: string;
-  avatar: string;
-}
-
 interface UserForm {
   fname: string;
   lname: string;
   email: string;
-  avatar: string;
+  birthdate: string;
+  image: string;
 }
 const defaultValues: UserForm = {
   fname: "",
   lname: "",
   email: "",
-  avatar: "",
+  birthdate: "",
+  image: "",
 };
 
 const Profile = () => {
   const [user, setUser] = useState<User>();
   const [openDialog1, setOpenDialog1] = useState<boolean>(false);
   const [openDialog2, setOpenDialog2] = useState<boolean>(false);
-  const { id } = useParams();
+  const { userId } = useParams();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const showLoading = () => setIsLoading(true);
+  const hideLoading = () => setIsLoading(false);
 
   const {
     handleSubmit,
@@ -47,11 +42,29 @@ const Profile = () => {
   });
 
   const fetchuser = useCallback(async () => {
-    const res = await axios.get(`https://www.melivecode.com/api/users/${id}`);
-    const user = res.data.user;
+    const token = localStorage.getItem("token");
+    const res = await axios.get(
+      `https://phandal-backend.vercel.app/api/user/profile/${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const user = res.data;
     console.log(user);
     setUser(user);
-  }, [id]);
+
+    const { fname, lname, email, birthdate, image } = user;
+    const userForm: UserForm = {
+      fname,
+      lname,
+      email,
+      birthdate,
+      image,
+    };
+    reset(userForm);
+  }, [reset, userId]);
 
   useEffect(() => {
     fetchuser();
@@ -59,22 +72,34 @@ const Profile = () => {
 
   //handleSubmit ==========================================================================================
   const onSubmit = async (value: UserForm) => {
-    setOpenDialog2(false);
-    setOpenDialog1(false);
-    const item = {
-      id: id,
-      ...value,
-    };
-    const res = await axios.put(
-      "https://www.melivecode.com/api/users/update",
-      item
-    );
-    const userData = res.data.user;
-    console.log(userData);
-    alert("User updated successfully");
-    reset();
-    fetchuser();
-    window.location.reload();
+    try {
+      showLoading();
+      setOpenDialog2(false);
+      setOpenDialog1(false);
+      const item = {
+        ...user,
+        ...value,
+      };
+
+      const token = localStorage.getItem("token");
+      const res = await axios.put(
+        `https://phandal-backend.vercel.app/api/user/${userId}`,
+        item,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const userData = res.data;
+      console.log(userData);
+      alert("User updated successfully");
+      fetchuser();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      hideLoading();
+    }
   };
   // rederpage ========================================================================================
   const renderEditImage = () => {
@@ -90,14 +115,14 @@ const Profile = () => {
             ></i>
           </div>
           <div className="showImage">
-            <img src={getValues("avatar")} alt="preview" />
+            <img src={getValues("image")} alt="preview" />
           </div>
           <div className="inputImageURL">
             <h3>Edit Profile Image :</h3>
             <div className="URL">
               <Controller
                 control={control}
-                name="avatar"
+                name="image"
                 render={({ field }) => {
                   return <input {...field} type="text" placeholder="Url..." />;
                 }}
@@ -111,6 +136,7 @@ const Profile = () => {
       </dialog>
     );
   };
+
   const renderChangeName = () => {
     return (
       <dialog onClose={() => reset()} open={openDialog2}>
@@ -148,6 +174,18 @@ const Profile = () => {
                 }}
               />
             </div>
+            <div className="edit-birthdate">
+              <p>Birthday:</p>
+              <Controller
+                control={control}
+                name="birthdate"
+                render={({ field }) => {
+                  return (
+                    <input {...field} type="date" placeholder="Birthday..." />
+                  );
+                }}
+              />
+            </div>
             <div className="edit-email">
               <p>Email:</p>
               <Controller
@@ -173,52 +211,62 @@ const Profile = () => {
     );
   };
   return (
-    <div className="container-profile">
-      <Navbar />
-      <div className="warp-container-profile">
-        <div className="image">
-          <img src={user?.avatar} alt="LOGO" />
-          <div
-            className="edit"
-            onClick={() => {
-              setOpenDialog1(!openDialog1);
-            }}
-          >
-            <p>Edit profile</p>
+    <>
+      <div className="container-profile">
+        <Navbar />
+        <div className="warp-container-profile">
+          <div className="image">
+            <img src={user?.image} alt="LOGO" />
+            <div
+              className="edit"
+              onClick={() => {
+                setOpenDialog1(!openDialog1);
+              }}
+            >
+              <p>Edit profile</p>
+            </div>
+          </div>
+          <div className="warp-information">
+            <div className="information">
+              <div className="id">
+                <p>ID: {user?.code}</p>
+              </div>
+              <div className="username">
+                <p>Username: {user?.username}</p>
+              </div>
+              <div className="name">
+                <p>
+                  Name: {user?.fname} {user?.lname}
+                </p>
+              </div>
+              <div className="email">
+                <p>Email: {user?.email}</p>
+              </div>
+              <div className="email">
+                <p>Birthday: {user?.birthdate}</p>
+              </div>
+            </div>
+            <div
+              className="changename"
+              onClick={() => {
+                setOpenDialog2(!openDialog2);
+              }}
+            >
+              <p>Change Name</p>
+            </div>
           </div>
         </div>
-        <div className="warp-information">
-          <div className="information">
-            <div className="id">
-              <p>ID: {user?.id}</p>
-            </div>
-            <div className="username">
-              <p>Username: {user?.username}</p>
-            </div>
-            <div className="name">
-              <p>
-                Name: {user?.fname} {user?.lname}
-              </p>
-            </div>
-            <div className="email">
-              <p>Email: {user?.email}</p>
-            </div>
-          </div>
-          <div
-            className="changename"
-            onClick={() => {
-              setOpenDialog2(!openDialog2);
-            }}
-          >
-            <p>Change Name</p>
-          </div>
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {renderEditImage()}
+          {renderChangeName()}
+        </form>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {renderEditImage()}
-        {renderChangeName()}
-      </form>
-    </div>
+      {isLoading && (
+        <div className="wrap-loding-register">
+          <div className="loding-register" />
+        </div>
+      )}
+    </>
   );
 };
 

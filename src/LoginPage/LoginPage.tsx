@@ -4,20 +4,36 @@ import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "universal-cookie";
 import { Controller, useForm } from "react-hook-form";
+import { useState } from "react";
 
 interface LoginForm {
-  username: string;
+  email: string;
   password: string;
 }
 
+interface Login {
+  accessToken: string;
+  userId: string;
+}
+
+export interface Response<Type> {
+  data: Type;
+  status: number;
+}
+
 const defaultValues: LoginForm = {
-  username: "",
+  email: "",
   password: "",
 };
 
 const LoginPage = () => {
   const navigate = useNavigate();
+
   const { handleSubmit, control } = useForm<LoginForm>({ defaultValues });
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const showLoading = () => setIsLoading(true);
+  const hideLoading = () => setIsLoading(false);
 
   //เมื่อกดปุ่ม login จะพาเข้าไปสู้หน้า home ===================================================================
   const submit = async (value: LoginForm) => {
@@ -25,71 +41,87 @@ const LoginPage = () => {
       const item = {
         ...value,
       };
-      const res = await axios.post(
-        `https://www.melivecode.com/api/login`,
+      showLoading();
+      const res: Response<Login> = await axios.post(
+        `https://phandal-backend.vercel.app/api/auth/login`,
         item
       );
-      const userData = res.data;
 
-      const decodedToken = jwtDecode(userData.accessToken);
+      const loginedData = res.data;
+
+      const decodedToken = jwtDecode(loginedData.accessToken);
       const cookies = new Cookies(null, {
         path: "/",
-        maxAge: decodedToken.exp,
+        expires: new Date(Number(decodedToken.exp) * 1000),
       });
-      cookies.set("token", userData.accessToken);
+      cookies.set("token", loginedData.accessToken);
+      localStorage.setItem("token", loginedData.accessToken);
 
-      navigate(`/home/${userData.user.id}`);
+      navigate(`/home/${loginedData.userId}`);
     } catch (error) {
       alert("Username and password is wrong");
       console.log(error);
+    } finally {
+      hideLoading();
     }
   };
 
   return (
-    <div className="container-login">
-      <div className="warp-login">
-        <h1>LOG IN</h1>
-        <form onSubmit={handleSubmit(submit)}>
-          <Controller
-            name="username"
-            control={control}
-            render={({ field }) => {
-              return (
-                <>
-                  <h2>Username</h2>
-                  <input {...field} type="text" placeholder="Username..." />
-                </>
-              );
-            }}
-          />
-          <Controller
-            name="password"
-            control={control}
-            render={({ field }) => {
-              return (
-                <>
-                  <h2>Password</h2>
-                  <input {...field} type="password" placeholder="Password..." />
-                </>
-              );
-            }}
-          />
-          <div className="btn-login">
-            <button type="submit" className="btn">
-              <p>Log In</p>
-            </button>
-            <div
-              className="btn"
-              onClick={() => {
-                navigate("/signup");
+    <>
+      <div className="container-login">
+        <div className="warp-login">
+          <h1>LOG IN</h1>
+          <form onSubmit={handleSubmit(submit)}>
+            <Controller
+              name="email"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <>
+                    <h2>Username</h2>
+                    <input {...field} type="text" placeholder="Username..." />
+                  </>
+                );
               }}
-            >
-              <p>Sign In</p>
+            />
+            <Controller
+              name="password"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <>
+                    <h2>Password</h2>
+                    <input
+                      {...field}
+                      type="password"
+                      placeholder="Password..."
+                    />
+                  </>
+                );
+              }}
+            />
+            <div className="btn-login">
+              <button type="submit" className="btn">
+                <p>Log In</p>
+              </button>
+              <div
+                className="btn"
+                onClick={() => {
+                  navigate("/signup");
+                }}
+              >
+                <p>Sign In</p>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+      {isLoading && (
+        <div className="wrap-loding-login">
+          <div className="loding-login" />
+        </div>
+      )}
+    </>
   );
 };
 

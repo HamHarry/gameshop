@@ -1,112 +1,166 @@
 import { useNavigate } from "react-router-dom";
 import "./SignupPage.css";
-import { useState } from "react";
 import axios from "axios";
+import { Controller, useForm } from "react-hook-form";
+import { useState } from "react";
+
+interface SignupForm {
+  username: string;
+  fname: string;
+  lname: string;
+  email: string;
+  birthdate: string;
+  password: string;
+  image: string;
+}
+const defaultValues: SignupForm = {
+  username: "",
+  email: "",
+  birthdate: "",
+  password: "",
+  fname: "",
+  lname: "",
+  image:
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+};
 
 const SignupPage = () => {
-  const [valueFname, setValueFname] = useState<string>("");
-  const [valueLname, setValueLname] = useState<string>("");
-  const [valueusername, setValueUsername] = useState<string>("");
-  const [valuepassword, setValuePassword] = useState<string>("");
-  const [valueemail, setValueEmail] = useState<string>("");
   const navigate = useNavigate();
+  const { control, handleSubmit } = useForm<SignupForm>({ defaultValues });
 
-  //เก็บค่า input ทั้งหมด ========================================================================
-  const handleFname = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setValueFname(value);
-  };
-  const handleLname = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setValueLname(value);
-  };
-  const handleUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setValueUsername(value);
-  };
-  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setValuePassword(value);
-  };
-  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setValueEmail(value);
-  };
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const showLoading = () => setIsLoading(true);
+  const hideLoading = () => setIsLoading(false);
 
   //กดเพื่อเก็บค่าที่ถูกกรอก =================================================================================
-  const handleSubmit = async (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
-    e.preventDefault();
+  const submit = async (value: SignupForm) => {
     try {
+      showLoading();
       const item = {
-        fname: valueFname,
-        lname: valueLname,
-        username: valueusername,
-        password: valuepassword,
-        email: valueemail,
-        avatar:
+        ...value,
+        image:
           "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
       };
       const res = await axios.post(
-        "https://www.melivecode.com/api/users/create",
+        "https://phandal-backend.vercel.app/api/user/register",
         item
       );
+      console.log(item);
+
       const userData = res.data;
       console.log(userData);
-      alert("SignUp successful");
       navigate("/");
+      alert("SignUp successful");
     } catch (error) {
       console.log(error);
+    } finally {
+      hideLoading();
     }
   };
   return (
-    <div className="container-signup">
-      <div className="warp-signup">
-        <h1>SIGN UP</h1>
-        <form>
-          <h2>Frist Name</h2>
-          <input
-            type="text"
-            placeholder="First Name..."
-            onChange={handleFname}
-          />
-          <h2>Last Name</h2>
-          <input
-            type="text"
-            placeholder="Last Name..."
-            onChange={handleLname}
-          />
-          <h2>Username</h2>
-          <input
-            type="text"
-            placeholder="Username..."
-            onChange={handleUsername}
-          />
-          <h2>Password</h2>
-          <input
-            type="password"
-            placeholder="Password..."
-            onChange={handlePassword}
-          />
-          <h2>Email</h2>
-          <input type="text" placeholder="Email..." onChange={handleEmail} />
-          <div className="btn-signup">
-            <div className="btn" onClick={handleSubmit}>
-              <p>Sign In</p>
-            </div>
-            <div
-              className="btn"
-              onClick={() => {
-                navigate("/");
+    <>
+      <div className="container-signup">
+        <div className="warp-signup">
+          <h1>SIGN UP</h1>
+          <form onSubmit={handleSubmit(submit)}>
+            <Controller
+              name="fname"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <>
+                    <h2>Frist Name</h2>
+                    <input {...field} type="text" placeholder="First Name..." />
+                  </>
+                );
               }}
-            >
-              <p>Log In</p>
+            />
+            <Controller
+              name="lname"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <>
+                    <h2>Last Name</h2>
+                    <input {...field} type="text" placeholder="Last Name..." />
+                  </>
+                );
+              }}
+            />
+            <Controller
+              name="birthdate"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <>
+                    <h2>Birthday</h2>
+                    <input {...field} type="date" placeholder="Birthday..." />
+                  </>
+                );
+              }}
+            />
+            <Controller
+              name="email"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <>
+                    <h2>Email</h2>
+                    <input {...field} type="text" placeholder="Email..." />
+                  </>
+                );
+              }}
+            />
+            <Controller
+              name="username"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <>
+                    <h2>Username</h2>
+                    <input {...field} type="text" placeholder="Username..." />
+                  </>
+                );
+              }}
+            />
+            <Controller
+              name="password"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <>
+                    <h2>Password</h2>
+                    <input
+                      {...field}
+                      type="password"
+                      placeholder="Password..."
+                    />
+                  </>
+                );
+              }}
+            />
+            <div className="btn-signup">
+              <button className="btn">
+                <p>Sign In</p>
+              </button>
+              <div
+                className="btn"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                <p>Log In</p>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+      {isLoading && (
+        <div className="wrap-loding-register">
+          <div className="loding-register" />
+        </div>
+      )}
+    </>
   );
 };
 
