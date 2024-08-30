@@ -20,8 +20,7 @@ const defaultValues: SignupForm = {
   password: "",
   fname: "",
   lname: "",
-  image:
-    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+  image: "",
 };
 
 const SignupPage = () => {
@@ -49,10 +48,11 @@ const SignupPage = () => {
 
       const userData = res.data;
       console.log(userData);
-      navigate("/");
       alert("SignUp successful");
+      navigate("/");
     } catch (error) {
       console.log(error);
+      alert("SignUp failed");
     } finally {
       hideLoading();
     }

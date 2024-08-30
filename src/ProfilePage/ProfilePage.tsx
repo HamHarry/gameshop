@@ -93,6 +93,7 @@ const Profile = () => {
       );
       const userData = res.data;
       console.log(userData);
+      window.location.reload();
       alert("User updated successfully");
       fetchuser();
     } catch (error) {

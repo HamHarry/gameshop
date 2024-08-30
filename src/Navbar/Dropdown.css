@@ -14,9 +14,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 180px;
-  height: 80px;
+  width: 185px;
+  height: 50px;
   text-align: center;
+  margin-top: 25px;
 }
 .user h3 {
   font-family: "REM", sans-serif;

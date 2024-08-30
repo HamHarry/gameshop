@@ -19,11 +19,11 @@ const HomePage = () => {
   const [listData] = useState<Product[]>(mockUp);
   const [slide, setSlide] = useState(0);
 
+  // เปลี่ยนรูปภาพ =============================================================
   const leftSlide = () => {
     const number = slide === 0 ? listImage.length - 1 : slide - 1;
     setSlide(number);
   };
-
   const rightSlide = () => {
     const number = slide === listImage.length - 1 ? 0 : slide + 1;
     setSlide(number);
