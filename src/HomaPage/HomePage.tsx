@@ -14,7 +14,7 @@ export interface Product {
 }
 
 const HomePage = () => {
-  const [open, setOpen] = useState(true);
+  const [openPromotion, setOpenPromotion] = useState(true);
   const [listImage] = useState(mockupImage);
   const [listData] = useState<Product[]>(mockUp);
   const [slide, setSlide] = useState(0);
@@ -32,13 +32,13 @@ const HomePage = () => {
   // render =================================================================
   const renderPromotion = () => {
     return (
-      <dialog open={open}>
+      <dialog open={openPromotion}>
         <div className="dialogPromotion-container">
           <div className="nav-dialogPromotion">
             <i
               className="fa-solid fa-circle-xmark"
               onClick={() => {
-                setOpen(!open);
+                setOpenPromotion(!openPromotion);
               }}
             ></i>
           </div>
