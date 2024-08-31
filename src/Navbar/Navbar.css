@@ -25,6 +25,7 @@
 .fa-cart-shopping {
   font-size: 40px;
   color: #9e9e9e;
+  cursor: pointer;
 }
 .fa-cart-shopping:hover {
   color: red;

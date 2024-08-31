@@ -1,0 +1,33 @@
+.container-cart {
+  position: fixed;
+  left: 9%;
+  bottom: 10%;
+  transform: translate(-50%, 60%);
+  width: 400px;
+  height: 700px;
+  background-color: #9e9e9e;
+  border-radius: 25px;
+}
+.container-cart:before {
+  content: "";
+  position: absolute;
+  top: -5;
+  right: 23.5%;
+  height: 10px;
+  width: 20px;
+  background-color: #9e9e9e;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+.container-cart.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: 0.5s ease;
+}
+.container-cart.inactive {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20);
+  transition: 0.5s ease;
+}

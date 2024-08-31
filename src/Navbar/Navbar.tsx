@@ -19,7 +19,15 @@ export interface User {
   summaryScore?: any;
 }
 
-const Navbar = () => {
+interface NavbarProps {
+  openDialogCart: boolean;
+  setOpenDialogCart: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Navbar: React.FC<NavbarProps> = ({
+  openDialogCart,
+  setOpenDialogCart,
+}) => {
   const [users, setUsers] = useState<User>();
   const [open, setOpen] = useState(false);
   const { userId } = useParams();
@@ -68,7 +76,12 @@ const Navbar = () => {
           }}
         ></i>
         <div className="navbar-right">
-          <i className="fa-solid fa-cart-shopping"></i>
+          <i
+            className="fa-solid fa-cart-shopping"
+            onClick={() => {
+              setOpenDialogCart(!openDialogCart);
+            }}
+          ></i>
           <img
             src={users?.image}
             alt="logo"

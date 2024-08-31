@@ -5,6 +5,7 @@ import "./HomePage.css";
 import { mockUp } from "../Data/MockUp";
 import "./DialogPromotion.css";
 import "./DialogGame.css";
+import "./DialogCart.css";
 
 interface GameItem {
   id: number;
@@ -21,7 +22,8 @@ interface ImageShow {
 
 const HomePage = () => {
   const [openPromotion, setOpenPromotion] = useState<boolean>(true);
-  const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const [openDialogGame, setOpenDialogGame] = useState<boolean>(false);
+  const [openDialogCart, setOpenDialogCart] = useState<boolean>(false);
   const [dataGame, setDataGame] = useState<GameItem>();
   const [listData] = useState(mockUp);
   const [slide, setSlide] = useState(0);
@@ -115,7 +117,7 @@ const HomePage = () => {
       </dialog>
     );
   };
-  const renderDialog = () => {
+  const renderDialogGame = () => {
     const game = dataGame;
 
     // เปลี่ยนรูปภาพ =============================================================
@@ -131,7 +133,7 @@ const HomePage = () => {
     };
 
     return (
-      <dialog open={openDialog}>
+      <dialog open={openDialogGame}>
         {game && (
           <div className="dialogGame-container">
             <div className="dialogGame-nav">
@@ -139,7 +141,7 @@ const HomePage = () => {
               <i
                 className="fa-solid fa-circle-xmark"
                 onClick={() => {
-                  setOpenDialog(!openDialog);
+                  setOpenDialogGame(!openDialogGame);
                   setSlide(0);
                 }}
               ></i>
@@ -196,10 +198,22 @@ const HomePage = () => {
       </dialog>
     );
   };
+  const renderCart = () => {
+    return (
+      <div
+        className={`dropdown-menu ${openDialogCart ? "active" : "inactive"}`}
+      >
+        <div className="container-cart">ez</div>
+      </div>
+    );
+  };
 
   return (
     <div className="container-hompage">
-      <Navbar />
+      <Navbar
+        openDialogCart={openDialogCart}
+        setOpenDialogCart={setOpenDialogCart}
+      />
       <div className="warp-container-homepage">
         <div className="header">
           <h1>Welcome to Game Store</h1>
@@ -216,7 +230,7 @@ const HomePage = () => {
                         alt="logo"
                         onClick={() => {
                           setDataGame(item);
-                          setOpenDialog(!openDialog);
+                          setOpenDialogGame(!openDialogGame);
                         }}
                       />
                     </div>
@@ -238,7 +252,8 @@ const HomePage = () => {
               })}
             </div>
             {renderPromotion()}
-            {renderDialog()}
+            {renderDialogGame()}
+            {renderCart()}
           </div>
         </div>
       </div>
