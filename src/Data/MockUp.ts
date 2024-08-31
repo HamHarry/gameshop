@@ -175,7 +175,7 @@ export const mockUp = [
     image: "/public/assets/game/RUST.jpg",
     imageShow: [
       {
-        image: "/public/assets/show/RUST/RUST4.jpg",
+        image: "/public/assets/show/RUST/RUST4.png",
       },
       {
         image: "/public/assets/show/RUST/RUST2.jpg",
@@ -184,7 +184,7 @@ export const mockUp = [
         image: "/public/assets/show/RUST/RUST3.jpg",
       },
       {
-        image: "/public/assets/show/RUST/RUST1.png",
+        image: "/public/assets/show/RUST/RUST1.jpg",
       },
     ],
   },

@@ -40,43 +40,60 @@ const HomePage = () => {
             ></i>
           </div>
           <div className="warp-dialogPromotion">
-            <h1>
-              New Game <span className="text-red">{gamePromote?.name}</span>
-            </h1>
-            <div className="warp-image">
-              <div className="animation">
-                {gamePromote?.imageShow.map((item, index) => {
-                  return (
-                    <img
-                      src={item.image}
-                      alt="logo"
-                      key={index}
-                      className={slide === index ? "slider" : "sliedr-hidden"}
-                    />
-                  );
-                })}
-              </div>
-              <span className="indicators">
-                {gamePromote?.imageShow.map((_, index) => {
-                  return (
-                    <button
-                      key={index}
-                      className={
-                        slide === index ? "indicator" : "indicator-hidden"
-                      }
-                      onClick={() => {
-                        setSlide(index);
-                      }}
-                    />
-                  );
-                })}
-              </span>
-              <i className="fa-solid fa-circle-left" onClick={leftSlide}></i>
-              <i className="fa-solid fa-circle-right" onClick={rightSlide}></i>
-            </div>
-            <div className="btn-promotion">
-              <h2>Buy</h2>
-            </div>
+            {gamePromote && (
+              <>
+                <h1>
+                  New Game <span className="text-red">{gamePromote?.name}</span>
+                </h1>
+                <div className="warp-image">
+                  <div className="animation">
+                    {gamePromote?.imageShow.map((item, index) => {
+                      return (
+                        <img
+                          src={item.image}
+                          alt="logo"
+                          key={index}
+                          className={
+                            slide === index ? "slider" : "sliedr-hidden"
+                          }
+                        />
+                      );
+                    })}
+                  </div>
+                  <span className="indicators">
+                    {gamePromote?.imageShow.map((_, index) => {
+                      return (
+                        <button
+                          key={index}
+                          className={
+                            slide === index ? "indicator" : "indicator-hidden"
+                          }
+                          onClick={() => {
+                            setSlide(index);
+                          }}
+                        />
+                      );
+                    })}
+                  </span>
+                  <i
+                    className="fa-solid fa-circle-left"
+                    onClick={leftSlide}
+                  ></i>
+                  <i
+                    className="fa-solid fa-circle-right"
+                    onClick={rightSlide}
+                  ></i>
+                </div>
+                <div
+                  className="btn-promotion"
+                  onClick={() => {
+                    return console.log(gamePromote);
+                  }}
+                >
+                  <h2>Buy</h2>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </dialog>
