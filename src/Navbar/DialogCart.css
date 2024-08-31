@@ -31,3 +31,10 @@
   transform: translateY(-20);
   transition: 0.5s ease;
 }
+.cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "REM", sans-serif;
+  height: 50px;
+}

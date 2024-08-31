@@ -5,7 +5,6 @@ import "./HomePage.css";
 import { mockUp } from "../Data/MockUp";
 import "./DialogPromotion.css";
 import "./DialogGame.css";
-import "./DialogCart.css";
 
 interface GameItem {
   id: number;
@@ -23,7 +22,6 @@ interface ImageShow {
 const HomePage = () => {
   const [openPromotion, setOpenPromotion] = useState<boolean>(true);
   const [openDialogGame, setOpenDialogGame] = useState<boolean>(false);
-  const [openDialogCart, setOpenDialogCart] = useState<boolean>(false);
   const [dataGame, setDataGame] = useState<GameItem>();
   const [listData] = useState(mockUp);
   const [slide, setSlide] = useState(0);
@@ -198,22 +196,10 @@ const HomePage = () => {
       </dialog>
     );
   };
-  const renderCart = () => {
-    return (
-      <div
-        className={`dropdown-menu ${openDialogCart ? "active" : "inactive"}`}
-      >
-        <div className="container-cart">ez</div>
-      </div>
-    );
-  };
 
   return (
     <div className="container-hompage">
-      <Navbar
-        openDialogCart={openDialogCart}
-        setOpenDialogCart={setOpenDialogCart}
-      />
+      <Navbar />
       <div className="warp-container-homepage">
         <div className="header">
           <h1>Welcome to Game Store</h1>
@@ -253,7 +239,6 @@ const HomePage = () => {
             </div>
             {renderPromotion()}
             {renderDialogGame()}
-            {renderCart()}
           </div>
         </div>
       </div>

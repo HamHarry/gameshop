@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 import "./Navbar.css";
 import "./Dropdown.css";
+import "./DialogCart.css";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { Response } from "../LoginPage/LoginPage";
@@ -19,17 +20,10 @@ export interface User {
   summaryScore?: any;
 }
 
-interface NavbarProps {
-  openDialogCart: boolean;
-  setOpenDialogCart: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const Navbar: React.FC<NavbarProps> = ({
-  openDialogCart,
-  setOpenDialogCart,
-}) => {
+const Navbar = () => {
   const [users, setUsers] = useState<User>();
   const [open, setOpen] = useState(false);
+  const [openDialogCart, setOpenDialogCart] = useState<boolean>(false);
   const { userId } = useParams();
   const navigate = useNavigate();
 
@@ -65,6 +59,23 @@ const Navbar: React.FC<NavbarProps> = ({
     fetchuser();
   }, [fetchuser]);
 
+  //render =============================================================================================
+  const renderCart = () => {
+    return (
+      <div
+        className={`dropdown-menu ${openDialogCart ? "active" : "inactive"}`}
+      >
+        <div className="container-cart">
+          <div className="cart">
+            <h1>Your Cart</h1>
+          </div>
+          <div className="listCart"></div>
+          <div className="btn-payment"></div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       <div className="container-navbar">
@@ -82,6 +93,7 @@ const Navbar: React.FC<NavbarProps> = ({
               setOpenDialogCart(!openDialogCart);
             }}
           ></i>
+          {renderCart()}
           <img
             src={users?.image}
             alt="logo"
