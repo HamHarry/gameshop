@@ -13,18 +13,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .dialogGame-nav h1 {
   color: white;
   font-family: "REM", sans-serif;
-  margin-left: 10px;
+  margin-left: 20px;
 }
 .warp-image-game {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 20px;
+  margin: 0px 20px;
 }
 .fa-circle-left {
   position: absolute;
@@ -83,7 +83,7 @@
 .indicators-game {
   display: flex;
   position: absolute;
-  bottom: 170px;
+  bottom: 200px;
   gap: 5px;
 }
 .indicator {
@@ -105,7 +105,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 80px;
 }
 .price h2 {
   color: white;
