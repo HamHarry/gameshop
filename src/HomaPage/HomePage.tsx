@@ -1,36 +1,33 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./HomePage.css";
 import { mockUp } from "../Data/MockUp";
 import "./DialogPromotion.css";
-import { mockupImage } from "../Data/MockUpImage";
-
-export interface Product {
-  id: number;
-  type: string;
-  name: string;
-  price: number;
-  image: string;
-}
 
 const HomePage = () => {
   const [openPromotion, setOpenPromotion] = useState(true);
-  const [listImage] = useState(mockupImage);
-  const [listData] = useState<Product[]>(mockUp);
+  const [listData] = useState(mockUp);
   const [slide, setSlide] = useState(0);
-
-  // เปลี่ยนรูปภาพ =============================================================
-  const leftSlide = () => {
-    const number = slide === 0 ? listImage.length - 1 : slide - 1;
-    setSlide(number);
-  };
-  const rightSlide = () => {
-    const number = slide === listImage.length - 1 ? 0 : slide + 1;
-    setSlide(number);
-  };
 
   // render =================================================================
   const renderPromotion = () => {
+    const gamePromote = listData.find((item) => {
+      return item.id === 11;
+    });
+
+    // เปลี่ยนรูปภาพ =============================================================
+    const leftSlide = () => {
+      const number =
+        slide === 0 ? (gamePromote?.imageShow.length as any) - 1 : slide - 1;
+      setSlide(number);
+    };
+    const rightSlide = () => {
+      const number =
+        slide === (gamePromote?.imageShow.length as any) - 1 ? 0 : slide + 1;
+      setSlide(number);
+    };
+
     return (
       <dialog open={openPromotion}>
         <div className="dialogPromotion-container">
@@ -44,11 +41,11 @@ const HomePage = () => {
           </div>
           <div className="warp-dialogPromotion">
             <h1>
-              New Game <span className="text-red">Black Myth: Wukong</span>
+              New Game <span className="text-red">{gamePromote?.name}</span>
             </h1>
             <div className="warp-image">
               <div className="animation">
-                {listImage.map((item, index) => {
+                {gamePromote?.imageShow.map((item, index) => {
                   return (
                     <img
                       src={item.image}
@@ -60,7 +57,7 @@ const HomePage = () => {
                 })}
               </div>
               <span className="indicators">
-                {listImage.map((_, index) => {
+                {gamePromote?.imageShow.map((_, index) => {
                   return (
                     <button
                       key={index}
