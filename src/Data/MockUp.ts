@@ -49,10 +49,10 @@ export const mockUp = [
     image: "/public/assets/game/Valorant.jpg",
     imageShow: [
       {
-        image: "/public/assets/show/Valorant/Valorant2.jpg",
+        image: "/public/assets/show/Valorant/Valorant2.png",
       },
       {
-        image: "/public/assets/show/Valorant/Valorant1.png",
+        image: "/public/assets/show/Valorant/Valorant1.jpg",
       },
       {
         image: "/public/assets/show/Valorant/Valorant3.png",
@@ -133,7 +133,7 @@ export const mockUp = [
     image: "/public/assets/game/PUBG.jpg",
     imageShow: [
       {
-        image: "/public/assets/show/PUBG/PUBG4.jpg",
+        image: "/public/assets/show/PUBG/PUBG4.png",
       },
       {
         image: "/public/assets/show/PUBG/PUBG2.jpg",
@@ -142,7 +142,7 @@ export const mockUp = [
         image: "/public/assets/show/PUBG/PUBG3.jpg",
       },
       {
-        image: "/public/assets/show/PUBG/PUBG1.png",
+        image: "/public/assets/show/PUBG/PUBG1.jpg",
       },
     ],
   },

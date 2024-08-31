@@ -4,9 +4,25 @@ import Navbar from "../Navbar/Navbar";
 import "./HomePage.css";
 import { mockUp } from "../Data/MockUp";
 import "./DialogPromotion.css";
+import "./DialogGame.css";
+
+interface GameItem {
+  id: number;
+  type: string;
+  name: string;
+  price: number;
+  image: string;
+  imageShow: ImageShow[];
+}
+
+interface ImageShow {
+  image: string;
+}
 
 const HomePage = () => {
-  const [openPromotion, setOpenPromotion] = useState(true);
+  const [openPromotion, setOpenPromotion] = useState<boolean>(true);
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const [dataGame, setDataGame] = useState<GameItem>();
   const [listData] = useState(mockUp);
   const [slide, setSlide] = useState(0);
 
@@ -99,6 +115,87 @@ const HomePage = () => {
       </dialog>
     );
   };
+  const renderDialog = () => {
+    const game = dataGame;
+
+    // เปลี่ยนรูปภาพ =============================================================
+    const leftSlide = () => {
+      const number =
+        slide === 0 ? (game?.imageShow.length as any) - 1 : slide - 1;
+      setSlide(number);
+    };
+    const rightSlide = () => {
+      const number =
+        slide === (game?.imageShow.length as any) - 1 ? 0 : slide + 1;
+      setSlide(number);
+    };
+
+    return (
+      <dialog open={openDialog}>
+        {game && (
+          <div className="dialogGame-container">
+            <div className="dialogGame-nav">
+              <h1>{game.name}</h1>
+              <i
+                className="fa-solid fa-circle-xmark"
+                onClick={() => {
+                  setOpenDialog(!openDialog);
+                  setSlide(0);
+                }}
+              ></i>
+            </div>
+            <div className="warp-image-game">
+              <div className="animation">
+                {game.imageShow.map((item, index) => {
+                  return (
+                    <img
+                      src={item.image}
+                      alt="logo"
+                      key={index}
+                      className={slide === index ? "slider" : "sliedr-hidden"}
+                    />
+                  );
+                })}
+              </div>
+              <span className="indicators-game">
+                {game.imageShow.map((_, index) => {
+                  return (
+                    <button
+                      key={index}
+                      className={
+                        slide === index ? "indicator" : "indicator-hidden"
+                      }
+                      onClick={() => {
+                        setSlide(index);
+                      }}
+                    />
+                  );
+                })}
+              </span>
+              <div className="btn-left-right">
+                <i className="fa-solid fa-circle-left" onClick={leftSlide}></i>
+                <i
+                  className="fa-solid fa-circle-right"
+                  onClick={rightSlide}
+                ></i>
+              </div>
+            </div>
+            <div className="price">
+              <h2>
+                {game.price <= 0
+                  ? "Free"
+                  : `${Intl.NumberFormat().format(game.price)} THB`}
+              </h2>
+            </div>
+            <div className="btn-dialogGame">
+              <button className="btn-add-game">Add to Cart</button>
+              <button className="btn-buy-game">Buy</button>
+            </div>
+          </div>
+        )}
+      </dialog>
+    );
+  };
 
   return (
     <div className="container-hompage">
@@ -114,7 +211,14 @@ const HomePage = () => {
                 return (
                   <div key={index} className="gird-game">
                     <div className="imagegame">
-                      <img src={item.image} alt="logo" />
+                      <img
+                        src={item.image}
+                        alt="logo"
+                        onClick={() => {
+                          setDataGame(item);
+                          setOpenDialog(!openDialog);
+                        }}
+                      />
                     </div>
                     <div className="namegame">
                       <h3>{item.name}</h3>
@@ -134,6 +238,7 @@ const HomePage = () => {
               })}
             </div>
             {renderPromotion()}
+            {renderDialog()}
           </div>
         </div>
       </div>
