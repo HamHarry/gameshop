@@ -1,0 +1,45 @@
+.container-card {
+  position: fixed;
+  left: 50%;
+  bottom: 50%;
+  transform: translate(-50%, 50%);
+  width: 800px;
+  height: 800px;
+  background-color: black;
+  border: 2px solid red;
+  border-radius: 25px;
+}
+.container-card-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container-card-text h1 {
+  margin-left: 10px;
+  color: white;
+  font-family: "REM", sans-serif;
+}
+.warp-card {
+  height: 650px;
+}
+.btn-celect {
+  display: flex;
+  justify-content: center;
+}
+.btn-celect button {
+  background-color: black;
+  color: white;
+  border-radius: 25px;
+  margin-top: 25px;
+  width: 150px;
+  height: 50px;
+  border: 2px solid red;
+  font-family: "REM", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.5s;
+}
+.btn-celect button:hover {
+  color: red;
+}
