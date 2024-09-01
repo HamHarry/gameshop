@@ -60,26 +60,6 @@
   height: 0;
   width: 0;
 }
-.btn-promotion {
-  position: fixed;
-  top: 83%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 100px;
-  border: 2px solid red;
-  border-radius: 25px;
-  margin-top: 40px;
-  cursor: pointer;
-}
-.btn-promotion h2 {
-  color: white;
-  font-family: "REM", sans-serif;
-}
-.btn-promotion h2:hover {
-  color: red;
-}
 .indicators-game {
   display: flex;
   position: absolute;
@@ -130,6 +110,7 @@
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
+  transition: all 0.5s;
 }
 .btn-add-game:hover {
   color: red;
@@ -145,6 +126,7 @@
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
+  transition: all 0.5s;
 }
 .btn-buy-game:hover {
   color: red;

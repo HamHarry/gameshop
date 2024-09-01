@@ -71,7 +71,13 @@ const Navbar = () => {
           </div>
           <div className="listCart"></div>
           <div className="btn-payment">
-            <button>Payment</button>
+            <button
+              onClick={() => {
+                navigate(`/home/payment/${users?._id}`);
+              }}
+            >
+              Payment
+            </button>
           </div>
         </div>
       </div>

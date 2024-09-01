@@ -1,0 +1,66 @@
+.container-payment {
+  background-image: url("/public/assets/container.jpg");
+  background-size: cover;
+  height: 100vh;
+}
+.warp-container-payment {
+  position: fixed;
+  left: 50%;
+  bottom: 32%;
+  transform: translate(-50%, 50%);
+  width: 800px;
+  height: 700px;
+  background-color: black;
+  border: 2px solid red;
+  border-radius: 25px;
+  --glow-color: rgb(255, 99, 71);
+  --glow-spread-color: rgba(255, 69, 58, 0.781);
+  --enhanced-glow-color: rgb(255, 127, 80);
+  --btn-color: rgb(0, 0, 0);
+  border: 0.25em solid var(--glow-color);
+  padding: 1em 3em;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+  position: relative;
+  transition: all 0.3s;
+}
+.payment-text {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+.payment-text h1 {
+  color: white;
+  font-family: "REM", sans-serif;
+}
+.listCart-container {
+  height: 550px;
+  background-color: #9e9e9e;
+  border-radius: 20px;
+}
+.btn-payments {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.btn-payments button {
+  background-color: black;
+  color: white;
+  border-radius: 25px;
+  margin-top: 25px;
+  width: 150px;
+  height: 50px;
+  border: 2px solid red;
+  font-family: "REM", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.5s;
+}
+.btn-payments button:hover {
+  color: red;
+}

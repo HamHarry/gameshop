@@ -37,6 +37,7 @@
   color: white;
   font-size: 40px;
   cursor: pointer;
+  transition: all 0.5s;
 }
 .fa-circle-left:hover {
   color: red;
@@ -47,6 +48,7 @@
   color: white;
   font-size: 40px;
   cursor: pointer;
+  transition: all 0.5s;
 }
 .fa-circle-right:hover {
   color: red;
@@ -81,6 +83,7 @@
 .btn-promotion h2 {
   color: white;
   font-family: "REM", sans-serif;
+  transition: all 0.5s;
 }
 .btn-promotion h2:hover {
   color: red;
