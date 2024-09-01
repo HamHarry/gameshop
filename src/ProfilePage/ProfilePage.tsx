@@ -137,7 +137,6 @@ const Profile = () => {
       </dialog>
     );
   };
-
   const renderChangeName = () => {
     return (
       <dialog onClose={() => reset()} open={openDialog2}>
@@ -211,6 +210,7 @@ const Profile = () => {
       </dialog>
     );
   };
+
   return (
     <>
       <div className="container-profile">

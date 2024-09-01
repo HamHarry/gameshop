@@ -23,7 +23,9 @@ const HomePage = () => {
   const [openPromotion, setOpenPromotion] = useState<boolean>(true);
   const [openDialogGame, setOpenDialogGame] = useState<boolean>(false);
   const [dataGame, setDataGame] = useState<GameItem>();
-  const [listData] = useState(mockUp);
+  const [listData, setListData] = useState(mockUp);
+  const [listDataRef] = useState(listData);
+  const [selectedType, setSelectedType] = useState("all");
   const [slide, setSlide] = useState(0);
 
   // render =================================================================
@@ -199,11 +201,79 @@ const HomePage = () => {
   const renderChoises = () => {
     return (
       <div className="choise">
-        <button className="choise-open-world">Open World</button>
-        <button className="choise-fps">FPS</button>
-        <button className="choise-survive">Survive</button>
-        <button className="choise-action">Action</button>
-        <button className="choise-moba">Moba</button>
+        <button
+          className={
+            selectedType === "open world"
+              ? "is-choise-open-world"
+              : "choise-open-world"
+          }
+          onClick={() => {
+            const newlist = listDataRef.filter((item) => {
+              const statusType = item.type === "open world";
+              return statusType;
+            });
+            setListData(newlist);
+            setSelectedType("open world");
+          }}
+        >
+          Open World
+        </button>
+        <button
+          className={selectedType === "fps" ? "is-choise-fps" : "choise-fps"}
+          onClick={() => {
+            const newlist = listDataRef.filter((item) => {
+              const statusType = item.type === "fps";
+              return statusType;
+            });
+            setListData(newlist);
+            setSelectedType("fps");
+          }}
+        >
+          FPS
+        </button>
+        <button
+          className={
+            selectedType === "survive" ? "is-choise-survive" : "choise-survive"
+          }
+          onClick={() => {
+            const newlist = listDataRef.filter((item) => {
+              const statusType = item.type === "survive";
+              return statusType;
+            });
+            setListData(newlist);
+            setSelectedType("survive");
+          }}
+        >
+          Survive
+        </button>
+        <button
+          className={
+            selectedType === "action" ? "is-choise-action" : "choise-action"
+          }
+          onClick={() => {
+            const newlist = listDataRef.filter((item) => {
+              const statusType = item.type === "action";
+              return statusType;
+            });
+            setListData(newlist);
+            setSelectedType("action");
+          }}
+        >
+          Action
+        </button>
+        <button
+          className={selectedType === "moba" ? "is-choise-moba" : "choise-moba"}
+          onClick={() => {
+            const newlist = listDataRef.filter((item) => {
+              const statusType = item.type === "moba";
+              return statusType;
+            });
+            setListData(newlist);
+            setSelectedType("moba");
+          }}
+        >
+          Moba
+        </button>
       </div>
     );
   };
@@ -220,6 +290,13 @@ const HomePage = () => {
             {renderChoises()}
             <div className="table-nav-search">
               <input type="text" placeholder="Search...." />
+              <i
+                className="fa-solid fa-arrow-rotate-left"
+                onClick={() => {
+                  setListData(listDataRef);
+                  setSelectedType("all");
+                }}
+              ></i>
             </div>
           </div>
           <div className="table-game">
