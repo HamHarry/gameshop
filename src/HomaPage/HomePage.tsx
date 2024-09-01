@@ -196,6 +196,17 @@ const HomePage = () => {
       </dialog>
     );
   };
+  const renderChoises = () => {
+    return (
+      <div className="choise">
+        <button className="choise-open-world">Open World</button>
+        <button className="choise-fps">FPS</button>
+        <button className="choise-survive">Survive</button>
+        <button className="choise-action">Action</button>
+        <button className="choise-moba">Moba</button>
+      </div>
+    );
+  };
 
   return (
     <div className="container-hompage">
@@ -205,6 +216,12 @@ const HomePage = () => {
           <h1>Welcome to Game Store</h1>
         </div>
         <div className="container-table">
+          <div className="table-nav">
+            {renderChoises()}
+            <div className="table-nav-search">
+              <input type="text" placeholder="Search...." />
+            </div>
+          </div>
           <div className="table-game">
             <div className="table">
               {listData.map((item, index) => {
