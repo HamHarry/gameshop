@@ -37,4 +37,29 @@
   align-items: center;
   font-family: "REM", sans-serif;
   height: 50px;
+  margin-top: 10px;
+}
+.listCart {
+  height: 550px;
+}
+.btn-payment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-payment button {
+  background-color: black;
+  color: white;
+  border-radius: 25px;
+  margin-top: 20px;
+  width: 150px;
+  height: 50px;
+  border: 2px solid red;
+  font-family: "REM", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 20px;
+}
+.btn-payment button:hover {
+  color: red;
 }

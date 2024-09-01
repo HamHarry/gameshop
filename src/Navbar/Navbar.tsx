@@ -70,8 +70,47 @@ const Navbar = () => {
             <h1>Your Cart</h1>
           </div>
           <div className="listCart"></div>
-          <div className="btn-payment"></div>
+          <div className="btn-payment">
+            <button>Payment</button>
+          </div>
         </div>
+      </div>
+    );
+  };
+  const renderProfile = () => {
+    return (
+      <div className={`dropdown-menu ${open ? "active" : "inactive"}`}>
+        <div className="user">
+          <h3>
+            {users?.fname} {users?.lname}
+          </h3>
+        </div>
+        <ul>
+          <li
+            onClick={() => {
+              navigate(`/home/profile/${users?._id}`);
+            }}
+          >
+            <i className="fa-solid fa-user"></i>
+            <p>Profile</p>
+          </li>
+          <li>
+            <i className="fa-solid fa-gamepad"></i>
+            <p>Libary</p>
+          </li>
+          <li>
+            <i className="fa-solid fa-gear"></i>
+            <p>Setting</p>
+          </li>
+          <li
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            <i className="fa-solid fa-right-from-bracket"></i>
+            <p>Log out</p>
+          </li>
+        </ul>
       </div>
     );
   };
@@ -91,6 +130,7 @@ const Navbar = () => {
             className="fa-solid fa-cart-shopping"
             onClick={() => {
               setOpenDialogCart(!openDialogCart);
+              setOpen(false);
             }}
           ></i>
           {renderCart()}
@@ -99,41 +139,10 @@ const Navbar = () => {
             alt="logo"
             onClick={() => {
               setOpen(!open);
+              setOpenDialogCart(false);
             }}
           />
-          <div className={`dropdown-menu ${open ? "active" : "inactive"}`}>
-            <div className="user">
-              <h3>
-                {users?.fname} {users?.lname}
-              </h3>
-            </div>
-            <ul>
-              <li
-                onClick={() => {
-                  navigate(`/home/profile/${users?._id}`);
-                }}
-              >
-                <i className="fa-solid fa-user"></i>
-                <p>Profile</p>
-              </li>
-              <li>
-                <i className="fa-solid fa-gamepad"></i>
-                <p>Libary</p>
-              </li>
-              <li>
-                <i className="fa-solid fa-gear"></i>
-                <p>Setting</p>
-              </li>
-              <li
-                onClick={() => {
-                  navigate("/");
-                }}
-              >
-                <i className="fa-solid fa-right-from-bracket"></i>
-                <p>Log out</p>
-              </li>
-            </ul>
-          </div>
+          {renderProfile()}
         </div>
       </div>
       {isLoading && (
