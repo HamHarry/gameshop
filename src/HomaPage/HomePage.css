@@ -38,7 +38,7 @@
 }
 .header:hover {
   color: var(--btn-color);
-  background-color: var(--glow-color);
+  background-color: black;
   box-shadow: 0 0 1em 0.25em var(--glow-color),
     0 0 4em 2em var(--glow-spread-color),
     inset 0 0 0.75em 0.25em var(--glow-color);
