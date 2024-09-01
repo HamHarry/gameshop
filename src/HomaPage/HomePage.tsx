@@ -25,8 +25,28 @@ const HomePage = () => {
   const [dataGame, setDataGame] = useState<GameItem>();
   const [listData, setListData] = useState(mockUp);
   const [listDataRef] = useState(listData);
-  const [selectedType, setSelectedType] = useState("all");
+  const [selectedType, setSelectedType] = useState<string>("all");
+  const [searchValue, setSearchValue] = useState<string>("");
   const [slide, setSlide] = useState(0);
+
+  //reset ===================================================================
+  const reset = () => {
+    setListData(listDataRef);
+    setSelectedType("all");
+    setSearchValue("");
+  };
+
+  //handle ===================================================================
+  const handleonChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.toLowerCase();
+    const newlist = listDataRef.filter((item) => {
+      const valueName = item.name.toLowerCase().includes(value);
+      const valueType = item.type === selectedType || selectedType === "all";
+      return valueName && valueType;
+    });
+    setListData(newlist);
+    setSearchValue(value);
+  };
 
   // render =================================================================
   const renderPromotion = () => {
@@ -210,7 +230,8 @@ const HomePage = () => {
           onClick={() => {
             const newlist = listDataRef.filter((item) => {
               const statusType = item.type === "open world";
-              return statusType;
+              const valueName = item.name.toLowerCase().includes(searchValue);
+              return statusType && valueName;
             });
             setListData(newlist);
             setSelectedType("open world");
@@ -223,7 +244,8 @@ const HomePage = () => {
           onClick={() => {
             const newlist = listDataRef.filter((item) => {
               const statusType = item.type === "fps";
-              return statusType;
+              const valueName = item.name.toLowerCase().includes(searchValue);
+              return statusType && valueName;
             });
             setListData(newlist);
             setSelectedType("fps");
@@ -238,7 +260,8 @@ const HomePage = () => {
           onClick={() => {
             const newlist = listDataRef.filter((item) => {
               const statusType = item.type === "survive";
-              return statusType;
+              const valueName = item.name.toLowerCase().includes(searchValue);
+              return statusType && valueName;
             });
             setListData(newlist);
             setSelectedType("survive");
@@ -253,7 +276,8 @@ const HomePage = () => {
           onClick={() => {
             const newlist = listDataRef.filter((item) => {
               const statusType = item.type === "action";
-              return statusType;
+              const valueName = item.name.toLowerCase().includes(searchValue);
+              return statusType && valueName;
             });
             setListData(newlist);
             setSelectedType("action");
@@ -266,7 +290,8 @@ const HomePage = () => {
           onClick={() => {
             const newlist = listDataRef.filter((item) => {
               const statusType = item.type === "moba";
-              return statusType;
+              const valueName = item.name.toLowerCase().includes(searchValue);
+              return statusType && valueName;
             });
             setListData(newlist);
             setSelectedType("moba");
@@ -289,12 +314,16 @@ const HomePage = () => {
           <div className="table-nav">
             {renderChoises()}
             <div className="table-nav-search">
-              <input type="text" placeholder="Search...." />
+              <input
+                value={searchValue}
+                type="text"
+                placeholder="Search...."
+                onChange={handleonChangeSearch}
+              />
               <i
                 className="fa-solid fa-arrow-rotate-left"
                 onClick={() => {
-                  setListData(listDataRef);
-                  setSelectedType("all");
+                  reset();
                 }}
               ></i>
             </div>
