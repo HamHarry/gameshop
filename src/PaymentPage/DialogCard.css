@@ -19,9 +19,6 @@
   color: white;
   font-family: "REM", sans-serif;
 }
-.warp-card {
-  height: 650px;
-}
 .btn-celect {
   display: flex;
   justify-content: center;
@@ -42,4 +39,84 @@
 }
 .btn-celect button:hover {
   color: red;
+}
+.cotainer-from-card {
+  display: flex;
+  justify-content: center;
+  height: 255px;
+}
+.card-number {
+  display: flex;
+  flex-direction: column;
+}
+.card-number h3 {
+  color: white;
+  font-family: "REM", sans-serif;
+}
+.input-text-card-number {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.input-text-card-number input {
+  padding: 10px;
+  width: 150px;
+  border: none;
+  border-radius: 15px;
+  text-align: center;
+  font-family: "REM", sans-serif;
+  font-size: 20px;
+}
+.card-name h3 {
+  margin-top: 10px;
+  color: white;
+  font-family: "REM", sans-serif;
+}
+.card-name input {
+  padding: 10px;
+  width: 300px;
+  border: none;
+  border-radius: 15px;
+  text-align: center;
+  font-family: "REM", sans-serif;
+  font-size: 20px;
+  margin-top: 10px;
+}
+.input-text-card-name {
+  display: flex;
+  gap: 20px;
+}
+.date-ccv {
+  display: flex;
+  justify-content: space-between;
+}
+.date h3 {
+  margin-top: 10px;
+  color: white;
+  font-family: "REM", sans-serif;
+}
+.date input {
+  padding: 10px;
+  width: 200px;
+  border: none;
+  border-radius: 15px;
+  text-align: center;
+  font-family: "REM", sans-serif;
+  font-size: 20px;
+  margin-top: 10px;
+}
+.ccv h3 {
+  margin-top: 10px;
+  color: white;
+  font-family: "REM", sans-serif;
+}
+.ccv input {
+  padding: 10px;
+  width: 100px;
+  border: none;
+  border-radius: 15px;
+  text-align: center;
+  font-family: "REM", sans-serif;
+  font-size: 20px;
+  margin-top: 10px;
 }
