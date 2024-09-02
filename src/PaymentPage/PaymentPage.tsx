@@ -7,10 +7,7 @@ import "./Card.css";
 import { Controller, useForm } from "react-hook-form";
 
 interface Card {
-  number1: string;
-  number2: string;
-  number3: string;
-  number4: string;
+  numbers: string[];
   fname: string;
   lname: string;
   date: string;
@@ -18,10 +15,7 @@ interface Card {
 }
 
 const defaultValues: Card = {
-  number1: "",
-  number2: "",
-  number3: "",
-  number4: "",
+  numbers: [],
   fname: "",
   lname: "",
   date: "",
@@ -31,9 +25,10 @@ const defaultValues: Card = {
 const PaymentPage = () => {
   const [openDialogCard, setOpenDialogCard] = useState<boolean>(false);
   const [openDialogQR, setOpenDialogQR] = useState<boolean>(false);
-  const [cardForm, setCardForm] = useState<Card>();
 
-  const { handleSubmit, control } = useForm<Card>({ defaultValues });
+  const { handleSubmit, control, watch } = useForm<Card>({
+    defaultValues,
+  });
 
   //render =================================================================
   const renderDialogCard = () => {
@@ -65,10 +60,7 @@ const PaymentPage = () => {
                     <img src="https://i.ibb.co/WHZ3nRJ/visa.png" />
                   </div>
                   <div className="row card-no">
-                    <p>{cardForm?.number1}</p>
-                    <p>{cardForm?.number2}</p>
-                    <p>{cardForm?.number3}</p>
-                    <p>{cardForm?.number4}</p>
+                    <p>{watch("numbers").join(" - ")}</p>
                   </div>
                   <div className="row card-holder">
                     <p>CARD HPLDER</p>
@@ -76,10 +68,10 @@ const PaymentPage = () => {
                   </div>
                   <div className="row name-card">
                     <div className="fname-lname">
-                      <p>{cardForm?.fname}</p>
-                      <p>{cardForm?.lname}</p>
+                      <p>{watch("fname")}</p>
+                      <p>{watch("lname")}</p>
                     </div>
-                    <p>{cardForm?.date}</p>
+                    <p>{watch("date")}</p>
                   </div>
                 </div>
                 <div className="back">
@@ -92,7 +84,7 @@ const PaymentPage = () => {
                     <div>
                       <img src="https://i.ibb.co/S6JG8px/pattern.png" />
                     </div>
-                    <p>{cardForm?.ccv}</p>
+                    <p>{watch("ccv")}</p>
                   </div>
                   <div className="row card-text">
                     <p>
@@ -115,7 +107,7 @@ const PaymentPage = () => {
                 <div className="input-text-card-number">
                   <Controller
                     control={control}
-                    name="number1"
+                    name="numbers.0"
                     render={({ field }) => {
                       return (
                         <input
@@ -129,7 +121,7 @@ const PaymentPage = () => {
                   />
                   <Controller
                     control={control}
-                    name="number2"
+                    name="numbers.1"
                     render={({ field }) => {
                       return (
                         <input
@@ -143,7 +135,7 @@ const PaymentPage = () => {
                   />
                   <Controller
                     control={control}
-                    name="number3"
+                    name="numbers.2"
                     render={({ field }) => {
                       return (
                         <input
@@ -157,7 +149,7 @@ const PaymentPage = () => {
                   />
                   <Controller
                     control={control}
-                    name="number4"
+                    name="numbers.3"
                     render={({ field }) => {
                       return (
                         <input
@@ -219,7 +211,14 @@ const PaymentPage = () => {
                     control={control}
                     name="ccv"
                     render={({ field }) => {
-                      return <input {...field} type="text" maxLength={3} />;
+                      return (
+                        <input
+                          {...field}
+                          type="text"
+                          maxLength={3}
+                          placeholder="xxx"
+                        />
+                      );
                     }}
                   />
                 </div>
@@ -270,7 +269,7 @@ const PaymentPage = () => {
     const item = {
       ...value,
     };
-    setCardForm(item);
+    console.log(item);
     setOpenDialogCard(!openDialogCard);
   };
 

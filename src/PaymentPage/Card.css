@@ -54,6 +54,9 @@
 .card-no {
   font-size: 35px;
   margin-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .card-holder {
   font-size: 12px;

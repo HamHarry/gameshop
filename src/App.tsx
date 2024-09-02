@@ -4,6 +4,7 @@ import SignupPage from "./SignupPage/SignupPage";
 import HomePage from "./HomaPage/HomePage";
 import Profile from "./ProfilePage/ProfilePage";
 import PaymentPage from "./PaymentPage/PaymentPage";
+import ProtectedRoutes from "./ProtectedRoutes/ProtectedRoutes";
 
 function App() {
   return (
@@ -11,9 +12,12 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />}></Route>
         <Route path="/signup" element={<SignupPage />}></Route>
-        <Route path="/home/:userId" element={<HomePage />}></Route>
-        <Route path="/home/profile/:userId" element={<Profile />}></Route>
-        <Route path="/home/payment/:userId" element={<PaymentPage />}></Route>
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/home/:userId" element={<HomePage />}></Route>
+          <Route path="/home/profile/:userId" element={<Profile />}></Route>
+          <Route path="/home/payment/:userId" element={<PaymentPage />}></Route>
+        </Route>
+        <Route path="*" element={<SignupPage />} />
       </Routes>
     </>
   );
