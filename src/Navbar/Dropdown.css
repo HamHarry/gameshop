@@ -40,6 +40,7 @@
 .dropdown-menu p {
   margin-left: 25px;
   font-weight: bold;
+  transition: all 0.5s;
 }
 .dropdown-menu p:hover {
   color: red;

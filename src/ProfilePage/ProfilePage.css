@@ -40,6 +40,7 @@
   border-radius: 25px;
   cursor: pointer;
   border: 2px solid red;
+  transition: all 0.5s;
 }
 .edit:hover {
   color: red;
@@ -127,6 +128,7 @@
   margin-right: 600px;
   cursor: pointer;
   border: 2px solid red;
+  transition: all 0.5s;
 }
 .changename p {
   font-size: 25px;
