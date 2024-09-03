@@ -270,22 +270,6 @@ const HomePage = () => {
           Survival
         </button>
         <button
-          className={
-            selectedType === "action" ? "is-choise-action" : "choise-action"
-          }
-          onClick={() => {
-            const newlist = listDataRef.filter((item) => {
-              const statusType = item.type === "action";
-              const valueName = item.name.toLowerCase().includes(searchValue);
-              return statusType && valueName;
-            });
-            setListData(newlist);
-            setSelectedType("action");
-          }}
-        >
-          Action
-        </button>
-        <button
           className={selectedType === "moba" ? "is-choise-moba" : "choise-moba"}
           onClick={() => {
             const newlist = listDataRef.filter((item) => {

@@ -211,7 +211,7 @@ export const mockUp = [
   },
   {
     id: 11,
-    type: "action",
+    type: "open world",
     name: "Black Myth: Wukong",
     price: 1799,
     image: "/public/assets/game/Wukong.jpg",
@@ -232,7 +232,7 @@ export const mockUp = [
   },
   {
     id: 12,
-    type: "action",
+    type: "open world",
     name: "Cyberpunk",
     price: 1799,
     image: "/public/assets/game/Cyberpunk.jpg",
@@ -253,7 +253,7 @@ export const mockUp = [
   },
   {
     id: 13,
-    type: "action",
+    type: "open world",
     name: "Hogwarts Legacy",
     price: 1890,
     image: "/public/assets/game/hogwarts.jpg",
