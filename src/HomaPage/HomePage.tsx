@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import Navbar from "../Navbar/Navbar";
 import "./HomePage.css";
 import { mockUp } from "../Data/MockUp";
 import "./DialogPromotion.css";
@@ -289,7 +288,6 @@ const HomePage = () => {
 
   return (
     <div className="container-hompage">
-      <Navbar />
       <div className="warp-container-homepage">
         <div className="header">
           <h1>Welcome to Game Store</h1>

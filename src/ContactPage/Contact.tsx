@@ -1,5 +1,4 @@
 import { Controller, useForm } from "react-hook-form";
-import Navbar from "../Navbar/Navbar";
 import "./Contact.css";
 
 interface ContactForm {
@@ -26,7 +25,6 @@ const Contact = () => {
 
   return (
     <div className="container-contact">
-      <Navbar />
       <div className="warp-container-contact">
         <div className="navbar-contact">
           <h1>Contact</h1>

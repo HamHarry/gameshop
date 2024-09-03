@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import Navbar, { User } from "../Navbar/Navbar";
+import { User } from "../Layout/Navbar/Navbar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./ProfilePage.css";
@@ -42,28 +42,35 @@ const Profile = () => {
   });
 
   const fetchuser = useCallback(async () => {
-    const token = localStorage.getItem("token");
-    const res = await axios.get(
-      `https://phandal-backend.vercel.app/api/user/profile/${userId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const user = res.data;
-    console.log(user);
-    setUser(user);
+    try {
+      showLoading();
+      const token = localStorage.getItem("token");
+      const res = await axios.get(
+        `https://phandal-backend.vercel.app/api/user/profile/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const user = res.data;
+      console.log(user);
+      setUser(user);
 
-    const { fname, lname, email, birthdate, image } = user;
-    const userForm: UserForm = {
-      fname,
-      lname,
-      email,
-      birthdate,
-      image,
-    };
-    reset(userForm);
+      const { fname, lname, email, birthdate, image } = user;
+      const userForm: UserForm = {
+        fname,
+        lname,
+        email,
+        birthdate,
+        image,
+      };
+      reset(userForm);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      hideLoading();
+    }
   }, [reset, userId]);
 
   useEffect(() => {
@@ -214,7 +221,6 @@ const Profile = () => {
   return (
     <>
       <div className="container-profile">
-        <Navbar />
         <div className="warp-container-profile">
           <div className="image">
             <img src={user?.image} alt="LOGO" />

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Navbar from "../Navbar/Navbar";
 import "./PaymentPage.css";
 import "./DialogCard.css";
 import "./DialogQR.css";
@@ -276,7 +275,6 @@ const PaymentPage = () => {
 
   return (
     <div className="container-payment">
-      <Navbar />
       <div className="warp-container-payment">
         <div className="payment-text">
           <h1>Your Shopping Cart</h1>

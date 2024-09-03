@@ -5,7 +5,7 @@ import "./Dropdown.css";
 import "./DialogCart.css";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { Response } from "../LoginPage/LoginPage";
+import { Response } from "../../LoginPage/LoginPage";
 import Cookies from "universal-cookie";
 
 export interface User {
@@ -73,7 +73,7 @@ const Navbar = () => {
         <div className="btn-payment">
           <button
             onClick={() => {
-              navigate(`/home/payment/${users?._id}`);
+              navigate(`/core/home/payment/${users?._id}`);
             }}
           >
             Payment
@@ -93,7 +93,7 @@ const Navbar = () => {
         <ul>
           <li
             onClick={() => {
-              navigate(`/home/profile/${users?._id}`);
+              navigate(`/core/home/profile/${users?._id}`);
             }}
           >
             <i className="fa-solid fa-user"></i>
@@ -105,7 +105,7 @@ const Navbar = () => {
           </li>
           <li
             onClick={() => {
-              navigate(`/home/contact/${users?._id}`);
+              navigate(`/core/home/contact/${users?._id}`);
             }}
           >
             <i className="fa-solid fa-id-badge"></i>
@@ -135,7 +135,7 @@ const Navbar = () => {
         <i
           className="fa-brands fa-steam"
           onClick={() => {
-            navigate(`/home/${users?._id}`);
+            navigate(`/core/home/${users?._id}`);
             window.location.reload();
           }}
         ></i>
