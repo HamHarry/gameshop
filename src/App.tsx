@@ -5,6 +5,7 @@ import HomePage from "./HomaPage/HomePage";
 import Profile from "./ProfilePage/ProfilePage";
 import PaymentPage from "./PaymentPage/PaymentPage";
 import ProtectedRoutes from "./ProtectedRoutes/ProtectedRoutes";
+import NotfoundPage from "./NotfoundPage/NotfoundPage";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route path="/home/profile/:userId" element={<Profile />}></Route>
           <Route path="/home/payment/:userId" element={<PaymentPage />}></Route>
         </Route>
-        <Route path="*" element={<SignupPage />} />
+        <Route path="*" element={<NotfoundPage />} />
       </Routes>
     </>
   );
