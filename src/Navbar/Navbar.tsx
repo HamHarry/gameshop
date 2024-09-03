@@ -6,6 +6,7 @@ import "./DialogCart.css";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { Response } from "../LoginPage/LoginPage";
+import Cookies from "universal-cookie";
 
 export interface User {
   _id: string;
@@ -111,6 +112,11 @@ const Navbar = () => {
           <li
             onClick={() => {
               navigate("/");
+              const cookies = new Cookies(null, {
+                path: "/",
+              });
+              localStorage.removeItem("token");
+              cookies.remove("token");
             }}
           >
             <i className="fa-solid fa-right-from-bracket"></i>
