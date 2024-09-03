@@ -6,6 +6,7 @@ import Profile from "./ProfilePage/ProfilePage";
 import PaymentPage from "./PaymentPage/PaymentPage";
 import ProtectedRoutes from "./ProtectedRoutes/ProtectedRoutes";
 import NotfoundPage from "./NotfoundPage/NotfoundPage";
+import Contact from "./ContactPage/Contact";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/home/:userId" element={<HomePage />}></Route>
           <Route path="/home/profile/:userId" element={<Profile />}></Route>
           <Route path="/home/payment/:userId" element={<PaymentPage />}></Route>
+          <Route path="/home/contact/:userId" element={<Contact />}></Route>
         </Route>
         <Route path="*" element={<NotfoundPage />} />
       </Routes>

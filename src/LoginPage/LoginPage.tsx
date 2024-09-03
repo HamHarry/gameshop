@@ -121,8 +121,8 @@ const LoginPage = () => {
         </div>
       </div>
       {isLoading && (
-        <div className="wrap-loding-login">
-          <div className="loding-login" />
+        <div className="wrap-loding">
+          <div className="loding" />
         </div>
       )}
     </>

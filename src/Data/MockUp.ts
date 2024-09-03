@@ -3,7 +3,7 @@ export const mockUp = [
     id: 1,
     type: "open world",
     name: "Grand Theft Auto V",
-    price: 347.43,
+    price: 350,
     image: "/public/assets/game/gta-v-main.jpg",
     imageShow: [
       {

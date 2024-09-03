@@ -103,7 +103,11 @@ const Navbar = () => {
             <i className="fa-solid fa-gamepad"></i>
             <p>Libary</p>
           </li>
-          <li>
+          <li
+            onClick={() => {
+              navigate(`/home/contact/${users?._id}`);
+            }}
+          >
             <i className="fa-solid fa-id-badge"></i>
             <p>Contact</p>
           </li>

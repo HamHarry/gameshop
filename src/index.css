@@ -2,14 +2,13 @@
   margin: 0;
   padding: 0;
 }
-
-.wrap-loding-login {
+.wrap-loding {
   position: fixed;
   width: 100%;
   height: 100%;
   z-index: 1;
 }
-.loding-login {
+.loding {
   z-index: 1;
   position: fixed;
   top: -1%;
@@ -19,24 +18,6 @@
   width: 200px;
   animation: spin 1s linear infinite;
 }
-
-.wrap-loding-register {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-.loding-register {
-  z-index: 1;
-  position: fixed;
-  top: -1%;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  border: 5px solid red;
-  width: 200px;
-  animation: spin 1s linear infinite;
-}
-
 .wrap-loding {
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
