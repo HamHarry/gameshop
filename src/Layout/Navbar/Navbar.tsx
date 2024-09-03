@@ -4,15 +4,19 @@ import "./Navbar.css";
 import "./Dropdown.css";
 import "./DialogCart.css";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Response } from "../../LoginPage/LoginPage";
 import Cookies from "universal-cookie";
+import { jwtDecode } from "jwt-decode";
+import { useAppDispatch } from "../../store/store";
+import { setUserData, UserDataSelector } from "../../store/slices/userSlice";
+import { useSelector } from "react-redux";
 
 export interface User {
   _id: string;
   code?: number;
-  fname?: string;
-  lname?: string;
+  fname: string;
+  lname: string;
   username: string;
   email: string;
   birthdate: string;
@@ -22,11 +26,12 @@ export interface User {
 }
 
 const Navbar = () => {
-  const [users, setUsers] = useState<User>();
   const [open, setOpen] = useState(false);
   const [openDialogCart, setOpenDialogCart] = useState<boolean>(false);
-  const { userId } = useParams();
   const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
+  const userData = useSelector(UserDataSelector);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const showLoading = () => setIsLoading(true);
@@ -36,25 +41,26 @@ const Navbar = () => {
     try {
       showLoading();
       const token = localStorage.getItem("token");
-      const res: Response<User> = await axios.get(
-        `https://phandal-backend.vercel.app/api/user/profile/${userId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      if (token) {
+        const decodedToken = jwtDecode(token);
+        const res: Response<User> = await axios.get(
+          `https://phandal-backend.vercel.app/api/user/profile/${decodedToken.sub}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-      const user = res.data;
-      console.log(user);
-
-      setUsers(user);
+        const user = res.data;
+        dispatch(setUserData(user));
+      }
     } catch (error) {
       console.log(error);
     } finally {
       hideLoading();
     }
-  }, [userId]);
+  }, [dispatch]);
 
   useEffect(() => {
     fetchuser();
@@ -73,7 +79,7 @@ const Navbar = () => {
         <div className="btn-payment">
           <button
             onClick={() => {
-              navigate(`/core/home/payment/${users?._id}`);
+              navigate(`/core/home/payment`);
             }}
           >
             Payment
@@ -87,13 +93,14 @@ const Navbar = () => {
       <div className={`dropdown-menu ${open ? "active" : "inactive"}`}>
         <div className="user">
           <h3>
-            {users?.fname} {users?.lname}
+            {userData?.fname} {userData?.lname}
           </h3>
         </div>
         <ul>
           <li
             onClick={() => {
-              navigate(`/core/home/profile/${users?._id}`);
+              navigate(`/core/home/profile`);
+              setOpen(!open);
             }}
           >
             <i className="fa-solid fa-user"></i>
@@ -105,7 +112,8 @@ const Navbar = () => {
           </li>
           <li
             onClick={() => {
-              navigate(`/core/home/contact/${users?._id}`);
+              navigate(`/core/home/contact`);
+              setOpen(!open);
             }}
           >
             <i className="fa-solid fa-id-badge"></i>
@@ -135,7 +143,7 @@ const Navbar = () => {
         <i
           className="fa-brands fa-steam"
           onClick={() => {
-            navigate(`/core/home/${users?._id}`);
+            navigate(`/core/home`);
             window.location.reload();
           }}
         ></i>
@@ -149,7 +157,7 @@ const Navbar = () => {
           ></i>
           {renderCart()}
           <img
-            src={users?.image}
+            src={userData?.image}
             alt="logo"
             onClick={() => {
               setOpen(!open);

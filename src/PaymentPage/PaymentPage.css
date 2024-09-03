@@ -1,12 +1,7 @@
-.container-payment {
-  background-image: url("/public/assets/container.jpg");
-  background-size: cover;
-  height: 100vh;
-}
 .warp-container-payment {
   position: fixed;
   left: 50%;
-  bottom: 32%;
+  bottom: 50%;
   transform: translate(-50%, 50%);
   width: 800px;
   height: 700px;
@@ -25,7 +20,6 @@
   box-shadow: 0 0 1em 0.25em var(--glow-color),
     0 0 4em 1em var(--glow-spread-color),
     inset 0 0 0.75em 0.25em var(--glow-color);
-  position: relative;
   transition: all 0.3s;
 }
 .payment-text {
@@ -76,7 +70,7 @@
 }
 .btn-payments button {
   background-color: black;
-  color: white;
+  color: red;
   border-radius: 25px;
   margin-top: 25px;
   width: 150px;

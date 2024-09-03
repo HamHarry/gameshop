@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 const Layout = () => {
   return (
-    <div>
+    <div className="cotainer-all">
       <Navbar />
       <Suspense>
         <Outlet />

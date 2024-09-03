@@ -57,7 +57,7 @@ const LoginPage = () => {
       cookies.set("token", loginedData.accessToken);
       localStorage.setItem("token", loginedData.accessToken);
 
-      navigate(`/core/home/${loginedData.userId}`);
+      navigate(`/core/home`);
     } catch (error) {
       alert("Username and password is wrong");
       console.log(error);

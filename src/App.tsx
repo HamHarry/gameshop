@@ -22,10 +22,10 @@ function App() {
         </Route>
         <Route path="core" element={<ProtectedRoutes />}>
           <Route path="" element={<Layout />}>
-            <Route path="home/:userId" element={<HomePage />} />
-            <Route path="home/profile/:userId" element={<Profile />} />
-            <Route path="home/payment/:userId" element={<PaymentPage />} />
-            <Route path="home/contact/:userId" element={<Contact />} />
+            <Route path="home" element={<HomePage />} />
+            <Route path="home/profile" element={<Profile />} />
+            <Route path="home/payment" element={<PaymentPage />} />
+            <Route path="home/contact" element={<Contact />} />
           </Route>
         </Route>
         <Route path="*" element={<NotfoundPage />} />

@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
-import { User } from "../Layout/Navbar/Navbar";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import "./ProfilePage.css";
 import "./DialogImage.css";
 import "./DialogChangeName.css";
 import { Controller, useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { setUserData, UserDataSelector } from "../store/slices/userSlice";
+import { useAppDispatch } from "../store/store";
 
 interface UserForm {
   fname: string;
@@ -23,11 +24,12 @@ const defaultValues: UserForm = {
 };
 
 const Profile = () => {
-  const [user, setUser] = useState<User>();
   const [openDialog1, setOpenDialog1] = useState<boolean>(false);
   const [openDialog2, setOpenDialog2] = useState<boolean>(false);
-  const { userId } = useParams();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const dispatch = useAppDispatch();
+  const userData = useSelector(UserDataSelector);
   const showLoading = () => setIsLoading(true);
   const hideLoading = () => setIsLoading(false);
 
@@ -41,12 +43,41 @@ const Profile = () => {
     defaultValues,
   });
 
-  const fetchuser = useCallback(async () => {
+  const initailForm = useCallback(async () => {
+    if (!userData) return;
+
+    const { fname, lname, email, birthdate, image } = userData;
+    const userForm: UserForm = {
+      fname,
+      lname,
+      email,
+      birthdate,
+      image,
+    };
+    reset(userForm);
+  }, [reset, userData]);
+
+  useEffect(() => {
+    initailForm();
+  }, [initailForm]);
+
+  //handleSubmit ==========================================================================================
+  const onSubmit = async (value: UserForm) => {
     try {
+      if (!userData) return;
+
       showLoading();
+      setOpenDialog2(false);
+      setOpenDialog1(false);
+      const item = {
+        ...userData,
+        ...value,
+      };
+
       const token = localStorage.getItem("token");
-      const res = await axios.get(
-        `https://phandal-backend.vercel.app/api/user/profile/${userId}`,
+      const res = await axios.put(
+        `https://phandal-backend.vercel.app/api/user/${userData._id}`,
+        item,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -55,54 +86,9 @@ const Profile = () => {
       );
       const user = res.data;
       console.log(user);
-      setUser(user);
-
-      const { fname, lname, email, birthdate, image } = user;
-      const userForm: UserForm = {
-        fname,
-        lname,
-        email,
-        birthdate,
-        image,
-      };
-      reset(userForm);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      hideLoading();
-    }
-  }, [reset, userId]);
-
-  useEffect(() => {
-    fetchuser();
-  }, [fetchuser]);
-
-  //handleSubmit ==========================================================================================
-  const onSubmit = async (value: UserForm) => {
-    try {
-      showLoading();
-      setOpenDialog2(false);
-      setOpenDialog1(false);
-      const item = {
-        ...user,
-        ...value,
-      };
-
-      const token = localStorage.getItem("token");
-      const res = await axios.put(
-        `https://phandal-backend.vercel.app/api/user/${userId}`,
-        item,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const userData = res.data;
-      console.log(userData);
+      dispatch(setUserData(user));
       window.location.reload();
-      alert("User updated successfully");
-      fetchuser();
+      initailForm();
     } catch (error) {
       console.log(error);
     } finally {
@@ -223,7 +209,7 @@ const Profile = () => {
       <div className="container-profile">
         <div className="warp-container-profile">
           <div className="image">
-            <img src={user?.image} alt="LOGO" />
+            <img src={userData?.image} alt="LOGO" />
             <div
               className="edit"
               onClick={() => {
@@ -236,21 +222,21 @@ const Profile = () => {
           <div className="warp-information">
             <div className="information">
               <div className="id">
-                <p>ID: {user?.code}</p>
+                <p>ID: {userData?.code}</p>
               </div>
               <div className="username">
-                <p>Username: {user?.username}</p>
+                <p>Username: {userData?.username}</p>
               </div>
               <div className="name">
                 <p>
-                  Name: {user?.fname} {user?.lname}
+                  Name: {userData?.fname} {userData?.lname}
                 </p>
               </div>
               <div className="email">
-                <p>Email: {user?.email}</p>
+                <p>Email: {userData?.email}</p>
               </div>
               <div className="email">
-                <p>Birthday: {user?.birthdate}</p>
+                <p>Birthday: {userData?.birthdate}</p>
               </div>
             </div>
             <div
