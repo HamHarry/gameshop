@@ -79,7 +79,11 @@ const LoginPage = () => {
                 return (
                   <>
                     <h2>Username</h2>
-                    <input {...field} type="text" placeholder="Username..." />
+                    <input
+                      {...field}
+                      type="text"
+                      placeholder="Username & email..."
+                    />
                   </>
                 );
               }}

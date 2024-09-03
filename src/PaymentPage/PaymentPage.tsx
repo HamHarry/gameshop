@@ -25,10 +25,20 @@ const defaultValues: Card = {
 const PaymentPage = () => {
   const [openDialogCard, setOpenDialogCard] = useState<boolean>(false);
   const [openDialogQR, setOpenDialogQR] = useState<boolean>(false);
+  const [cardForm, setCardForm] = useState<Card>();
 
   const { handleSubmit, control, watch } = useForm<Card>({
     defaultValues,
   });
+
+  //handleSubmit =================================================================
+  const submit = (value: Card) => {
+    const item = {
+      ...value,
+    };
+    setCardForm(item);
+    setOpenDialogCard(!openDialogCard);
+  };
 
   //render =================================================================
   const renderDialogCard = () => {
@@ -264,15 +274,6 @@ const PaymentPage = () => {
     );
   };
 
-  //handleSubmit =================================================================
-  const submit = (value: Card) => {
-    const item = {
-      ...value,
-    };
-    console.log(item);
-    setOpenDialogCard(!openDialogCard);
-  };
-
   return (
     <div className="container-payment">
       <Navbar />
@@ -280,7 +281,18 @@ const PaymentPage = () => {
         <div className="payment-text">
           <h1>Your Shopping Cart</h1>
         </div>
-        <div className="listCart-container"></div>
+        <div className="listCart-container">
+          <div className="warp-listCart-container"></div>
+          <div className="select-card">
+            <i className="fa-brands fa-cc-visa">
+              <p>{cardForm?.numbers[3]}</p>
+            </i>
+            <p>
+              {cardForm?.fname} {cardForm?.lname}
+            </p>
+            <p>{cardForm?.date}</p>
+          </div>
+        </div>
         <div className="btn-payments">
           <button>Cash</button>
           <button

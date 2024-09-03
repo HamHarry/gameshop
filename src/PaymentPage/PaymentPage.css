@@ -39,8 +39,35 @@
 }
 .listCart-container {
   height: 550px;
+  background-color: black;
+}
+.warp-listCart-container {
+  height: 430px;
   background-color: #9e9e9e;
   border-radius: 20px;
+}
+.select-card {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  background-color: #9e9e9e;
+  border-radius: 20px;
+  height: 100px;
+  margin-top: 20px;
+}
+.fa-cc-visa {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 70px;
+}
+.select-card p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-family: "REM", sans-serif;
+  font-weight: bold;
 }
 .btn-payments {
   display: flex;
