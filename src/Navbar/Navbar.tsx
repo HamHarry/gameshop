@@ -64,22 +64,20 @@ const Navbar = () => {
   const renderCart = () => {
     return (
       <div
-        className={`dropdown-menu ${openDialogCart ? "active" : "inactive"}`}
+        className={`dropdown-cart ${openDialogCart ? "active" : "inactive"}`}
       >
-        <div className="container-cart">
-          <div className="cart">
-            <h1>Your Cart</h1>
-          </div>
-          <div className="listCart"></div>
-          <div className="btn-payment">
-            <button
-              onClick={() => {
-                navigate(`/home/payment/${users?._id}`);
-              }}
-            >
-              Payment
-            </button>
-          </div>
+        <div className="cart">
+          <h1>Your Cart</h1>
+        </div>
+        <div className="listCart"></div>
+        <div className="btn-payment">
+          <button
+            onClick={() => {
+              navigate(`/home/payment/${users?._id}`);
+            }}
+          >
+            Payment
+          </button>
         </div>
       </div>
     );
@@ -106,8 +104,8 @@ const Navbar = () => {
             <p>Libary</p>
           </li>
           <li>
-            <i className="fa-solid fa-gear"></i>
-            <p>Setting</p>
+            <i className="fa-solid fa-id-badge"></i>
+            <p>Contact</p>
           </li>
           <li
             onClick={() => {

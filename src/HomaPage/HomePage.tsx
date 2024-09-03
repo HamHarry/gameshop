@@ -267,7 +267,7 @@ const HomePage = () => {
             setSelectedType("survive");
           }}
         >
-          Survive
+          Survival
         </button>
         <button
           className={

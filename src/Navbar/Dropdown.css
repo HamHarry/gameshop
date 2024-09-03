@@ -47,6 +47,9 @@
 .dropdown-menu .fa-solid {
   font-size: 30px;
 }
+.fa-id-badge {
+  margin-left: 10px;
+}
 .dropdown-menu::before {
   content: "";
   position: absolute;
