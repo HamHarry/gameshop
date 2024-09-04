@@ -5,8 +5,7 @@ import "./DialogImage.css";
 import "./DialogChangeName.css";
 import { Controller, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { setUserData, UserDataSelector } from "../store/slices/userSlice";
-import { useAppDispatch } from "../store/store";
+import { UserDataSelector } from "../store/slices/userSlice";
 
 interface UserForm {
   fname: string;
@@ -28,7 +27,6 @@ const Profile = () => {
   const [openDialog2, setOpenDialog2] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const dispatch = useAppDispatch();
   const userData = useSelector(UserDataSelector);
   const showLoading = () => setIsLoading(true);
   const hideLoading = () => setIsLoading(false);
@@ -86,7 +84,6 @@ const Profile = () => {
       );
       const user = res.data;
       console.log(user);
-      dispatch(setUserData(user));
       window.location.reload();
       initailForm();
     } catch (error) {
