@@ -17,7 +17,7 @@ function NotfoundPage() {
             navigate("/");
           }}
         >
-          Go to Login
+          Go Back
         </button>
       </div>
     </div>
