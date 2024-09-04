@@ -144,6 +144,7 @@ const Navbar = () => {
           className="fa-brands fa-steam"
           onClick={() => {
             navigate(`/core/home`);
+            window.location.reload();
           }}
         ></i>
         <div className="navbar-right">

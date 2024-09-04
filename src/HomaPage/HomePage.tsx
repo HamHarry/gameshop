@@ -6,7 +6,6 @@ import "./DialogPromotion.css";
 import "./DialogGame.css";
 
 interface GameItem {
-  id: number;
   type: string;
   name: string;
   price: number;
@@ -50,7 +49,7 @@ const HomePage = () => {
   // render =================================================================
   const renderPromotion = () => {
     const gamePromote = listData.find((item) => {
-      return item.id === 11;
+      return item.name === "Black Myth: Wukong";
     });
 
     // เปลี่ยนรูปภาพ =============================================================

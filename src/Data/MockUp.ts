@@ -1,6 +1,5 @@
 export const mockUp = [
   {
-    id: 1,
     type: "open world",
     name: "Grand Theft Auto V",
     price: 350,
@@ -21,7 +20,6 @@ export const mockUp = [
     ],
   },
   {
-    id: 2,
     type: "open world",
     name: "Black desert",
     price: 200,
@@ -42,7 +40,6 @@ export const mockUp = [
     ],
   },
   {
-    id: 3,
     type: "fps",
     name: "Valorant",
     price: 0,
@@ -63,7 +60,6 @@ export const mockUp = [
     ],
   },
   {
-    id: 4,
     type: "fps",
     name: "Counter-Strike 2",
     price: 0,
@@ -84,7 +80,6 @@ export const mockUp = [
     ],
   },
   {
-    id: 5,
     type: "fps",
     name: "Overwatch 2",
     price: 0,
@@ -105,7 +100,6 @@ export const mockUp = [
     ],
   },
   {
-    id: 6,
     type: "open world",
     name: "Minecraft",
     price: 1340,
@@ -126,7 +120,6 @@ export const mockUp = [
     ],
   },
   {
-    id: 7,
     type: "survive",
     name: "PUBG: BATTLEGROUNDS",
     price: 0,
@@ -147,8 +140,7 @@ export const mockUp = [
     ],
   },
   {
-    id: 8,
-    type: "survive",
+    type: "open world",
     name: "ARK: Survival Evolved",
     price: 315,
     image: "/public/assets/game/ARK.jpg",
@@ -168,8 +160,7 @@ export const mockUp = [
     ],
   },
   {
-    id: 9,
-    type: "survive",
+    type: "open world",
     name: "RUST",
     price: 699,
     image: "/public/assets/game/RUST.jpg",
@@ -189,7 +180,6 @@ export const mockUp = [
     ],
   },
   {
-    id: 10,
     type: "survive",
     name: "NARAKA: BLADEPOINT",
     price: 0,
@@ -210,7 +200,6 @@ export const mockUp = [
     ],
   },
   {
-    id: 11,
     type: "open world",
     name: "Black Myth: Wukong",
     price: 1799,
@@ -231,7 +220,6 @@ export const mockUp = [
     ],
   },
   {
-    id: 12,
     type: "open world",
     name: "Cyberpunk",
     price: 1799,
@@ -252,7 +240,6 @@ export const mockUp = [
     ],
   },
   {
-    id: 13,
     type: "open world",
     name: "Hogwarts Legacy",
     price: 1890,
@@ -273,7 +260,6 @@ export const mockUp = [
     ],
   },
   {
-    id: 14,
     type: "moba",
     name: "Dota 2",
     price: 0,
@@ -294,7 +280,6 @@ export const mockUp = [
     ],
   },
   {
-    id: 15,
     type: "moba",
     name: "League of Legends",
     price: 0,
@@ -311,6 +296,70 @@ export const mockUp = [
       },
       {
         image: "/public/assets/show/LOL/lol4.jpg",
+      },
+    ],
+  },
+  {
+    type: "survive",
+    name: "Fortnite",
+    price: 0,
+    image: "/public/assets/game/fortnite.jpg",
+    imageShow: [
+      {
+        image: "/public/assets/show/Fortnite/fortnite4.jpg",
+      },
+      {
+        image: "/public/assets/show/Fortnite/fortnite3.jpeg",
+      },
+      {
+        image: "/public/assets/show/Fortnite/fortnite1.jpg",
+      },
+      {
+        image: "/public/assets/show/Fortnite/fortnite2.jpg",
+      },
+    ],
+  },
+  {
+    type: "survive",
+    name: "Warface",
+    price: 0,
+    image: "/public/assets/game/warface.png",
+    imageShow: [
+      {
+        image: "/public/assets/show/Warface/warface3.jpg",
+      },
+      {
+        image: "/public/assets/show/Warface/warface2.jpg",
+      },
+      {
+        image: "/public/assets/show/Warface/warface4.jpg",
+      },
+      {
+        image: "/public/assets/show/Warface/warface1.jpg",
+      },
+    ],
+  },
+  {
+    type: "survive",
+    name: "Paladins Battlegrounds",
+    price: 0,
+    image: "/public/assets/game/Paladins.jpg",
+    imageShow: [
+      {
+        image:
+          "/public/assets/show/PaladinsBattlegrounds/PaladinsBattlegrounds1.jpg",
+      },
+      {
+        image:
+          "/public/assets/show/PaladinsBattlegrounds/PaladinsBattlegrounds2.jpg",
+      },
+      {
+        image:
+          "/public/assets/show/PaladinsBattlegrounds/PaladinsBattlegrounds3.jpg",
+      },
+      {
+        image:
+          "/public/assets/show/PaladinsBattlegrounds/PaladinsBattlegrounds4.jpg",
       },
     ],
   },
