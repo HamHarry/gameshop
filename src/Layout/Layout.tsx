@@ -7,7 +7,9 @@ const Layout = () => {
     <div className="cotainer-all">
       <Navbar />
       <Suspense>
-        <Outlet />
+        <>
+          <Outlet />
+        </>
       </Suspense>
     </div>
   );

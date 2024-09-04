@@ -255,7 +255,7 @@ const Profile = () => {
         </form>
       </div>
       {isLoading && (
-        <div className="wrap-loding">
+        <div className="warp-loding-profile">
           <div className="loding" />
         </div>
       )}
