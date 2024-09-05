@@ -106,7 +106,12 @@ const Navbar = () => {
             <i className="fa-solid fa-user"></i>
             <p>Profile</p>
           </li>
-          <li>
+          <li
+            onClick={() => {
+              navigate(`/core/home/libaly`);
+              setOpen(!open);
+            }}
+          >
             <i className="fa-solid fa-gamepad"></i>
             <p>Libary</p>
           </li>

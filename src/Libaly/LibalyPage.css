@@ -1,0 +1,63 @@
+.warp-container-libaly {
+  position: fixed;
+  left: 50%;
+  bottom: 50%;
+  transform: translate(-50%, 55%);
+  width: 800px;
+  height: 700px;
+  background-color: black;
+  border: 2px solid red;
+  border-radius: 25px;
+  --glow-color: rgb(255, 99, 71);
+  --glow-spread-color: rgba(255, 69, 58, 0.781);
+  --enhanced-glow-color: rgb(255, 127, 80);
+  --btn-color: rgb(0, 0, 0);
+  border: 0.25em solid var(--glow-color);
+  padding: 1em 3em;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+  transition: all 0.3s;
+}
+.nav-libaly {
+  color: white;
+  font-family: "REM", sans-serif;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+}
+.nav-left-list-game {
+  display: flex;
+  justify-content: end;
+  margin-top: 20px;
+}
+.nav-list-game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+  background-color: black;
+  border-radius: 15px;
+  border: 2px solid red;
+  color: white;
+  cursor: pointer;
+}
+.nav-list-game:hover {
+  color: red;
+}
+.nav-list-game .fa-plus {
+  font-size: 30px;
+}
+.list-game {
+  margin-top: 10px;
+  width: 800px;
+  height: 530px;
+  background-color: #9e9e9e;
+  border-radius: 15px;
+}

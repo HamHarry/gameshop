@@ -9,7 +9,7 @@ interface UserState {
 const initialState: UserState = {};
 
 const userSlice = createSlice({
-  initialState,
+  initialState: initialState,
   name: "userSlice",
   reducers: {
     setUserData: (state: UserState, action: PayloadAction<User>) => {
@@ -18,8 +18,7 @@ const userSlice = createSlice({
   },
 });
 
+export const { setUserData } = userSlice.actions;
 export const UserDataSelector = (store: RootState): User | undefined =>
   store.userReducer.userData;
-
-export const { setUserData } = userSlice.actions;
 export default userSlice.reducer;

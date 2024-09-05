@@ -41,7 +41,7 @@ const Profile = () => {
     defaultValues,
   });
 
-  const initailForm = useCallback(async () => {
+  const initailForm = useCallback(() => {
     if (!userData) return;
 
     const { fname, lname, email, birthdate, image } = userData;
