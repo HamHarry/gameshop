@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import userReducer from "./slices/userSlice";
+import addGameReducer from "./slices/addGameSlice";
 
 const reducer = {
   userReducer,
+  addGameReducer,
 };
 
 export const store = configureStore({

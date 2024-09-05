@@ -4,6 +4,8 @@ import "./HomePage.css";
 import { mockUp } from "../Data/MockUp";
 import "./DialogPromotion.css";
 import "./DialogGame.css";
+import { useAppDispatch } from "../store/store";
+import { addGame } from "../store/slices/addGameSlice";
 
 export interface GameItem {
   type: string;
@@ -26,6 +28,8 @@ const HomePage = () => {
   const [selectedType, setSelectedType] = useState<string>("all");
   const [searchValue, setSearchValue] = useState<string>("");
   const [slide, setSlide] = useState(0);
+
+  const dispastch = useAppDispatch();
 
   //reset ===================================================================
   const reset = () => {
@@ -208,7 +212,14 @@ const HomePage = () => {
               </h2>
             </div>
             <div className="btn-dialogGame">
-              <button className="btn-add-game">Add to Cart</button>
+              <button
+                className="btn-add-game"
+                onClick={() => {
+                  dispastch(addGame());
+                }}
+              >
+                Add to Cart
+              </button>
               <button className="btn-buy-game">Buy</button>
             </div>
           </div>

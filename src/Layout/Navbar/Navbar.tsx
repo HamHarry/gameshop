@@ -11,6 +11,7 @@ import { jwtDecode } from "jwt-decode";
 import { useAppDispatch } from "../../store/store";
 import { setUserData, UserDataSelector } from "../../store/slices/userSlice";
 import { useSelector } from "react-redux";
+import { addGameSelector } from "../../store/slices/addGameSlice";
 
 export interface User {
   _id: string;
@@ -32,6 +33,7 @@ const Navbar = () => {
 
   const dispatch = useAppDispatch();
   const userData = useSelector(UserDataSelector);
+  const addGame = useSelector(addGameSelector);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const showLoading = () => setIsLoading(true);
@@ -145,7 +147,9 @@ const Navbar = () => {
   return (
     <>
       <div className="container-navbar">
-        <div className="number"></div>
+        <div className={addGame.number > 0 ? "isnumber" : "number"}>
+          {addGame.number}
+        </div>
         <i
           className="fa-brands fa-steam"
           onClick={() => {
