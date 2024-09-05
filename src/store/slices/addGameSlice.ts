@@ -1,25 +1,24 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import { GameItem } from "../../HomaPage/HomePage";
 
-type AddGameState = {
-  number: number;
-};
+interface AddGameState {
+  gameData?: GameItem;
+}
 
-const initialValues: AddGameState = {
-  number: 0,
-};
+const initialValues: AddGameState = {};
 
 const addGameSlice = createSlice({
   name: "addGame",
   initialState: initialValues,
   reducers: {
-    addGame: (state: AddGameState, action: PayloadAction<void>) => {
-      state.number = state.number + 1;
+    setAddGame: (state: AddGameState, action: PayloadAction<GameItem>) => {
+      state.gameData = action.payload;
     },
   },
 });
 
-export const { addGame } = addGameSlice.actions;
-export const addGameSelector = (store: RootState) => store.addGameReducer;
+export const { setAddGame } = addGameSlice.actions;
+export const addGameSelector = (store: RootState) =>
+  store.addGameReducer.gameData;
 export default addGameSlice.reducer;

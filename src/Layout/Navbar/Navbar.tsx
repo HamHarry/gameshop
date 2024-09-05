@@ -33,7 +33,7 @@ const Navbar = () => {
 
   const dispatch = useAppDispatch();
   const userData = useSelector(UserDataSelector);
-  const addGame = useSelector(addGameSelector);
+  const gameData = useSelector(addGameSelector);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const showLoading = () => setIsLoading(true);
@@ -77,7 +77,17 @@ const Navbar = () => {
         <div className="cart">
           <h1>Your Cart</h1>
         </div>
-        <div className="listCart"></div>
+        <div className="listCart">
+          <div className="warp-listCart">
+            <div className="grid-listCart">
+              <img src={gameData?.image} alt="" className="logoCart" />
+              <p>{gameData?.name}</p>
+            </div>
+          </div>
+          <div className="show-price">
+            <p>150</p>
+          </div>
+        </div>
         <div className="btn-payment">
           <button
             onClick={() => {
@@ -147,9 +157,9 @@ const Navbar = () => {
   return (
     <>
       <div className="container-navbar">
-        <div className={addGame.number > 0 ? "isnumber" : "number"}>
-          {addGame.number}
-        </div>
+        {/* <div className={ > 0 ? "isnumber" : "number"}>
+          {}
+        </div> */}
         <i
           className="fa-brands fa-steam"
           onClick={() => {

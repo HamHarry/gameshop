@@ -5,18 +5,14 @@ import { mockUp } from "../Data/MockUp";
 import "./DialogPromotion.css";
 import "./DialogGame.css";
 import { useAppDispatch } from "../store/store";
-import { addGame } from "../store/slices/addGameSlice";
+import { setAddGame } from "../store/slices/addGameSlice";
 
 export interface GameItem {
   type: string;
   name: string;
   price: number;
   image: string;
-  imageShow: ImageShow[];
-}
-
-interface ImageShow {
-  image: string;
+  imageShow: any[];
 }
 
 const HomePage = () => {
@@ -215,7 +211,7 @@ const HomePage = () => {
               <button
                 className="btn-add-game"
                 onClick={() => {
-                  dispastch(addGame());
+                  dispastch(setAddGame(game));
                 }}
               >
                 Add to Cart
