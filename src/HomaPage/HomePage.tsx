@@ -5,7 +5,7 @@ import { mockUp } from "../Data/MockUp";
 import "./DialogPromotion.css";
 import "./DialogGame.css";
 
-interface GameItem {
+export interface GameItem {
   type: string;
   name: string;
   price: number;

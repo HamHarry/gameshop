@@ -145,6 +145,7 @@ const Navbar = () => {
   return (
     <>
       <div className="container-navbar">
+        <div className="number"></div>
         <i
           className="fa-brands fa-steam"
           onClick={() => {
