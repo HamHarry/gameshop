@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import "./SignupPage.css";
-import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
+import { signup } from "../store/slices/authSlice";
+import { useAppDispatch } from "../store/store";
 
-interface SignupForm {
+export interface SignupForm {
   username: string;
   fname: string;
   lname: string;
@@ -25,6 +26,8 @@ const defaultValues: SignupForm = {
 
 const SignupPage = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const { control, handleSubmit } = useForm<SignupForm>({ defaultValues });
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -40,14 +43,8 @@ const SignupPage = () => {
         image:
           "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
       };
-      const res = await axios.post(
-        "https://phandal-backend.vercel.app/api/user/register",
-        item
-      );
-      console.log(item);
-
-      const userData = res.data;
-      console.log(userData);
+      const { data: sigupedData } = await dispatch(signup(item)).unwrap();
+      console.log(sigupedData);
       alert("SignUp successful");
       navigate("/");
     } catch (error) {

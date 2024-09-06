@@ -3,15 +3,20 @@ import { useCallback, useEffect, useState } from "react";
 import "./Navbar.css";
 import "./Dropdown.css";
 import "./DialogCart.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Response } from "../../LoginPage/LoginPage";
 import Cookies from "universal-cookie";
-import { jwtDecode } from "jwt-decode";
 import { useAppDispatch } from "../../store/store";
-import { setUserData, UserDataSelector } from "../../store/slices/userSlice";
+import {
+  getUserById,
+  setUserData,
+  UserDataSelector,
+} from "../../store/slices/userSlice";
 import { useSelector } from "react-redux";
-import { addGameSelector } from "../../store/slices/addGameSlice";
+import { gameDataSelector } from "../../store/slices/gameSlice";
+import {
+  clearErrorMessage,
+  errorMessageSelector,
+} from "../../store/slices/appSlice";
 
 export interface User {
   _id: string;
@@ -33,7 +38,8 @@ const Navbar = () => {
 
   const dispatch = useAppDispatch();
   const userData = useSelector(UserDataSelector);
-  const gameData = useSelector(addGameSelector);
+  const gameData = useSelector(gameDataSelector);
+  const errorMessage = useSelector(errorMessageSelector);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const showLoading = () => setIsLoading(true);
@@ -42,21 +48,8 @@ const Navbar = () => {
   const fetchuser = useCallback(async () => {
     try {
       showLoading();
-      const token = localStorage.getItem("token");
-      if (token) {
-        const decodedToken = jwtDecode(token);
-        const res: Response<User> = await axios.get(
-          `https://phandal-backend.vercel.app/api/user/profile/${decodedToken.sub}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        const user = res.data;
-        dispatch(setUserData(user));
-      }
+      const { data: user } = await dispatch(getUserById()).unwrap();
+      dispatch(setUserData(user));
     } catch (error) {
       console.log(error);
     } finally {
@@ -68,6 +61,13 @@ const Navbar = () => {
     fetchuser();
   }, [fetchuser]);
 
+  useEffect(() => {
+    if (errorMessage) {
+      alert(errorMessage);
+      dispatch(clearErrorMessage());
+    }
+  }, [dispatch, errorMessage]);
+
   //render =============================================================================================
   const renderCart = () => {
     return (
@@ -78,19 +78,17 @@ const Navbar = () => {
           <h1>Your Cart</h1>
         </div>
         <div className="listCart">
-          {gameData?.map((item, index) => {
+          {gameData.map((item, index) => {
             return (
-              <div key={index} className="warp-listCart">
-                <div className="grid-listCart">
-                  <img src={item.image} alt="" className="logoCart" />
-                  <p>{item.name}</p>
-                </div>
-                <div className="show-price">
-                  <p>150</p>
-                </div>
+              <div key={index} className="grid-listCart">
+                <img src={item.image} alt="" className="logoCart" />
+                <p>{item.name}</p>
               </div>
             );
           })}
+        </div>
+        <div className="show-price">
+          <p>150</p>
         </div>
         <div className="btn-payment">
           <button

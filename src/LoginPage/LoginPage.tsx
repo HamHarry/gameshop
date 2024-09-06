@@ -1,17 +1,18 @@
 import "./LoginPage.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "universal-cookie";
 import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
+import { useAppDispatch } from "../store/store";
+import { login } from "../store/slices/authSlice";
 
-interface LoginForm {
+export interface LoginForm {
   email: string;
   password: string;
 }
 
-interface Login {
+export interface Login {
   accessToken: string;
   userId: string;
 }
@@ -28,6 +29,7 @@ const defaultValues: LoginForm = {
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const { handleSubmit, control } = useForm<LoginForm>({ defaultValues });
 
@@ -42,12 +44,8 @@ const LoginPage = () => {
         ...value,
       };
       showLoading();
-      const res: Response<Login> = await axios.post(
-        `https://phandal-backend.vercel.app/api/auth/login`,
-        item
-      );
 
-      const loginedData = res.data;
+      const { data: loginedData } = await dispatch(login(item)).unwrap();
 
       const decodedToken = jwtDecode(loginedData.accessToken);
       const cookies = new Cookies(null, {

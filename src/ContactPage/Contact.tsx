@@ -24,43 +24,39 @@ const Contact = () => {
   };
 
   return (
-    <div className="container-contact">
-      <div className="warp-container-contact">
-        <div className="navbar-contact">
-          <h1>Contact</h1>
-        </div>
-        <form onSubmit={handleSubmit(submit)}>
-          <div className="send">
-            <div className="send-name">
-              <p>Email:</p>
-              <Controller
-                control={control}
-                name="email"
-                render={({ field }) => {
-                  return (
-                    <input {...field} type="text" placeholder="Email..." />
-                  );
-                }}
-              />
-            </div>
+    <div className="warp-container-contact">
+      <div className="navbar-contact">
+        <h1>Contact</h1>
+      </div>
+      <form onSubmit={handleSubmit(submit)}>
+        <div className="send">
+          <div className="send-name">
+            <p>Email:</p>
             <Controller
               control={control}
-              name="comment"
+              name="email"
               render={({ field }) => {
-                return (
-                  <textarea
-                    {...field}
-                    placeholder="Enter text here..."
-                  ></textarea>
-                );
+                return <input {...field} type="text" placeholder="Email..." />;
               }}
             />
           </div>
-          <div className="btn-contact">
-            <button type="submit">Send</button>
-          </div>
-        </form>
-      </div>
+          <Controller
+            control={control}
+            name="comment"
+            render={({ field }) => {
+              return (
+                <textarea
+                  {...field}
+                  placeholder="Enter text here..."
+                ></textarea>
+              );
+            }}
+          />
+        </div>
+        <div className="btn-contact">
+          <button type="submit">Send</button>
+        </div>
+      </form>
     </div>
   );
 };

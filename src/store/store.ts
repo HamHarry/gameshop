@@ -1,15 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import userReducer from "./slices/userSlice";
-import addGameReducer from "./slices/addGameSlice";
+import gameReducer from "./slices/gameSlice";
+import appReducer from "./slices/appSlice";
+import authReducer from "./slices/authSlice";
 
 const reducer = {
   userReducer,
-  addGameReducer,
+  gameReducer,
+  appReducer,
+  authReducer,
 };
 
 export const store = configureStore({
   reducer,
+  devTools: true,
 });
 
 // export type of root state from reducers

@@ -5,7 +5,9 @@ import { mockUp } from "../Data/MockUp";
 import "./DialogPromotion.css";
 import "./DialogGame.css";
 import { useAppDispatch } from "../store/store";
-import { setAddGame } from "../store/slices/addGameSlice";
+import { gameDataSelector, setAddGame } from "../store/slices/gameSlice";
+import { useSelector } from "react-redux";
+import { setErrorMessage } from "../store/slices/appSlice";
 
 export interface GameItem {
   type: string;
@@ -24,7 +26,7 @@ const HomePage = () => {
   const [selectedType, setSelectedType] = useState<string>("all");
   const [searchValue, setSearchValue] = useState<string>("");
   const [slide, setSlide] = useState(0);
-
+  const gameData = useSelector(gameDataSelector);
   const dispastch = useAppDispatch();
 
   //reset ===================================================================
@@ -211,7 +213,18 @@ const HomePage = () => {
               <button
                 className="btn-add-game"
                 onClick={() => {
-                  dispastch(setAddGame(game));
+                  const prevGame = gameData.find(
+                    (item) => item.name === game.name
+                  );
+                  if (prevGame) {
+                    dispastch(
+                      setErrorMessage(
+                        `Game ${game.name} is already in the cart.`
+                      )
+                    );
+                  } else {
+                    dispastch(setAddGame(game));
+                  }
                 }}
               >
                 Add to Cart

@@ -1,6 +1,9 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../../Layout/Navbar/Navbar";
 import { RootState } from "../store";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 interface UserState {
   userData?: User;
@@ -17,6 +20,25 @@ const userSlice = createSlice({
     },
   },
 });
+
+export const getUserById = createAsyncThunk(
+  "user/getUserById",
+  async (): Promise<any> => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const response = await axios.get(
+        `https://phandal-backend.vercel.app/api/user/profile/${decodedToken.sub}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response;
+    }
+  }
+);
 
 export const { setUserData } = userSlice.actions;
 export const UserDataSelector = (store: RootState): User | undefined =>
