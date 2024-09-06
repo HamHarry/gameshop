@@ -3,7 +3,7 @@ import { RootState } from "../store";
 import { GameItem } from "../../HomaPage/HomePage";
 
 interface AddGameState {
-  gameData?: GameItem;
+  gameData?: GameItem[];
 }
 
 const initialValues: AddGameState = {};

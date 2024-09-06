@@ -78,15 +78,19 @@ const Navbar = () => {
           <h1>Your Cart</h1>
         </div>
         <div className="listCart">
-          <div className="warp-listCart">
-            <div className="grid-listCart">
-              <img src={gameData?.image} alt="" className="logoCart" />
-              <p>{gameData?.name}</p>
-            </div>
-          </div>
-          <div className="show-price">
-            <p>150</p>
-          </div>
+          {gameData?.map((item, index) => {
+            return (
+              <div key={index} className="warp-listCart">
+                <div className="grid-listCart">
+                  <img src={item.image} alt="" className="logoCart" />
+                  <p>{item.name}</p>
+                </div>
+                <div className="show-price">
+                  <p>150</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
         <div className="btn-payment">
           <button
