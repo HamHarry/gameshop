@@ -8,7 +8,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
   height: 60px;
   border-radius: 25px;
   --glow-color: rgb(255, 99, 71);
