@@ -1,5 +1,6 @@
 .warp-container-profile {
   display: flex;
+  width: 100%;
 }
 .warp-information {
   display: flex;
@@ -9,6 +10,8 @@
   gap: 50px;
   margin-top: 100px;
   margin-left: 100px;
+  width: 100%;
+  max-width: 800px;
 }
 .image {
   display: flex;

@@ -12,6 +12,7 @@ import {
 } from "../store/slices/gameSlice";
 import { useSelector } from "react-redux";
 import { setErrorMessage } from "../store/slices/appSlice";
+import { useNavigate } from "react-router-dom";
 
 export interface GameItem {
   type: string;
@@ -33,6 +34,8 @@ const HomePage = () => {
 
   const gameData = useSelector(addGameDataSelector);
   const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
 
   //reset ===================================================================
   const reset = () => {
@@ -133,7 +136,26 @@ const HomePage = () => {
                     return console.log(gamePromote);
                   }}
                 >
-                  <h2>Buy</h2>
+                  <h2
+                    onClick={() => {
+                      const prevGame = gameData.find((game) => {
+                        return game.name === gamePromote.name;
+                      });
+                      if (prevGame) {
+                        dispatch(
+                          setErrorMessage(
+                            `Game ${gamePromote.name} is already in the cart.`
+                          )
+                        );
+                      } else {
+                        dispatch(setAddGame(gamePromote));
+                        dispatch(setSammary());
+                        navigate("/core/home/payment");
+                      }
+                    }}
+                  >
+                    Buy
+                  </h2>
                 </div>
               </>
             )}
@@ -361,7 +383,25 @@ const HomePage = () => {
                           : `${Intl.NumberFormat().format(item.price)} THB`}
                       </h3>
                     </div>
-                    <div className="btn-buy">
+                    <div
+                      className="btn-buy"
+                      onClick={() => {
+                        const prevGame = gameData.find(
+                          (game) => game.name === item.name
+                        );
+                        if (prevGame) {
+                          dispatch(
+                            setErrorMessage(
+                              `Game ${item.name} is already in the cart.`
+                            )
+                          );
+                        } else {
+                          dispatch(setAddGame(item));
+                          dispatch(setSammary());
+                          navigate("/core/home/payment");
+                        }
+                      }}
+                    >
                       <p>buy</p>
                     </div>
                   </div>
