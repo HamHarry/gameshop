@@ -42,9 +42,6 @@
   height: 50px;
   margin-top: 10px;
 }
-.listCart {
-  height: 550px;
-}
 .btn-payment {
   display: flex;
   justify-content: center;
@@ -54,7 +51,7 @@
   background-color: black;
   color: white;
   border-radius: 25px;
-  margin-top: 20px;
+  margin: 10px;
   width: 150px;
   height: 50px;
   border: 2px solid red;
@@ -66,4 +63,50 @@
 }
 .btn-payment button:hover {
   color: red;
+}
+.listCart {
+  margin-top: 20px;
+  width: 350px;
+  height: 440px;
+  background-color: rgba(204, 204, 204, 0.767);
+  border-radius: 10px;
+  padding: 0px 5px;
+  overflow-y: auto;
+}
+.grid-listCart {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  border: 2px solid red;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+.grid-listCart p {
+  width: 100px;
+  font-family: "REM", sans-serif;
+  font-weight: bold;
+}
+.logoCart {
+  margin-left: 10px;
+  height: 60px;
+  width: 120px;
+}
+.show-price {
+  margin-top: 10px;
+  width: 350px;
+  height: 90px;
+  background-color: rgba(204, 204, 204, 0.767);
+  border-radius: 10px;
+  padding: 5px;
+}
+.fa-trash-can {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
 }

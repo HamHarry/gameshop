@@ -12,7 +12,10 @@ import {
   UserDataSelector,
 } from "../../store/slices/userSlice";
 import { useSelector } from "react-redux";
-import { gameDataSelector } from "../../store/slices/gameSlice";
+import {
+  addGameDataSelector,
+  setDeleteGame,
+} from "../../store/slices/gameSlice";
 import {
   clearErrorMessage,
   errorMessageSelector,
@@ -38,7 +41,7 @@ const Navbar = () => {
 
   const dispatch = useAppDispatch();
   const userData = useSelector(UserDataSelector);
-  const gameData = useSelector(gameDataSelector);
+  const addGameData = useSelector(addGameDataSelector);
   const errorMessage = useSelector(errorMessageSelector);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -78,11 +81,17 @@ const Navbar = () => {
           <h1>Your Cart</h1>
         </div>
         <div className="listCart">
-          {gameData.map((item, index) => {
+          {addGameData.map((item, index) => {
             return (
               <div key={index} className="grid-listCart">
                 <img src={item.image} alt="" className="logoCart" />
                 <p>{item.name}</p>
+                <i
+                  className="fa-solid fa-trash-can"
+                  onClick={() => {
+                    dispatch(setDeleteGame(item));
+                  }}
+                ></i>
               </div>
             );
           })}
@@ -94,6 +103,7 @@ const Navbar = () => {
           <button
             onClick={() => {
               navigate(`/core/home/payment`);
+              setOpenDialogCart(!openDialogCart);
             }}
           >
             Payment

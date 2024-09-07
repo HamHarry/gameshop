@@ -46,7 +46,6 @@ const LoginPage = () => {
       showLoading();
 
       const { data: loginedData } = await dispatch(login(item)).unwrap();
-
       const decodedToken = jwtDecode(loginedData.accessToken);
       const cookies = new Cookies(null, {
         path: "/",
@@ -119,7 +118,7 @@ const LoginPage = () => {
         </div>
       </div>
       {isLoading && (
-        <div className="wrap-loding">
+        <div className="wrap-loding-login">
           <div className="loding" />
         </div>
       )}

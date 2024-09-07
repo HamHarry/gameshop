@@ -54,39 +54,3 @@
 .number {
   display: none;
 }
-.listCart {
-  margin-top: 20px;
-  width: 350px;
-  height: 400px;
-  background-color: rgba(204, 204, 204, 0.767);
-  border-radius: 10px;
-  padding: 5px;
-}
-.grid-listCart {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  border: 2px solid red;
-  border-radius: 10px;
-  margin-top: 5px;
-}
-.grid-listCart p {
-  width: 100px;
-  font-family: "REM", sans-serif;
-  font-weight: bold;
-}
-.logoCart {
-  margin-left: 10px;
-  height: 60px;
-}
-.show-price {
-  margin-top: 10px;
-  width: 350px;
-  height: 120px;
-  background-color: rgba(204, 204, 204, 0.767);
-  border-radius: 10px;
-  padding: 5px;
-}

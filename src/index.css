@@ -14,6 +14,22 @@
   height: 100%;
   z-index: 100;
 }
+.wrap-loding-signup {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+.wrap-loding-login {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
 .warp-loding-profile {
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;

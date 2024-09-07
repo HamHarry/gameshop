@@ -17,12 +17,20 @@ const GameSlice = createSlice({
     setAddGame: (state: GameState, action: PayloadAction<GameItem>) => {
       state.gameData.push(action.payload);
     },
+    setDeleteGame: (state: GameState, action: PayloadAction<GameItem>) => {
+      const gameDataIndex = state.gameData.findIndex((game) => {
+        return game.name === action.payload.name;
+      });
+      state.gameData.splice(gameDataIndex, 1);
+    },
   },
 });
 
-export const { setAddGame } = GameSlice.actions;
+export const { setAddGame, setDeleteGame } = GameSlice.actions;
 
-export const gameDataSelector = (store: RootState) =>
+export const addGameDataSelector = (store: RootState) =>
+  store.gameReducer.gameData;
+export const deleteGameDataSelector = (store: RootState) =>
   store.gameReducer.gameData;
 
 export default GameSlice.reducer;

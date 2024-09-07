@@ -5,7 +5,7 @@ import { mockUp } from "../Data/MockUp";
 import "./DialogPromotion.css";
 import "./DialogGame.css";
 import { useAppDispatch } from "../store/store";
-import { gameDataSelector, setAddGame } from "../store/slices/gameSlice";
+import { addGameDataSelector, setAddGame } from "../store/slices/gameSlice";
 import { useSelector } from "react-redux";
 import { setErrorMessage } from "../store/slices/appSlice";
 
@@ -26,7 +26,7 @@ const HomePage = () => {
   const [selectedType, setSelectedType] = useState<string>("all");
   const [searchValue, setSearchValue] = useState<string>("");
   const [slide, setSlide] = useState(0);
-  const gameData = useSelector(gameDataSelector);
+  const gameData = useSelector(addGameDataSelector);
   const dispastch = useAppDispatch();
 
   //reset ===================================================================
@@ -224,6 +224,7 @@ const HomePage = () => {
                     );
                   } else {
                     dispastch(setAddGame(game));
+                    setOpenDialogGame(!openDialogGame);
                   }
                 }}
               >
