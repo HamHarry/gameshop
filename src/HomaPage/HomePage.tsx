@@ -5,7 +5,11 @@ import { mockUp } from "../Data/MockUp";
 import "./DialogPromotion.css";
 import "./DialogGame.css";
 import { useAppDispatch } from "../store/store";
-import { addGameDataSelector, setAddGame } from "../store/slices/gameSlice";
+import {
+  addGameDataSelector,
+  setAddGame,
+  setIncrease,
+} from "../store/slices/gameSlice";
 import { useSelector } from "react-redux";
 import { setErrorMessage } from "../store/slices/appSlice";
 
@@ -26,8 +30,9 @@ const HomePage = () => {
   const [selectedType, setSelectedType] = useState<string>("all");
   const [searchValue, setSearchValue] = useState<string>("");
   const [slide, setSlide] = useState(0);
+
   const gameData = useSelector(addGameDataSelector);
-  const dispastch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   //reset ===================================================================
   const reset = () => {
@@ -217,13 +222,14 @@ const HomePage = () => {
                     (item) => item.name === game.name
                   );
                   if (prevGame) {
-                    dispastch(
+                    dispatch(
                       setErrorMessage(
                         `Game ${game.name} is already in the cart.`
                       )
                     );
                   } else {
-                    dispastch(setAddGame(game));
+                    dispatch(setAddGame(game));
+                    dispatch(setIncrease());
                     setOpenDialogGame(!openDialogGame);
                   }
                 }}

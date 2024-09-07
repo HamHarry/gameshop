@@ -102,6 +102,14 @@
   background-color: rgba(204, 204, 204, 0.767);
   border-radius: 10px;
   padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.show-price p {
+  font-family: "REM", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
 }
 .fa-trash-can {
   display: flex;
