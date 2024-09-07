@@ -15,8 +15,8 @@ import { useSelector } from "react-redux";
 import {
   addGameDataSelector,
   setDeleteGame,
-  increaseGameSelector,
-  setDecrease,
+  setSammary,
+  summaryGameSelector,
 } from "../../store/slices/gameSlice";
 import {
   clearErrorMessage,
@@ -45,7 +45,7 @@ const Navbar = () => {
   const userData = useSelector(UserDataSelector);
   const addGameData = useSelector(addGameDataSelector);
   const errorMessage = useSelector(errorMessageSelector);
-  const increaseGame = useSelector(increaseGameSelector);
+  const summary = useSelector(summaryGameSelector);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const showLoading = () => setIsLoading(true);
@@ -93,7 +93,7 @@ const Navbar = () => {
                   className="fa-solid fa-trash-can"
                   onClick={() => {
                     dispatch(setDeleteGame(item));
-                    dispatch(setDecrease());
+                    dispatch(setSammary());
                   }}
                 ></i>
               </div>
@@ -101,15 +101,9 @@ const Navbar = () => {
           })}
         </div>
         <div className="show-price">
-          <p>
-            price:{` ${Intl.NumberFormat().format(increaseGame.price)} THB`}
-          </p>
-          <p>
-            VAT 7%: {` ${Intl.NumberFormat().format(increaseGame.vat)} THB`}
-          </p>
-          <p>
-            total: {` ${Intl.NumberFormat().format(increaseGame.total)} THB`}
-          </p>
+          <p>price:{` ${Intl.NumberFormat().format(summary.price)} THB`}</p>
+          <p>VAT 7%: {` ${Intl.NumberFormat().format(summary.vat)} THB`}</p>
+          <p>total: {` ${Intl.NumberFormat().format(summary.total)} THB`}</p>
         </div>
         <div className="btn-payment">
           <button
@@ -188,7 +182,6 @@ const Navbar = () => {
           className="fa-brands fa-steam"
           onClick={() => {
             navigate(`/core/home`);
-            window.location.reload();
           }}
         ></i>
         <div className="navbar-right">

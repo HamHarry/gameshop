@@ -113,8 +113,10 @@
 }
 .fa-trash-can {
   display: flex;
+  width: 50px;
   justify-content: center;
   align-items: center;
   font-size: 20px;
   cursor: pointer;
+  margin-left: 20px;
 }

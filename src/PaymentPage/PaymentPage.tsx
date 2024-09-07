@@ -4,6 +4,14 @@ import "./DialogCard.css";
 import "./DialogQR.css";
 import "./Card.css";
 import { Controller, useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import {
+  addGameDataSelector,
+  setDeleteGame,
+  setSammary,
+  summaryGameSelector,
+} from "../store/slices/gameSlice";
+import { useAppDispatch } from "../store/store";
 
 interface Card {
   numbers: string[];
@@ -25,6 +33,11 @@ const PaymentPage = () => {
   const [openDialogCard, setOpenDialogCard] = useState<boolean>(false);
   const [openDialogQR, setOpenDialogQR] = useState<boolean>(false);
   const [cardForm, setCardForm] = useState<Card>();
+
+  const summary = useSelector(summaryGameSelector);
+  const addGameData = useSelector(addGameDataSelector);
+
+  const dispatch = useAppDispatch();
 
   const { handleSubmit, control, watch } = useForm<Card>({
     defaultValues,
@@ -280,7 +293,29 @@ const PaymentPage = () => {
           <h1>Your Shopping Cart</h1>
         </div>
         <div className="listCart-container">
-          <div className="warp-listCart-container"></div>
+          <div className="warp-listCart-container">
+            <div className="show-listCart">
+              {addGameData.map((item, index) => {
+                return (
+                  <div key={index} className="warp-show-listCart">
+                    <img src={item.image} alt="" className="warp-logoCart" />
+                    <p>{item.name}</p>
+                    <i
+                      className="fa-solid fa-trash-can"
+                      onClick={() => {
+                        dispatch(setDeleteGame(item));
+                        dispatch(setSammary());
+                      }}
+                    ></i>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="show-listPrice">
+              <p>Total</p>
+              <p>{`${Intl.NumberFormat().format(summary.total)} THB`}</p>
+            </div>
+          </div>
           <div className="select-card">
             <i className="fa-brands fa-cc-visa">
               <p>{cardForm?.numbers[3]}</p>

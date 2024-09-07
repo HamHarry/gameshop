@@ -38,13 +38,11 @@
 .warp-listCart-container {
   height: 430px;
   background-color: #9e9e9e;
-  border-radius: 20px;
 }
 .select-card {
   display: grid;
   grid-template-columns: 1fr 2fr 2fr;
   background-color: #9e9e9e;
-  border-radius: 20px;
   height: 100px;
   margin-top: 20px;
 }
@@ -70,7 +68,7 @@
 }
 .btn-payments button {
   background-color: black;
-  color: red;
+  color: white;
   border-radius: 25px;
   margin-top: 25px;
   width: 150px;
@@ -84,4 +82,49 @@
 }
 .btn-payments button:hover {
   color: red;
+}
+.show-listCart {
+  width: 100%;
+  height: 380px;
+  overflow-y: hidden;
+}
+.show-listCart:hover {
+  overflow-y: auto;
+}
+.show-listPrice {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.show-listPrice p {
+  margin: 0px 20px;
+  font-family: "REM", sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+}
+.warp-show-listCart {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: white;
+  width: 100%;
+  max-width: 800px;
+  height: 120px;
+}
+.warp-logoCart {
+  width: 180px;
+  height: 80px;
+  margin-left: 20px;
+}
+.warp-show-listCart p {
+  font-family: "REM", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+.warp-show-listCart > .fa-trash-can {
+  margin-left: 150px;
 }

@@ -8,7 +8,7 @@ import { useAppDispatch } from "../store/store";
 import {
   addGameDataSelector,
   setAddGame,
-  setIncrease,
+  setSammary,
 } from "../store/slices/gameSlice";
 import { useSelector } from "react-redux";
 import { setErrorMessage } from "../store/slices/appSlice";
@@ -229,7 +229,7 @@ const HomePage = () => {
                     );
                   } else {
                     dispatch(setAddGame(game));
-                    dispatch(setIncrease());
+                    dispatch(setSammary());
                     setOpenDialogGame(!openDialogGame);
                   }
                 }}

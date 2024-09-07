@@ -34,19 +34,9 @@ const GameSlice = createSlice({
       });
       state.gameData.splice(gameDataIndex, 1);
     },
-    setIncrease: (state: GameState) => {
+    setSammary: (state: GameState) => {
       const sum = state.gameData.reduce((prev, item) => {
         return prev + item.price;
-      }, 0);
-      state.summary.price = sum;
-      const vat = sum * 0.07;
-      state.summary.vat = vat;
-      const total = sum + vat;
-      state.summary.total = total;
-    },
-    setDecrease: (state: GameState) => {
-      const sum = state.gameData.reduce((prev, item) => {
-        return item.price - prev;
       }, 0);
       state.summary.price = sum;
       const vat = sum * 0.07;
@@ -57,16 +47,13 @@ const GameSlice = createSlice({
   },
 });
 
-export const { setAddGame, setDeleteGame, setIncrease, setDecrease } =
-  GameSlice.actions;
+export const { setAddGame, setDeleteGame, setSammary } = GameSlice.actions;
 
 export const addGameDataSelector = (store: RootState) =>
   store.gameReducer.gameData;
 export const deleteGameDataSelector = (store: RootState) =>
   store.gameReducer.gameData;
-export const increaseGameSelector = (store: RootState) =>
-  store.gameReducer.summary;
-export const decreaseGameSelector = (store: RootState) =>
+export const summaryGameSelector = (store: RootState) =>
   store.gameReducer.summary;
 
 export default GameSlice.reducer;
