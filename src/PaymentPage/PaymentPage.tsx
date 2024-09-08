@@ -1,5 +1,7 @@
-import { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from "react";
 import "./PaymentPage.css";
+import "./DialogCash.css";
 import "./DialogCard.css";
 import "./DialogQR.css";
 import "./Card.css";
@@ -7,6 +9,9 @@ import { Controller, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import {
   addGameDataSelector,
+  calculatorGameSelector,
+  clearCalculator,
+  setCalculator,
   setDeleteGame,
   setSammary,
   summaryGameSelector,
@@ -32,16 +37,31 @@ const defaultValues: Card = {
 const PaymentPage = () => {
   const [openDialogCard, setOpenDialogCard] = useState<boolean>(false);
   const [openDialogQR, setOpenDialogQR] = useState<boolean>(false);
+  const [openDialogCash, setOpenDialogCash] = useState<boolean>(false);
+  const [calculate, setCalculate] = useState<number>(0);
   const [cardForm, setCardForm] = useState<Card>();
 
   const summary = useSelector(summaryGameSelector);
   const addGameData = useSelector(addGameDataSelector);
+  const calculator = useSelector(calculatorGameSelector);
 
   const dispatch = useAppDispatch();
 
   const { handleSubmit, control, watch } = useForm<Card>({
     defaultValues,
   });
+
+  const reset = () => {
+    setCalculate(0);
+    setOpenDialogCash(false);
+  };
+
+  useEffect(() => {
+    if (calculator) {
+      alert(`Your change: ${calculator} THB`);
+      dispatch(clearCalculator());
+    }
+  }, [calculator, dispatch]);
 
   //handleSubmit =================================================================
   const submit = (value: Card) => {
@@ -50,6 +70,10 @@ const PaymentPage = () => {
     };
     setCardForm(item);
     setOpenDialogCard(!openDialogCard);
+  };
+  const submitCalculate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value);
+    setCalculate(value);
   };
 
   //render =================================================================
@@ -285,6 +309,41 @@ const PaymentPage = () => {
       </dialog>
     );
   };
+  const renderDialogCash = () => {
+    return (
+      <dialog open={openDialogCash}>
+        <div className="container-cash">
+          <div className="nav-cash">
+            <i
+              className="fa-solid fa-circle-xmark"
+              onClick={() => {
+                setOpenDialogCash(!openDialogCash);
+              }}
+            ></i>
+          </div>
+          <div className="warp-cash">
+            <h1>Cash</h1>
+            <div className="input-pay">
+              <input
+                type="number"
+                placeholder="Enter your Cash..."
+                onChange={submitCalculate}
+                value={calculate}
+              />
+              <button
+                onClick={() => {
+                  dispatch(setCalculator(calculate));
+                  reset();
+                }}
+              >
+                Pay
+              </button>
+            </div>
+          </div>
+        </div>
+      </dialog>
+    );
+  };
 
   return (
     <div className="container-payment">
@@ -327,7 +386,13 @@ const PaymentPage = () => {
           </div>
         </div>
         <div className="btn-payments">
-          <button>Cash</button>
+          <button
+            onClick={() => {
+              setOpenDialogCash(!openDialogCash);
+            }}
+          >
+            Cash
+          </button>
           <button
             onClick={() => {
               setOpenDialogCard(!openDialogCard);
@@ -346,6 +411,7 @@ const PaymentPage = () => {
       </div>
       {renderDialogCard()}
       {renderDialogQR()}
+      {renderDialogCash()}
     </div>
   );
 };
