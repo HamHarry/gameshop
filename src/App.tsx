@@ -10,7 +10,7 @@ import Contact from "./ContactPage/Contact";
 import ProtectedRouteLogined from "./ProtectedRoutes/ProtectedRouteLogined";
 import Layout from "./Layout/Layout";
 import { Suspense } from "react";
-import LibalyPage from "./Libaly/LibalyPage";
+import LibaryPage from "./Libary/LibaryPage";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
             <Route path="home/profile" element={<Profile />} />
             <Route path="home/payment" element={<PaymentPage />} />
             <Route path="home/contact" element={<Contact />} />
-            <Route path="home/libaly" element={<LibalyPage />} />
+            <Route path="home/libary" element={<LibaryPage />} />
           </Route>
         </Route>
         <Route path="*" element={<NotfoundPage />} />

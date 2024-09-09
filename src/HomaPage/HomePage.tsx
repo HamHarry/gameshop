@@ -7,6 +7,7 @@ import "./DialogGame.css";
 import { useAppDispatch } from "../store/store";
 import {
   addGameDataSelector,
+  gameLibarySelector,
   setAddGame,
   setSammary,
 } from "../store/slices/gameSlice";
@@ -20,6 +21,7 @@ export interface GameItem {
   price: number;
   image: string;
   imageShow: any[];
+  isExist?: boolean;
 }
 
 const HomePage = () => {
@@ -33,6 +35,7 @@ const HomePage = () => {
   const [slide, setSlide] = useState(0);
 
   const gameData = useSelector(addGameDataSelector);
+  const gameLibary = useSelector(gameLibarySelector);
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -189,6 +192,7 @@ const HomePage = () => {
                 className="fa-solid fa-circle-xmark"
                 onClick={() => {
                   setOpenDialogGame(!openDialogGame);
+                  setDataGame(undefined);
                   setSlide(0);
                 }}
               ></i>
@@ -238,7 +242,8 @@ const HomePage = () => {
             </div>
             <div className="btn-dialogGame">
               <button
-                className="btn-add-game"
+                className={game.isExist ? "dis-btn-add" : "btn-add-game"}
+                disabled={game.isExist}
                 onClick={() => {
                   const prevGame = gameData.find(
                     (item) => item.name === game.name
@@ -250,15 +255,36 @@ const HomePage = () => {
                       )
                     );
                   } else {
+                    setOpenDialogGame(!openDialogGame);
                     dispatch(setAddGame(game));
                     dispatch(setSammary());
-                    setOpenDialogGame(!openDialogGame);
+                    setDataGame(undefined);
                   }
                 }}
               >
                 Add to Cart
               </button>
-              <button className="btn-buy-game">Buy</button>
+              <button
+                className={game.isExist ? "dis-btn-buy" : "btn-buy-game"}
+                disabled={game.isExist}
+                onClick={() => {
+                  const prevGame = gameData.find((item) => {
+                    return item.name === game.name;
+                  });
+                  if (prevGame) {
+                    dispatch(
+                      setErrorMessage(`Game ${game.name} is already both`)
+                    );
+                  } else {
+                    dispatch(setAddGame(game));
+                    dispatch(setSammary());
+                    navigate("/core/home/payment");
+                    setDataGame(undefined);
+                  }
+                }}
+              >
+                Buy
+              </button>
             </div>
           </div>
         )}
@@ -361,6 +387,9 @@ const HomePage = () => {
           <div className="table-game">
             <div className="table">
               {listData.map((item, index) => {
+                const existGameLibary = gameLibary.find((game) => {
+                  return game.name === item.name;
+                });
                 return (
                   <div key={index} className="gird-game">
                     <div className="imagegame">
@@ -368,7 +397,11 @@ const HomePage = () => {
                         src={item.image}
                         alt="logo"
                         onClick={() => {
-                          setDataGame(item);
+                          const newItem = {
+                            ...item,
+                            isExist: Boolean(existGameLibary),
+                          };
+                          setDataGame(newItem);
                           setOpenDialogGame(!openDialogGame);
                         }}
                       />
@@ -383,12 +416,13 @@ const HomePage = () => {
                           : `${Intl.NumberFormat().format(item.price)} THB`}
                       </h3>
                     </div>
-                    <div
-                      className="btn-buy"
+                    <button
+                      className={existGameLibary ? "dis-btn" : "btn-buy"}
                       onClick={() => {
-                        const prevGame = gameData.find(
-                          (game) => game.name === item.name
-                        );
+                        if (existGameLibary) return;
+                        const prevGame = gameData.find((game) => {
+                          return game.name === item.name;
+                        });
                         if (prevGame) {
                           dispatch(
                             setErrorMessage(
@@ -402,8 +436,8 @@ const HomePage = () => {
                         }
                       }}
                     >
-                      <p>buy</p>
-                    </div>
+                      Buy
+                    </button>
                   </div>
                 );
               })}

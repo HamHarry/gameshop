@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import "./PaymentPage.css";
 import "./DialogCash.css";
@@ -11,7 +10,9 @@ import {
   addGameDataSelector,
   calculatorGameSelector,
   clearCalculator,
+  setAddGameLibary,
   setCalculator,
+  setClaerGame,
   setDeleteGame,
   setSammary,
   summaryGameSelector,
@@ -54,11 +55,14 @@ const PaymentPage = () => {
   const reset = () => {
     setCalculate(0);
     setOpenDialogCash(false);
+    dispatch(setAddGameLibary());
+    dispatch(setClaerGame());
+    dispatch(setSammary());
   };
 
   useEffect(() => {
     if (calculator) {
-      alert(`Your change: ${calculator} THB`);
+      alert(`Your change: ${Intl.NumberFormat().format(calculator)} THB`);
       dispatch(clearCalculator());
     }
   }, [calculator, dispatch]);
@@ -101,7 +105,6 @@ const PaymentPage = () => {
                     src="https://i.ibb.co/PYss3yv/map.png"
                   />
                   <div className="row">
-                    {/* width 60px */}
                     <img src="https://i.ibb.co/G9pDnYJ/chip.png" />
                     <img src="https://i.ibb.co/WHZ3nRJ/visa.png" />
                   </div>

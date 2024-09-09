@@ -1,0 +1,125 @@
+.warp-container-libary {
+  position: fixed;
+  left: 50%;
+  bottom: 50%;
+  transform: translate(-50%, 54%);
+  width: 800px;
+  height: 770px;
+  background-color: black;
+  border: 2px solid red;
+  border-radius: 25px;
+  --glow-color: rgb(255, 99, 71);
+  --glow-spread-color: rgba(255, 69, 58, 0.781);
+  --enhanced-glow-color: rgb(255, 127, 80);
+  --btn-color: rgb(0, 0, 0);
+  border: 0.25em solid var(--glow-color);
+  padding: 1em 3em;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+  transition: all 0.3s;
+  z-index: 0;
+}
+.nav-libaly {
+  color: white;
+  font-family: "REM", sans-serif;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+}
+.nav-libary h1 {
+  color: white;
+  text-align: center;
+  font-family: "REM", sans-serif;
+  font-size: 42px;
+}
+.nav-left-list-game {
+  display: flex;
+  justify-content: end;
+}
+.nav-list-game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 40px;
+  background-color: black;
+  border-radius: 15px;
+  border: 2px solid red;
+  color: white;
+  cursor: pointer;
+}
+.nav-list-game:hover {
+  color: red;
+}
+.nav-list-game .fa-plus {
+  font-size: 30px;
+}
+.list-game {
+  margin-top: 10px;
+  width: 780px;
+  height: 620px;
+  background-color: #9e9e9e;
+  border-radius: 15px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  overflow-y: auto;
+}
+.warp-list-game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 100%;
+  max-width: 200px;
+  border: 2px solid red;
+  border-radius: 20px;
+  background-color: black;
+  margin-left: 25px;
+  margin-top: 5px;
+}
+.warp-list-game > img {
+  height: 100px;
+  padding: 10px;
+}
+.list-game-text {
+  height: 150px;
+  width: 100%;
+}
+.list-game-text h1 {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "REM", sans-serif;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.list-game-text p {
+  font-size: 20px;
+  font-family: "REM", sans-serif;
+  color: white;
+}
+.btn-pay {
+  margin: 10px 0px;
+  width: 100px;
+  height: 50px;
+  background-color: black;
+  border: 2px solid red;
+  border-radius: 25px;
+  color: white;
+  font-family: "REM", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.btn-pay:hover {
+  color: red;
+}

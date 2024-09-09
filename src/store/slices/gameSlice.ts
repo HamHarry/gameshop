@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { GameItem } from "../../HomaPage/HomePage";
 
-interface GameState {
+export interface GameState {
   gameData: GameItem[];
   summary: {
     price: number;
@@ -10,6 +10,7 @@ interface GameState {
     total: number;
   };
   calculator: number;
+  gamelibary: GameItem[];
 }
 
 const initialState: GameState = {
@@ -20,6 +21,7 @@ const initialState: GameState = {
     total: 0,
   },
   calculator: 0,
+  gamelibary: [],
 };
 
 const GameSlice = createSlice({
@@ -35,6 +37,10 @@ const GameSlice = createSlice({
       });
       state.gameData.splice(gameDataIndex, 1);
     },
+    setClaerGame: (state: GameState) => {
+      state.gameData = initialState.gameData;
+    },
+
     setSammary: (state: GameState) => {
       const sum = state.gameData.reduce((prev, item) => {
         return prev + item.price;
@@ -56,6 +62,12 @@ const GameSlice = createSlice({
     clearCalculator: (state: GameState) => {
       state.calculator = initialState.calculator;
     },
+
+    setAddGameLibary: (state: GameState) => {
+      state.gameData.map((game) => {
+        state.gamelibary.push(game);
+      });
+    },
   },
 });
 
@@ -65,15 +77,23 @@ export const {
   setSammary,
   setCalculator,
   clearCalculator,
+  setAddGameLibary,
+  setClaerGame,
 } = GameSlice.actions;
 
 export const addGameDataSelector = (store: RootState) =>
   store.gameReducer.gameData;
 export const deleteGameDataSelector = (store: RootState) =>
   store.gameReducer.gameData;
+export const clearGameDataSelector = (store: RootState) =>
+  store.gameReducer.gameData;
+
 export const summaryGameSelector = (store: RootState) =>
   store.gameReducer.summary;
+
 export const calculatorGameSelector = (store: RootState) =>
   store.gameReducer.calculator;
+export const gameLibarySelector = (store: RootState) =>
+  store.gameReducer.gamelibary;
 
 export default GameSlice.reducer;

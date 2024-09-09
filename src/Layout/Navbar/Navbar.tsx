@@ -138,7 +138,7 @@ const Navbar = () => {
           </li>
           <li
             onClick={() => {
-              navigate(`/core/home/libaly`);
+              navigate(`/core/home/libary`);
               setOpen(!open);
             }}
           >

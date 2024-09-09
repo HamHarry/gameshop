@@ -100,6 +100,18 @@
   gap: 20px;
   margin-top: 20px;
 }
+.dis-btn-add {
+  width: 150px;
+  height: 50px;
+  background-color: black;
+  border: 2px solid #9e9e9e;
+  border-radius: 25px;
+  color: #9e9e9e;
+  font-family: "REM", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  transition: all 0.5s;
+}
 .btn-add-game {
   width: 150px;
   height: 50px;
@@ -115,6 +127,18 @@
 }
 .btn-add-game:hover {
   color: red;
+}
+.dis-btn-buy {
+  width: 100px;
+  height: 50px;
+  background-color: black;
+  border: 2px solid #9e9e9e;
+  border-radius: 25px;
+  color: #9e9e9e;
+  font-family: "REM", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  transition: all 0.5s;
 }
 .btn-buy-game {
   width: 100px;
