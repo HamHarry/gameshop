@@ -61,7 +61,7 @@ const HomePage = () => {
 
   // render =================================================================
   const renderPromotion = () => {
-    const gamePromote = listData.find((item) => {
+    const gamePromote = listDataRef.find((item) => {
       return item.name === "Black Myth: Wukong";
     });
 

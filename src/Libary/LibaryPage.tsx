@@ -22,7 +22,7 @@ const libaryPage = () => {
               <img src={item.image} alt="" />
               <div className="list-game-text">
                 <h1>{item.name}</h1>
-                <p>{item.type}</p>
+                <p>Type: {item.type}</p>
               </div>
               <button className="btn-pay">Play</button>
             </div>
