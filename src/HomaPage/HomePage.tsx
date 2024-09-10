@@ -277,7 +277,9 @@ const HomePage = () => {
                   });
                   if (prevGame) {
                     dispatch(
-                      setErrorMessage(`Game ${game.name} is already both`)
+                      setErrorMessage(
+                        `Game ${game.name} is already in the cart.`
+                      )
                     );
                   } else {
                     dispatch(setAddGame(game));

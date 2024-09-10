@@ -55,6 +55,9 @@ const GameSlice = createSlice({
         state.gamelibary.push(game);
       });
     },
+    setOutsideGame: (state: GameState, action: PayloadAction<GameItem>) => {
+      state.gamelibary.push(action.payload);
+    },
   },
 });
 
@@ -64,6 +67,7 @@ export const {
   setSammary,
   setAddGameLibary,
   setClaerGame,
+  setOutsideGame,
 } = GameSlice.actions;
 
 export const addGameDataSelector = (store: RootState) =>

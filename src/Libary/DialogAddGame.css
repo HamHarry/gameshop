@@ -1,0 +1,69 @@
+.container-dialogAddGame {
+  position: fixed;
+  left: 50%;
+  bottom: 50%;
+  transform: translate(-50%, 50%);
+  width: 100%;
+  max-width: 400px;
+  height: 300px;
+  background-color: black;
+  border: 2px solid red;
+  border-radius: 25px;
+  z-index: 22;
+}
+.nav-dialogAddGame {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-dialogAddGame h1 {
+  color: white;
+  font-family: "REM", sans-serif;
+  font-weight: bold;
+  margin-left: 20px;
+}
+.warp-dialogAddGame form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 230px;
+}
+form img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid red;
+  margin-right: 20px;
+  margin-bottom: 50px;
+}
+.formAddGame {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.formAddGame input {
+  width: 200px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid red;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: "REM", sans-serif;
+}
+.formAddGame button {
+  width: 80px;
+  height: 40px;
+  font-size: 20px;
+  font-family: "REM", sans-serif;
+  font-weight: bold;
+  border: 2px solid red;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.formAddGame button:hover {
+  color: red;
+}
