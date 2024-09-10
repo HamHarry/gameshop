@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./PaymentPage.css";
 import "./DialogCash.css";
 import "./DialogCard.css";
@@ -8,16 +8,14 @@ import { Controller, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import {
   addGameDataSelector,
-  calculatorGameSelector,
-  clearCalculator,
   setAddGameLibary,
-  setCalculator,
   setClaerGame,
   setDeleteGame,
   setSammary,
   summaryGameSelector,
 } from "../store/slices/gameSlice";
 import { useAppDispatch } from "../store/store";
+import { useNavigate } from "react-router-dom";
 
 interface Card {
   numbers: string[];
@@ -44,28 +42,25 @@ const PaymentPage = () => {
 
   const summary = useSelector(summaryGameSelector);
   const addGameData = useSelector(addGameDataSelector);
-  const calculator = useSelector(calculatorGameSelector);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const { handleSubmit, control, watch } = useForm<Card>({
     defaultValues,
   });
 
   const reset = () => {
-    setCalculate(0);
-    setOpenDialogCash(false);
+    // addGame to Libary ======================================================
     dispatch(setAddGameLibary());
+    // clearGame to gameData ==================================================
     dispatch(setClaerGame());
     dispatch(setSammary());
+    // set initalValue and navigate to Libary =================================
+    setCalculate(0);
+    setOpenDialogCash(false);
+    navigate("/core/home/libary");
   };
-
-  useEffect(() => {
-    if (calculator) {
-      alert(`Your change: ${Intl.NumberFormat().format(calculator)} THB`);
-      dispatch(clearCalculator());
-    }
-  }, [calculator, dispatch]);
 
   //handleSubmit =================================================================
   const submit = (value: Card) => {
@@ -335,8 +330,16 @@ const PaymentPage = () => {
               />
               <button
                 onClick={() => {
-                  dispatch(setCalculator(calculate));
-                  reset();
+                  const sum = calculate - summary.total;
+                  if (sum >= 0) {
+                    alert(
+                      `Your change: ${Intl.NumberFormat().format(sum)} THB`
+                    );
+                    reset();
+                  } else {
+                    alert("Your money is not enough");
+                    setCalculate(0);
+                  }
                 }}
               >
                 Pay

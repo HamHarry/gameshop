@@ -9,7 +9,6 @@ export interface GameState {
     vat: number;
     total: number;
   };
-  calculator: number;
   gamelibary: GameItem[];
 }
 
@@ -20,7 +19,6 @@ const initialState: GameState = {
     vat: 0,
     total: 0,
   },
-  calculator: 0,
   gamelibary: [],
 };
 
@@ -51,17 +49,6 @@ const GameSlice = createSlice({
       const total = sum + vat;
       state.summary.total = total;
     },
-    setCalculator: (state: GameState, action: PayloadAction<number>) => {
-      if (action.payload < state.summary.total) {
-        return alert("Your money is not enough");
-      } else {
-        const sum = action.payload - state.summary.total;
-        state.calculator = sum;
-      }
-    },
-    clearCalculator: (state: GameState) => {
-      state.calculator = initialState.calculator;
-    },
 
     setAddGameLibary: (state: GameState) => {
       state.gameData.map((game) => {
@@ -75,8 +62,6 @@ export const {
   setAddGame,
   setDeleteGame,
   setSammary,
-  setCalculator,
-  clearCalculator,
   setAddGameLibary,
   setClaerGame,
 } = GameSlice.actions;
@@ -91,8 +76,6 @@ export const clearGameDataSelector = (store: RootState) =>
 export const summaryGameSelector = (store: RootState) =>
   store.gameReducer.summary;
 
-export const calculatorGameSelector = (store: RootState) =>
-  store.gameReducer.calculator;
 export const gameLibarySelector = (store: RootState) =>
   store.gameReducer.gamelibary;
 

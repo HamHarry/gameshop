@@ -69,6 +69,9 @@
   padding: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  overflow: hidden;
+}
+.list-game:hover {
   overflow-y: auto;
 }
 .warp-list-game {
@@ -87,6 +90,7 @@
 }
 .warp-list-game > img {
   height: 100px;
+  width: 180px;
   padding: 10px;
 }
 .list-game-text {
