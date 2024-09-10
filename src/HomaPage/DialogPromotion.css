@@ -68,25 +68,28 @@
   height: 0;
   width: 0;
 }
-.btn-promotion {
+.btn-promotion button {
   position: fixed;
   top: 83%;
+  left: 44%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50px;
   width: 100px;
   border: 2px solid red;
+  background-color: black;
   border-radius: 25px;
   margin-top: 40px;
   cursor: pointer;
-}
-.btn-promotion h2 {
   color: white;
   font-family: "REM", sans-serif;
+  font-size: 25px;
+  font-weight: bold;
   transition: all 0.5s;
 }
-.btn-promotion h2:hover {
+
+.btn-promotion button:hover {
   color: red;
 }
 .indicators {

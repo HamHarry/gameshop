@@ -77,8 +77,12 @@ const HomePage = () => {
       setSlide(number);
     };
 
+    const existGameLibary = gameLibary.find((item) => {
+      return item.name === gamePromote?.name;
+    });
+
     return (
-      <dialog open={openPromotion}>
+      <dialog open={existGameLibary ? !openPromotion : openPromotion}>
         <div className="dialogPromotion-container">
           <div className="nav-dialogPromotion">
             <i
@@ -139,7 +143,7 @@ const HomePage = () => {
                     return console.log(gamePromote);
                   }}
                 >
-                  <h2
+                  <button
                     onClick={() => {
                       const prevGame = gameData.find((game) => {
                         return game.name === gamePromote.name;
@@ -158,7 +162,7 @@ const HomePage = () => {
                     }}
                   >
                     Buy
-                  </h2>
+                  </button>
                 </div>
               </>
             )}
