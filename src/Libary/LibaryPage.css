@@ -112,18 +112,44 @@
 }
 .btn-pay {
   margin: 10px 0px;
-  width: 100px;
-  height: 50px;
+  width: 80px;
+  height: 40px;
   background-color: black;
   border: 2px solid red;
   border-radius: 25px;
   color: white;
   font-family: "REM", sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.5s;
 }
 .btn-pay:hover {
   color: red;
+}
+.is-btn-delete {
+  margin: 10px 0px;
+  width: 80px;
+  height: 40px;
+  background-color: black;
+  border: 2px solid red;
+  border-radius: 25px;
+  color: white;
+  font-family: "REM", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.is-btn-delete:hover {
+  color: red;
+}
+.btn-delete {
+  display: none;
+}
+.btn-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }

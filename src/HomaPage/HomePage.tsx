@@ -22,6 +22,7 @@ export interface GameItem {
   image: string;
   imageShow: any[];
   isExist?: boolean;
+  mode?: string;
 }
 
 const HomePage = () => {

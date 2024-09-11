@@ -58,6 +58,12 @@ const GameSlice = createSlice({
     setOutsideGame: (state: GameState, action: PayloadAction<GameItem>) => {
       state.gamelibary.push(action.payload);
     },
+    clearOutGame: (state: GameState, action: PayloadAction<GameItem>) => {
+      const gameIndex = state.gamelibary.findIndex((game) => {
+        return game.name === action.payload.name;
+      });
+      state.gamelibary.splice(gameIndex, 1);
+    },
   },
 });
 
@@ -68,6 +74,7 @@ export const {
   setAddGameLibary,
   setClaerGame,
   setOutsideGame,
+  clearOutGame,
 } = GameSlice.actions;
 
 export const addGameDataSelector = (store: RootState) =>

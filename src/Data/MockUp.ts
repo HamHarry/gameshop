@@ -18,6 +18,7 @@ export const mockUp = [
         image: "/public/assets/show/GTA/GTA1.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "open world",
@@ -38,6 +39,7 @@ export const mockUp = [
         image: "/public/assets/show/Blackdesert/Blackdesert4.png",
       },
     ],
+    mode: "store",
   },
   {
     type: "fps",
@@ -58,6 +60,7 @@ export const mockUp = [
         image: "/public/assets/show/Valorant/Valorant4.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "fps",
@@ -78,6 +81,7 @@ export const mockUp = [
         image: "/public/assets/show/Csgo/csgo4.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "fps",
@@ -98,6 +102,7 @@ export const mockUp = [
         image: "/public/assets/show/Overwatch2/Overwatch1.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "open world",
@@ -118,6 +123,7 @@ export const mockUp = [
         image: "/public/assets/show/Minecraft/Minecraft4.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "survive",
@@ -138,6 +144,7 @@ export const mockUp = [
         image: "/public/assets/show/PUBG/PUBG1.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "open world",
@@ -158,6 +165,7 @@ export const mockUp = [
         image: "/public/assets/show/ARK/ARK1.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "open world",
@@ -178,6 +186,7 @@ export const mockUp = [
         image: "/public/assets/show/RUST/RUST1.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "survive",
@@ -198,6 +207,7 @@ export const mockUp = [
         image: "/public/assets/show/NARAKA/NARAKA1.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "open world",
@@ -218,6 +228,7 @@ export const mockUp = [
         image: "/public/assets/show/Wukong/preview1.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "open world",
@@ -238,6 +249,7 @@ export const mockUp = [
         image: "/public/assets/show/Cyberpunk/Cyberpunk1.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "open world",
@@ -258,6 +270,7 @@ export const mockUp = [
         image: "/public/assets/show/hogwarts/Hogwarts4.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "moba",
@@ -278,6 +291,7 @@ export const mockUp = [
         image: "/public/assets/show/Dota/Dota4.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "moba",
@@ -298,6 +312,7 @@ export const mockUp = [
         image: "/public/assets/show/LOL/lol4.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "survive",
@@ -318,6 +333,7 @@ export const mockUp = [
         image: "/public/assets/show/Fortnite/fortnite2.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "survive",
@@ -338,6 +354,7 @@ export const mockUp = [
         image: "/public/assets/show/Warface/warface1.jpg",
       },
     ],
+    mode: "store",
   },
   {
     type: "survive",
@@ -362,5 +379,6 @@ export const mockUp = [
           "/public/assets/show/PaladinsBattlegrounds/PaladinsBattlegrounds4.jpg",
       },
     ],
+    mode: "store",
   },
 ];

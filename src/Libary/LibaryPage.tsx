@@ -1,6 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useSelector } from "react-redux";
-import { gameLibarySelector, setOutsideGame } from "../store/slices/gameSlice";
+import {
+  clearOutGame,
+  gameLibarySelector,
+  setOutsideGame,
+} from "../store/slices/gameSlice";
 import "./LibaryPage.css";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -14,6 +18,7 @@ const defaultValues: GameItem = {
   price: 0,
   image: "/public/assets/file.png",
   imageShow: [],
+  mode: "out",
 };
 
 const libaryPage = () => {
@@ -30,6 +35,7 @@ const libaryPage = () => {
     };
     console.log(item);
     dispatch(setOutsideGame(item));
+    setOpenDialogAddGame(!openDialogAddGame);
   };
 
   const renderDialogAddGame = () => {
@@ -86,13 +92,13 @@ const libaryPage = () => {
         <h1>Libary</h1>
       </div>
       <div className="nav-left-list-game">
-        <div className="nav-list-game">
-          <i
-            className="fa-solid fa-plus"
-            onClick={() => {
-              setOpenDialogAddGame(!openDialogAddGame);
-            }}
-          ></i>
+        <div
+          className="nav-list-game"
+          onClick={() => {
+            setOpenDialogAddGame(!openDialogAddGame);
+          }}
+        >
+          <i className="fa-solid fa-plus"></i>
         </div>
       </div>
       <div className="list-game">
@@ -104,7 +110,19 @@ const libaryPage = () => {
                 <h1>{item.name}</h1>
                 <p>Type: {item.type}</p>
               </div>
-              <button className="btn-pay">Play</button>
+              <div className="btn-all">
+                <button className="btn-pay">Play</button>
+                <button
+                  className={
+                    item.mode === "out" ? "is-btn-delete" : "btn-delete"
+                  }
+                  onClick={() => {
+                    dispatch(clearOutGame(item));
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           );
         })}
