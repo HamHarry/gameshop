@@ -7,5 +7,5 @@ export default defineConfig({
     port: 3000,
   },
   plugins: [react()],
-  base: "/github-pages-gameshop/",
+  base: "/gameshop/",
 });
