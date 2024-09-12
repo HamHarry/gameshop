@@ -21,7 +21,7 @@ function App() {
           <Route path="gameshop/login" element={<LoginPage />}></Route>
           <Route path="gameshop/signup" element={<SignupPage />}></Route>
         </Route>
-        <Route path="core" element={<ProtectedRoutes />}>
+        <Route path="gameshop/core" element={<ProtectedRoutes />}>
           <Route path="" element={<Layout />}>
             <Route path="home" element={<HomePage />} />
             <Route path="home/profile" element={<Profile />} />

@@ -21,24 +21,21 @@ const userSlice = createSlice({
   },
 });
 
-export const getUserById = createAsyncThunk(
-  "user/getUserById",
-  async (): Promise<any> => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const decodedToken = jwtDecode(token);
-      const response = await axios.get(
-        `https://phandal-backend.vercel.app/api/user/profile/${decodedToken.sub}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      return response;
-    }
+export const getUserById = createAsyncThunk("user/getUserById", async () => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    const decodedToken = jwtDecode(token);
+    const response = await axios.get(
+      `https://phandal-backend.vercel.app/api/user/profile/${decodedToken.sub}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
   }
-);
+});
 
 export const { setUserData } = userSlice.actions;
 export const UserDataSelector = (store: RootState): User | undefined =>
