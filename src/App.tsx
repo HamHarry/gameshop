@@ -16,10 +16,10 @@ function App() {
   return (
     <Suspense>
       <Routes>
-        <Route path={`${basePath}`} element={<ProtectedRouteLogined />}>
-          <Route path={`${basePath}`} element={<Navigate to="login" />} />
-          <Route path={`${basePath}/login`} element={<LoginPage />}></Route>
-          <Route path={`${basePath}/signup`} element={<SignupPage />}></Route>
+        <Route path="" element={<ProtectedRouteLogined />}>
+          <Route path="" element={<Navigate to="login" />} />
+          <Route path="login" element={<LoginPage />}></Route>
+          <Route path="signup" element={<SignupPage />}></Route>
         </Route>
         <Route path="core" element={<ProtectedRoutes />}>
           <Route path="" element={<Layout />}>
