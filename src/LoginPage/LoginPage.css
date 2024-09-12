@@ -12,7 +12,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   backdrop-filter: blur(10px);
   width: 600px;
   height: 400px;
@@ -30,6 +30,10 @@
   font-size: 28px;
   text-shadow: 5px 5px 10px black;
   margin-top: 10px;
+}
+.warp-login p {
+  color: red;
+  margin-top: 5px;
 }
 .warp-login input {
   padding: 10px;

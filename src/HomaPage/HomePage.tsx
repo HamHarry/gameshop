@@ -15,21 +15,25 @@ import { useSelector } from "react-redux";
 import { setErrorMessage } from "../store/slices/appSlice";
 import { useNavigate } from "react-router-dom";
 
+export interface ImageShow {
+  image: string;
+}
+
 export interface GameItem {
   type: string;
   name: string;
   price: number;
   image: string;
-  imageShow: any[];
+  imageShow: ImageShow[];
   isExist?: boolean;
-  mode?: string;
+  mode?: "out" | "store";
 }
 
 const HomePage = () => {
   const [openPromotion, setOpenPromotion] = useState<boolean>(true);
   const [openDialogGame, setOpenDialogGame] = useState<boolean>(false);
   const [dataGame, setDataGame] = useState<GameItem>();
-  const [listData, setListData] = useState(mockUp);
+  const [listData, setListData] = useState<GameItem[]>(mockUp);
   const [listDataRef] = useState(listData);
   const [selectedType, setSelectedType] = useState<string>("all");
   const [searchValue, setSearchValue] = useState<string>("");

@@ -11,7 +11,6 @@ export interface GameState {
   };
   gamelibary: GameItem[];
 }
-
 const initialState: GameState = {
   gameData: [],
   summary: {

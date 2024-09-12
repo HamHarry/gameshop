@@ -1,4 +1,6 @@
-export const mockUp = [
+import { GameItem } from "../HomaPage/HomePage";
+
+export const mockUp: GameItem[] = [
   {
     type: "open world",
     name: "Grand Theft Auto V",

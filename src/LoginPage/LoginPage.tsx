@@ -6,22 +6,18 @@ import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
 import { useAppDispatch } from "../store/store";
 import { login } from "../store/slices/authSlice";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup/src/yup.js";
+
+const schema = yup.object({
+  email: yup.string().required("Username or Email is required"),
+  password: yup.string().required("Password is required"),
+});
 
 export interface LoginForm {
   email: string;
   password: string;
 }
-
-export interface Login {
-  accessToken: string;
-  userId: string;
-}
-
-export interface Response<Type> {
-  data: Type;
-  status: number;
-}
-
 const defaultValues: LoginForm = {
   email: "",
   password: "",
@@ -31,7 +27,11 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { handleSubmit, control } = useForm<LoginForm>({ defaultValues });
+  const { handleSubmit, control, formState } = useForm<LoginForm>({
+    defaultValues,
+    resolver: yupResolver(schema),
+  });
+  const { errors } = formState;
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const showLoading = () => setIsLoading(true);
@@ -81,6 +81,7 @@ const LoginPage = () => {
                       type="text"
                       placeholder="Username & email..."
                     />
+                    <p className="error">{errors.email?.message}</p>
                   </>
                 );
               }}
@@ -97,13 +98,14 @@ const LoginPage = () => {
                       type="password"
                       placeholder="Password..."
                     />
+                    <p className="error">{errors.password?.message}</p>
                   </>
                 );
               }}
             />
             <div className="btn-login">
               <button type="submit" className="btn">
-                <p>Log In</p>
+                Log In
               </button>
               <div
                 className="btn"
@@ -111,7 +113,7 @@ const LoginPage = () => {
                   navigate("/signup");
                 }}
               >
-                <p>Sign In</p>
+                Sign In
               </div>
             </div>
           </form>
