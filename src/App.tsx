@@ -17,9 +17,9 @@ function App() {
     <Suspense>
       <Routes>
         <Route path="" element={<ProtectedRouteLogined />}>
-          <Route path="" element={<Navigate to="login" />} />
-          <Route path="login" element={<LoginPage />}></Route>
-          <Route path="signup" element={<SignupPage />}></Route>
+          <Route path="gameshop" element={<Navigate to="login" />} />
+          <Route path="gameshop/login" element={<LoginPage />}></Route>
+          <Route path="gameshop/signup" element={<SignupPage />}></Route>
         </Route>
         <Route path="core" element={<ProtectedRoutes />}>
           <Route path="" element={<Layout />}>
