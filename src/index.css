@@ -5,7 +5,8 @@
 .cotainer-all {
   background-image: url("/public/assets/container.jpg");
   background-size: cover;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
 }
 .wrap-loding {
   background-color: rgba(0, 0, 0, 0.4);
@@ -55,5 +56,12 @@
   }
   to {
     left: 100%;
+  }
+}
+
+@media (max-width: 393px) {
+  .loding {
+    width: 100px;
+    animation: spin 0.5s linear infinite;
   }
 }

@@ -7,21 +7,6 @@ import { useAppDispatch } from "../store/store";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup/src/yup.js";
 
-const schema = yup.object({
-  username: yup.string().required("Username is required"),
-  fname: yup.string().required("FirstName is required"),
-  lname: yup.string().required("LastName is required"),
-  email: yup.string().email("Must enter email").required("Email is required"),
-  birthdate: yup.string().required("Birthdate is required"),
-  password: yup
-    .string()
-    .min(8, "Password must be at least 8 characters")
-    .matches(/[0-9]/, "password must contain at least one number")
-    .matches(/[A-Z]/, "password must contain at least one Uppercase")
-    .matches(/[a-z]/, "password must contain at least one Lowercase")
-    .required("Password is required"),
-});
-
 export interface SignupForm {
   username: string;
   fname: string;
@@ -44,6 +29,21 @@ const defaultValues: SignupForm = {
 const SignupPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  const schema = yup.object({
+    username: yup.string().required("Username is required"),
+    fname: yup.string().required("FirstName is required"),
+    lname: yup.string().required("LastName is required"),
+    email: yup.string().email("Must enter email").required("Email is required"),
+    birthdate: yup.string().required("Birthdate is required"),
+    password: yup
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .matches(/[0-9]/, "password must contain at least one number")
+      .matches(/[A-Z]/, "password must contain at least one Uppercase")
+      .matches(/[a-z]/, "password must contain at least one Lowercase")
+      .required("Password is required"),
+  });
 
   const {
     control,

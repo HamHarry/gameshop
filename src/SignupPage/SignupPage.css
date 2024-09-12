@@ -76,3 +76,13 @@
 .btn:hover {
   color: red;
 }
+
+@media (max-width: 393px) {
+  .warp-signup {
+    width: 350px;
+    height: 800px;
+  }
+  .btn-signup button {
+    border: 2px solid red;
+  }
+}

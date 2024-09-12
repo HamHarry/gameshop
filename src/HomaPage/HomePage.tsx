@@ -87,7 +87,7 @@ const HomePage = () => {
     });
 
     return (
-      <dialog open={existGameLibary ? !openPromotion : openPromotion}>
+      <dialog open={!existGameLibary && openPromotion}>
         <div className="dialogPromotion-container">
           <div className="nav-dialogPromotion">
             <i
