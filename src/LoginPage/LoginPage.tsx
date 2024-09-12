@@ -27,11 +27,14 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { handleSubmit, control, formState } = useForm<LoginForm>({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<LoginForm>({
     defaultValues,
     resolver: yupResolver(schema),
   });
-  const { errors } = formState;
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const showLoading = () => setIsLoading(true);

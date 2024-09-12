@@ -12,7 +12,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 5px;
   backdrop-filter: blur(10px);
   width: 600px;
   height: 800px;
@@ -30,6 +30,11 @@
   font-size: 28px;
   text-shadow: 5px 5px 10px black;
   margin-top: 10px;
+}
+.warp-signup p {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
 }
 .warp-signup input {
   padding: 10px;

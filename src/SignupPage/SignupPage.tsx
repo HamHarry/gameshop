@@ -4,6 +4,23 @@ import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
 import { signup } from "../store/slices/authSlice";
 import { useAppDispatch } from "../store/store";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup/src/yup.js";
+
+const schema = yup.object({
+  username: yup.string().required("Username is required"),
+  fname: yup.string().required("FirstName is required"),
+  lname: yup.string().required("LastName is required"),
+  email: yup.string().email("Must enter email").required("Email is required"),
+  birthdate: yup.string().required("Birthdate is required"),
+  password: yup
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .matches(/[0-9]/, "password must contain at least one number")
+    .matches(/[A-Z]/, "password must contain at least one Uppercase")
+    .matches(/[a-z]/, "password must contain at least one Lowercase")
+    .required("Password is required"),
+});
 
 export interface SignupForm {
   username: string;
@@ -12,7 +29,7 @@ export interface SignupForm {
   email: string;
   birthdate: string;
   password: string;
-  image: string;
+  image?: string;
 }
 const defaultValues: SignupForm = {
   username: "",
@@ -28,7 +45,11 @@ const SignupPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { control, handleSubmit } = useForm<SignupForm>({ defaultValues });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignupForm>({ defaultValues, resolver: yupResolver(schema) });
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const showLoading = () => setIsLoading(true);
@@ -43,8 +64,7 @@ const SignupPage = () => {
         image:
           "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
       };
-      const { data: sigupedData } = await dispatch(signup(item)).unwrap();
-      console.log(sigupedData);
+      await dispatch(signup(item)).unwrap();
       alert("SignUp successful");
       navigate("/");
     } catch (error) {
@@ -68,6 +88,7 @@ const SignupPage = () => {
                   <>
                     <h2>Frist Name</h2>
                     <input {...field} type="text" placeholder="First Name..." />
+                    <p className="error">{errors.fname?.message}</p>
                   </>
                 );
               }}
@@ -80,6 +101,7 @@ const SignupPage = () => {
                   <>
                     <h2>Last Name</h2>
                     <input {...field} type="text" placeholder="Last Name..." />
+                    <p className="error">{errors.lname?.message}</p>
                   </>
                 );
               }}
@@ -92,6 +114,7 @@ const SignupPage = () => {
                   <>
                     <h2>Birthday</h2>
                     <input {...field} type="date" placeholder="Birthday..." />
+                    <p className="error">{errors.birthdate?.message}</p>
                   </>
                 );
               }}
@@ -104,6 +127,7 @@ const SignupPage = () => {
                   <>
                     <h2>Email</h2>
                     <input {...field} type="text" placeholder="Email..." />
+                    <p className="error">{errors.email?.message}</p>
                   </>
                 );
               }}
@@ -116,6 +140,7 @@ const SignupPage = () => {
                   <>
                     <h2>Username</h2>
                     <input {...field} type="text" placeholder="Username..." />
+                    <p className="error">{errors.username?.message}</p>
                   </>
                 );
               }}
@@ -132,13 +157,14 @@ const SignupPage = () => {
                       type="password"
                       placeholder="Password..."
                     />
+                    <p className="error">{errors.password?.message}</p>
                   </>
                 );
               }}
             />
             <div className="btn-signup">
-              <button className="btn">
-                <p>Sign In</p>
+              <button type="submit" className="btn">
+                Sign In
               </button>
               <div
                 className="btn"
@@ -146,7 +172,7 @@ const SignupPage = () => {
                   navigate("/");
                 }}
               >
-                <p>Log In</p>
+                Log In
               </div>
             </div>
           </form>
