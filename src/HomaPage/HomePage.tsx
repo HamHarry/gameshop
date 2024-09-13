@@ -162,7 +162,7 @@ const HomePage = () => {
                       } else {
                         dispatch(setAddGame(gamePromote));
                         dispatch(setSammary());
-                        navigate("/core/home/payment");
+                        navigate("/gameshop/core/home/payment");
                       }
                     }}
                   >
@@ -289,7 +289,7 @@ const HomePage = () => {
                   } else {
                     dispatch(setAddGame(game));
                     dispatch(setSammary());
-                    navigate("/core/home/payment");
+                    navigate("/gameshop/core/home/payment");
                     setDataGame(undefined);
                   }
                 }}
@@ -405,7 +405,7 @@ const HomePage = () => {
                   <div key={index} className="gird-game">
                     <div className="imagegame">
                       <img
-                        src={item.image}
+                        src="/public/assets/game/Black desert.jpg"
                         alt="logo"
                         onClick={() => {
                           const newItem = {
@@ -443,7 +443,7 @@ const HomePage = () => {
                         } else {
                           dispatch(setAddGame(item));
                           dispatch(setSammary());
-                          navigate("/core/home/payment");
+                          navigate("/gameshop/core/home/payment");
                         }
                       }}
                     >

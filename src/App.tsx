@@ -16,12 +16,12 @@ function App() {
   return (
     <Suspense>
       <Routes>
-        <Route path="" element={<ProtectedRouteLogined />}>
+        <Route path="gameshop" element={<ProtectedRouteLogined />}>
           <Route path="" element={<Navigate to="login" />} />
           <Route path="login" element={<LoginPage />}></Route>
           <Route path="signup" element={<SignupPage />}></Route>
         </Route>
-        <Route path="core" element={<ProtectedRoutes />}>
+        <Route path="gameshop/core" element={<ProtectedRoutes />}>
           <Route path="home" element={<Layout />}>
             <Route path="" element={<HomePage />} />
             <Route path="profile" element={<Profile />} />

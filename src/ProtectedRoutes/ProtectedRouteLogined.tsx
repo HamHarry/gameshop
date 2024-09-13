@@ -6,7 +6,7 @@ const ProtectedRouteLogined = () => {
     path: "/",
   });
   const token = cookies.get("token");
-  return !token ? <Outlet /> : <Navigate to="/core/home" />;
+  return !token ? <Outlet /> : <Navigate to="gameshop/core/home" />;
 };
 
 export default ProtectedRouteLogined;
