@@ -96,31 +96,39 @@ const Profile = () => {
   const renderEditImage = () => {
     return (
       <dialog onClose={() => reset()} open={openDialog1}>
-        <div className="container-dialog">
-          <div className="nav-dialog">
-            <i
-              className="fa-solid fa-circle-xmark"
-              onClick={() => {
-                setOpenDialog1(!openDialog1);
-              }}
-            ></i>
-          </div>
-          <div className="showImage">
-            <img src={getValues("image")} alt="preview" />
-          </div>
-          <div className="inputImageURL">
-            <h3>Edit Profile Image :</h3>
-            <div className="URL">
-              <Controller
-                control={control}
-                name="image"
-                render={({ field }) => {
-                  return <input {...field} type="text" placeholder="Url..." />;
+        <div className="warp-loding-profile">
+          <div className="container-dialog-editImage">
+            <div className="nav-dialog">
+              <i
+                className="fa-solid fa-circle-xmark"
+                onClick={() => {
+                  setOpenDialog1(!openDialog1);
                 }}
-              />
-              <button type="submit" className="btn-upload" disabled={!isDirty}>
-                <p>SUBMIT</p>
-              </button>
+              ></i>
+            </div>
+            <div className="showImage">
+              <img src={getValues("image")} alt="preview" />
+            </div>
+            <div className="inputImageURL">
+              <h3>Edit Profile Image :</h3>
+              <div className="URL">
+                <Controller
+                  control={control}
+                  name="image"
+                  render={({ field }) => {
+                    return (
+                      <input {...field} type="text" placeholder="Url..." />
+                    );
+                  }}
+                />
+                <button
+                  type="submit"
+                  className="btn-upload"
+                  disabled={!isDirty}
+                >
+                  <p>SUBMIT</p>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -130,71 +138,81 @@ const Profile = () => {
   const renderChangeName = () => {
     return (
       <dialog onClose={() => reset()} open={openDialog2}>
-        <div className="container-dialog">
-          <div className="nav-dialog">
-            <i
-              className="fa-solid fa-circle-xmark"
-              onClick={() => {
-                setOpenDialog2(!openDialog2);
-              }}
-            ></i>
-          </div>
-          <div className="warp-dialog">
-            <div className="edit-fname">
-              <p>Frist Name:</p>
-              <Controller
-                control={control}
-                name="fname"
-                render={({ field }) => {
-                  return (
-                    <input {...field} type="text" placeholder="Frist Name..." />
-                  );
+        <div className="warp-loding-profile">
+          <div className="container-dialog-ChangeName">
+            <div className="nav-dialog">
+              <i
+                className="fa-solid fa-circle-xmark"
+                onClick={() => {
+                  setOpenDialog2(!openDialog2);
                 }}
-              />
+              ></i>
             </div>
-            <div className="edit-lname">
-              <p>Last Name:</p>
-              <Controller
-                control={control}
-                name="lname"
-                render={({ field }) => {
-                  return (
-                    <input {...field} type="text" placeholder="Last Name..." />
-                  );
-                }}
-              />
+            <div className="warp-dialog">
+              <div className="edit-fname">
+                <p>Frist Name:</p>
+                <Controller
+                  control={control}
+                  name="fname"
+                  render={({ field }) => {
+                    return (
+                      <input
+                        {...field}
+                        type="text"
+                        placeholder="Frist Name..."
+                      />
+                    );
+                  }}
+                />
+              </div>
+              <div className="edit-lname">
+                <p>Last Name:</p>
+                <Controller
+                  control={control}
+                  name="lname"
+                  render={({ field }) => {
+                    return (
+                      <input
+                        {...field}
+                        type="text"
+                        placeholder="Last Name..."
+                      />
+                    );
+                  }}
+                />
+              </div>
+              <div className="edit-birthdate">
+                <p>Birthday:</p>
+                <Controller
+                  control={control}
+                  name="birthdate"
+                  render={({ field }) => {
+                    return (
+                      <input {...field} type="date" placeholder="Birthday..." />
+                    );
+                  }}
+                />
+              </div>
+              <div className="edit-email">
+                <p>Email:</p>
+                <Controller
+                  control={control}
+                  name="email"
+                  render={({ field }) => {
+                    return (
+                      <input {...field} type="text" placeholder="Email..." />
+                    );
+                  }}
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn-edit-submit"
+                disabled={!isDirty}
+              >
+                <p>SUBMIT</p>
+              </button>
             </div>
-            <div className="edit-birthdate">
-              <p>Birthday:</p>
-              <Controller
-                control={control}
-                name="birthdate"
-                render={({ field }) => {
-                  return (
-                    <input {...field} type="date" placeholder="Birthday..." />
-                  );
-                }}
-              />
-            </div>
-            <div className="edit-email">
-              <p>Email:</p>
-              <Controller
-                control={control}
-                name="email"
-                render={({ field }) => {
-                  return (
-                    <input {...field} type="text" placeholder="Email..." />
-                  );
-                }}
-              />
-            </div>
-            <button
-              type="submit"
-              className="btn-edit-submit"
-              disabled={!isDirty}
-            >
-              <p>SUBMIT</p>
-            </button>
           </div>
         </div>
       </dialog>

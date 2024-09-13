@@ -134,3 +134,64 @@
 .changename:hover {
   color: red;
 }
+
+@media (max-width: 393px) {
+  .warp-container-profile {
+    display: flex;
+    flex-direction: column;
+  }
+  .image {
+    margin-left: 0px;
+    margin-top: 80px;
+  }
+  .image img {
+    width: 200px;
+    height: 200px;
+  }
+  .edit {
+    height: 40px;
+    width: 150px;
+  }
+  .image p {
+    font-size: 20px;
+  }
+  .warp-information {
+    margin-top: 40px;
+    margin-left: 0px;
+  }
+  .name {
+    height: 40px;
+    width: 340px;
+  }
+  .name p {
+    font-size: 18px;
+  }
+  .id {
+    height: 40px;
+    width: 340px;
+  }
+  .id p {
+    font-size: 18px;
+  }
+  .email {
+    height: 40px;
+    width: 340px;
+  }
+  .email p {
+    font-size: 18px;
+  }
+  .username {
+    height: 40px;
+    width: 340px;
+  }
+  .username p {
+    font-size: 18px;
+  }
+  .changename {
+    height: 40px;
+    width: 150px;
+  }
+  .changename p {
+    font-size: 18px;
+  }
+}

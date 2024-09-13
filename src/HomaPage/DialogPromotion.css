@@ -117,3 +117,42 @@
   color: red;
   text-shadow: 2px 2px 10px black;
 }
+
+@media (max-width: 393px) {
+  .dialogPromotion-container {
+    width: 380px;
+    height: 400px;
+  }
+  .warp-dialogPromotion h1 {
+    margin-left: 0px;
+    font-size: 18px;
+    margin-top: -40px;
+    margin-left: -60px;
+    margin-bottom: 20px;
+    width: 295px;
+  }
+  .fa-circle-left {
+    bottom: 200px;
+    font-size: 35px;
+    margin-left: 20px;
+  }
+  .fa-circle-right {
+    bottom: 200px;
+    font-size: 35px;
+    margin-right: 20px;
+  }
+  .indicators {
+    bottom: 100px;
+  }
+  .indicator-hidden {
+    height: 10px;
+    width: 10px;
+  }
+  .btn-promotion button {
+    top: 72%;
+    left: 40%;
+    font-size: 15px;
+    width: 80px;
+    height: 40px;
+  }
+}

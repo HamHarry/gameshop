@@ -59,4 +59,16 @@
   .container-navbar {
     max-width: 390px;
   }
+  .fa-steam {
+    font-size: 40px;
+  }
+  .fa-cart-shopping {
+    font-size: 35px;
+  }
+  .navbar-right > img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
 }

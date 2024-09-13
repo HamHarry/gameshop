@@ -81,6 +81,8 @@
   justify-content: center;
   align-items: center;
   height: 100px;
+  width: 100%;
+  max-width: 346px;
   border: 2px solid red;
   background-color: white;
   border-radius: 10px;
@@ -120,4 +122,30 @@
   font-size: 20px;
   cursor: pointer;
   margin-left: 20px;
+}
+
+@media (max-width: 393px) {
+  .dropdown-cart {
+    width: 300px;
+  }
+  .listCart {
+    width: 250px;
+  }
+  .grid-listCart {
+    grid-template-columns: 80px 70px 60px;
+    max-width: 245px;
+  }
+  .logoCart {
+    width: 80px;
+    margin-left: 0px;
+  }
+  .grid-listCart p {
+    font-size: 15px;
+  }
+  .show-price {
+    width: 250px;
+  }
+  .dropdown-cart::before {
+    right: 62px;
+  }
 }

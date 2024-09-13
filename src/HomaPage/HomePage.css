@@ -85,8 +85,6 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  font-size: 25px;
-  font-family: "REM", sans-serif;
   margin: 10px 0;
 }
 .imagegame img {
@@ -104,10 +102,18 @@
   justify-content: flex-start;
   align-items: center;
 }
+.namegame h3 {
+  font-size: 25px;
+  font-family: "REM", sans-serif;
+}
 .pricegame {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.pricegame {
+  font-size: 25px;
+  font-family: "REM", sans-serif;
 }
 
 .dis-btn {
@@ -411,30 +417,58 @@
   }
   .container-table {
     height: 600px;
+    max-width: 350px;
   }
   .table {
-    max-width: 350px;
+    max-width: 330px;
     height: 500px;
     overflow-y: hidden;
   }
   .table-game {
-    max-width: 350px;
+    max-width: 330px;
     height: 500px;
   }
   .gird-game {
     font-size: 12px;
     max-width: 350px;
-    grid-template-columns: 100px 100px 50px 50px;
+    grid-template-columns: 100px 70px 70px 50px;
     gap: 10px;
-    text-align: center;
+  }
+  .namegame h3 {
+    font-size: 10px;
+  }
+  .pricegame h3 {
+    font-size: 10px;
   }
   .imagegame img {
     height: 50px;
     width: 100px;
   }
+  .btn-buy {
+    margin-left: 0;
+    width: 50px;
+    height: 25px;
+    font-size: 12px;
+  }
   .dis-btn {
     margin-left: 0;
     width: 50px;
-    height: 50px;
+    height: 25px;
+    font-size: 12px;
+  }
+  .choise {
+    display: none;
+  }
+  .table-nav {
+    justify-content: center;
+  }
+  .table-nav-search input {
+    margin-left: 30px;
+    background-color: #9e9e9e;
+    padding: 10px;
+    width: 150px;
+    border-radius: 25px;
+    border: 3px solid red;
+    font-family: "REM", sans-serif;
   }
 }

@@ -89,3 +89,42 @@
 .btn-contact button:hover {
   color: red;
 }
+
+@media (max-width: 393px) {
+  .warp-container-contact {
+    width: 250px;
+    height: 500px;
+  }
+  .navbar-contact h1 {
+    font-size: 30px;
+  }
+  .send {
+    width: 300px;
+    height: 350px;
+    margin-left: -25px;
+  }
+  .send-name input {
+    width: 175px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid red;
+    background-color: #9e9e9e;
+    margin-left: 10px;
+    font-size: 15px;
+  }
+  .send-name p {
+    color: white;
+    font-size: 20px;
+    margin-left: 20px;
+  }
+  .send textarea {
+    height: 250px;
+    font-size: 15px;
+  }
+  .btn-contact button {
+    color: white;
+    font-size: 15px;
+    height: 40px;
+    width: 80px;
+  }
+}

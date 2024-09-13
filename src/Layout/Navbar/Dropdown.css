@@ -78,3 +78,22 @@
 .fa-right-from-bracket {
   margin-left: 5px;
 }
+
+@media (max-width: 393px) {
+  .user h3 {
+    font-size: 20px;
+    width: 150px;
+  }
+  .dropdown-menu {
+    width: 160px;
+  }
+  .fa-right-from-bracket {
+    margin-left: 10px;
+  }
+  .fa-user {
+    margin-left: 5px;
+  }
+  .dropdown-menu::before {
+    right: 11px;
+  }
+}
