@@ -339,27 +339,6 @@ export const mockUp: GameItem[] = [
   },
   {
     type: "survive",
-    name: "Warface",
-    price: 0,
-    image: "/gameshop/assets/game/warface.png",
-    imageShow: [
-      {
-        image: "/gameshop/assets/show/Warface/warface3.jpg",
-      },
-      {
-        image: "/gameshop/assets/show/Warface/warface2.jpg",
-      },
-      {
-        image: "/gameshop/assets/show/Warface/warface4.jpg",
-      },
-      {
-        image: "/gameshop/assets/show/Warface/warface1.jpg",
-      },
-    ],
-    mode: "store",
-  },
-  {
-    type: "survive",
     name: "Paladins Battlegrounds",
     price: 0,
     image: "/gameshop/assets/game/Paladins.jpg",
