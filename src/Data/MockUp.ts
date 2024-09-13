@@ -5,7 +5,7 @@ export const mockUp: GameItem[] = [
     type: "open world",
     name: "Grand Theft Auto V",
     price: 350,
-    image: "/public/assets/game/gta-v-main.jpg",
+    image: "/assets/game/gta-v-main.jpg",
     imageShow: [
       {
         image: "/public/assets/show/GTA/GTA4.jpg",
