@@ -22,12 +22,12 @@ function App() {
           <Route path="signup" element={<SignupPage />}></Route>
         </Route>
         <Route path="core" element={<ProtectedRoutes />}>
-          <Route path="" element={<Layout />}>
-            <Route path="home" element={<HomePage />} />
-            <Route path="home/profile" element={<Profile />} />
-            <Route path="home/payment" element={<PaymentPage />} />
-            <Route path="home/contact" element={<Contact />} />
-            <Route path="home/libary" element={<LibaryPage />} />
+          <Route path="home" element={<Layout />}>
+            <Route path="" element={<HomePage />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="payment" element={<PaymentPage />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="libary" element={<LibaryPage />} />
           </Route>
         </Route>
         <Route path="*" element={<NotfoundPage />} />

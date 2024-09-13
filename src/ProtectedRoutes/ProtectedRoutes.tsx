@@ -6,7 +6,7 @@ const ProtectedRoutes = () => {
     path: "/",
   });
   const token = cookies.get("token");
-  return token ? <Outlet /> : <Navigate to="" />;
+  return token ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default ProtectedRoutes;
