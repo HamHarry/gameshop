@@ -405,7 +405,7 @@ const HomePage = () => {
                   <div key={index} className="gird-game">
                     <div className="imagegame">
                       <img
-                        src={item.image}
+                        src="/public/assets/game/Black desert.jpg"
                         alt="logo"
                         onClick={() => {
                           const newItem = {
