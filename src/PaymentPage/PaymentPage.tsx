@@ -59,7 +59,7 @@ const PaymentPage = () => {
     // set initalValue and navigate to Libary =================================
     setCalculate(0);
     setOpenDialogCash(false);
-    navigate("/gameshop/core/home/libary");
+    navigate("/core/home/libary");
   };
 
   //handleSubmit =================================================================

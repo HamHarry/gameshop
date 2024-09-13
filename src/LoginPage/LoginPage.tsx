@@ -57,7 +57,7 @@ const LoginPage = () => {
       cookies.set("token", loginedData.accessToken);
       localStorage.setItem("token", loginedData.accessToken);
 
-      navigate(`/gameshop/core/home`);
+      navigate(`/core/home`);
     } catch (error) {
       alert("Username and password is wrong");
       console.log(error);
@@ -113,7 +113,7 @@ const LoginPage = () => {
               <div
                 className="btn"
                 onClick={() => {
-                  navigate("/gameshop/signup");
+                  navigate("/signup");
                 }}
               >
                 Sign In

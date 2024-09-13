@@ -14,7 +14,7 @@ function NotfoundPage() {
         </h3>
         <button
           onClick={() => {
-            navigate("/gameshop");
+            navigate("/");
           }}
         >
           Go Back

@@ -66,7 +66,7 @@ const SignupPage = () => {
       };
       await dispatch(signup(item)).unwrap();
       alert("SignUp successful");
-      navigate("/gameshop");
+      navigate("/");
     } catch (error) {
       console.log(error);
       alert("SignUp failed");
@@ -169,7 +169,7 @@ const SignupPage = () => {
               <div
                 className="btn"
                 onClick={() => {
-                  navigate("/gameshop");
+                  navigate("/");
                 }}
               >
                 Log In

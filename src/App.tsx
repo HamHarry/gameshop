@@ -17,11 +17,11 @@ function App() {
     <Suspense>
       <Routes>
         <Route path="" element={<ProtectedRouteLogined />}>
-          <Route path="gameshop" element={<Navigate to="login" />} />
-          <Route path="gameshop/login" element={<LoginPage />}></Route>
-          <Route path="gameshop/signup" element={<SignupPage />}></Route>
+          <Route path="" element={<Navigate to="login" />} />
+          <Route path="login" element={<LoginPage />}></Route>
+          <Route path="signup" element={<SignupPage />}></Route>
         </Route>
-        <Route path="gameshop/core" element={<ProtectedRoutes />}>
+        <Route path="core" element={<ProtectedRoutes />}>
           <Route path="" element={<Layout />}>
             <Route path="home" element={<HomePage />} />
             <Route path="home/profile" element={<Profile />} />

@@ -108,7 +108,7 @@ const Navbar = () => {
         <div className="btn-payment">
           <button
             onClick={() => {
-              navigate(`/gameshop/core/home/payment`);
+              navigate(`/core/home/payment`);
               setOpenDialogCart(!openDialogCart);
             }}
           >
@@ -129,7 +129,7 @@ const Navbar = () => {
         <ul>
           <li
             onClick={() => {
-              navigate(`/gameshop/core/home/profile`);
+              navigate(`/core/home/profile`);
               setOpen(!open);
             }}
           >
@@ -138,7 +138,7 @@ const Navbar = () => {
           </li>
           <li
             onClick={() => {
-              navigate(`/gameshop/core/home/libary`);
+              navigate(`/core/home/libary`);
               setOpen(!open);
             }}
           >
@@ -147,7 +147,7 @@ const Navbar = () => {
           </li>
           <li
             onClick={() => {
-              navigate(`/gameshop/core/home/contact`);
+              navigate(`/core/home/contact`);
               setOpen(!open);
             }}
           >
@@ -156,7 +156,7 @@ const Navbar = () => {
           </li>
           <li
             onClick={() => {
-              navigate("/gameshop");
+              navigate("/");
               const cookies = new Cookies(null, {
                 path: "/",
               });
@@ -181,7 +181,7 @@ const Navbar = () => {
         <i
           className="fa-brands fa-steam"
           onClick={() => {
-            navigate(`/gameshop/core/home`);
+            navigate(`/core/home`);
           }}
         ></i>
         <div className="navbar-right">
