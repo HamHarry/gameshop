@@ -47,7 +47,7 @@ export const mockUp: GameItem[] = [
     type: "fps",
     name: "Valorant",
     price: 0,
-    image: "/assets/game/Valorant.jpg",
+    image: "/assets/game/valorant.jpg",
     imageShow: [
       {
         image: "/assets/show/Valorant/Valorant2.png",
