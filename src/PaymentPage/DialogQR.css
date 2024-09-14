@@ -55,3 +55,17 @@
 .btn-complete button:hover {
   color: red;
 }
+
+@media (max-width: 393px) {
+  .container-qr {
+    width: 350px;
+    height: 500px;
+  }
+  .warp-container-qr {
+    height: 300px;
+    width: 300px;
+  }
+  .warp-container-qr img {
+    height: 300px;
+  }
+}

@@ -107,3 +107,59 @@
 .card:hover .card-inner {
   transform: rotateY(-180deg);
 }
+
+@media (max-width: 393px) {
+  .warp-card {
+    height: 180px;
+  }
+  .card {
+    width: 150px;
+    height: 100px;
+    margin-left: 0px;
+  }
+  .row img {
+    width: 20px;
+  }
+  .card-no {
+    font-size: 10px;
+    margin-top: 20px;
+  }
+  .card-holder {
+    font-size: 8px;
+    margin-top: 20px;
+  }
+  .name-card {
+    font-size: 8px;
+    margin-top: 0px;
+  }
+  .fname-lname {
+    gap: 5px;
+  }
+  .bar {
+    height: 20px;
+    margin-top: 0px;
+  }
+  .card-cvv {
+    margin-top: 5px;
+  }
+  .card-cvv img {
+    width: 100%;
+    height: 15px;
+    display: block;
+    line-height: 0;
+  }
+  .card-cvv p {
+    background: #fff;
+    color: #000;
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+  .card-text {
+    margin-top: 10px;
+    font-size: 8px;
+  }
+  .signature {
+    margin-top: 10px;
+    font-size: 8px;
+  }
+}

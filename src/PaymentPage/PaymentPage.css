@@ -129,3 +129,61 @@
 .warp-show-listCart > .fa-trash-can {
   margin-left: 150px;
 }
+
+@media (max-width: 393px) {
+  .warp-container-payment {
+    max-width: 250px;
+    height: 500px;
+  }
+  .payment-text h1 {
+    font-size: 18px;
+  }
+  .listCart-container {
+    height: 365px;
+  }
+  .warp-listCart-container {
+    height: 300px;
+  }
+  .show-listCart {
+    height: 250px;
+  }
+  .warp-show-listCart {
+    grid-template-columns: 100px 80px 50px;
+    height: 80px;
+  }
+  .warp-logoCart {
+    width: 80px;
+    height: 40px;
+    margin-left: 0px;
+  }
+  .warp-show-listCart p {
+    font-size: 12px;
+    margin-left: -15px;
+  }
+  .warp-show-listCart > .fa-trash-can {
+    margin-left: 10px;
+  }
+  .show-listPrice p {
+    font-size: 15px;
+  }
+  .select-card {
+    height: 60px;
+    margin-top: 10px;
+    gap: 10px;
+  }
+  .fa-cc-visa {
+    font-size: 35px;
+    margin-left: 10px;
+  }
+  .select-card p {
+    font-size: 10px;
+  }
+  .btn-payments button {
+    width: 100px;
+    height: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 10px;
+    transition: all 0.5s;
+  }
+}
