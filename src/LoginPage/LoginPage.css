@@ -81,6 +81,9 @@
   .warp-login {
     max-width: 350px;
   }
+  .warp-login input {
+    width: 92%;
+  }
   .btn-login button {
     border: 2px solid red;
   }

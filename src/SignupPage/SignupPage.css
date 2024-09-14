@@ -82,6 +82,9 @@
     width: 350px;
     height: 800px;
   }
+  .warp-signup input {
+    width: 92%;
+  }
   .btn-signup button {
     border: 2px solid red;
   }
