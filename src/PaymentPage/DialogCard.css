@@ -121,3 +121,60 @@
   font-size: 20px;
   margin-top: 10px;
 }
+
+@media (max-width: 393px) {
+  .container-card {
+    width: 350px;
+    height: 550px;
+  }
+  form {
+    width: 320px;
+  }
+  .card-number h3 {
+    font-size: 15px;
+  }
+  .input-text-card-number input {
+    width: 50px;
+    font-size: 15px;
+  }
+  .card-name h3 {
+    font-size: 15px;
+  }
+  .card-name input {
+    padding: 10px;
+    width: 130px;
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+    font-family: "REM", sans-serif;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+  .date h3 {
+    font-size: 15px;
+  }
+  .date input {
+    padding: 10px;
+    width: 120px;
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+    font-family: "REM", sans-serif;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+  .ccv h3 {
+    font-size: 15px;
+  }
+  .ccv input {
+    width: 50px;
+    font-size: 15px;
+    margin-right: 50px;
+  }
+  .btn-celect button {
+    margin-top: 30px;
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+  }
+}
