@@ -156,7 +156,7 @@
     font-size: 20px;
   }
   .warp-information {
-    margin-top: 40px;
+    margin-top: 20px;
     margin-left: 0px;
   }
   .name {
@@ -190,6 +190,7 @@
   .changename {
     height: 40px;
     width: 150px;
+    margin-top: -30px;
   }
   .changename p {
     font-size: 18px;

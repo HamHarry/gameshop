@@ -125,6 +125,7 @@
   .edit-birthdate input {
     max-width: 150px;
     padding: 15px;
+    height: 15px;
     margin-left: 20px;
   }
   .edit-email input {

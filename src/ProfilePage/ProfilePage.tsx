@@ -96,7 +96,7 @@ const Profile = () => {
   const renderEditImage = () => {
     return (
       <dialog onClose={() => reset()} open={openDialog1}>
-        <div className="warp-loding-profile">
+        <div className="warp-loding-background">
           <div className="container-dialog-editImage">
             <div className="nav-dialog">
               <i
@@ -138,7 +138,7 @@ const Profile = () => {
   const renderChangeName = () => {
     return (
       <dialog onClose={() => reset()} open={openDialog2}>
-        <div className="warp-loding-profile">
+        <div className="warp-loding-background">
           <div className="container-dialog-ChangeName">
             <div className="nav-dialog">
               <i
@@ -188,7 +188,12 @@ const Profile = () => {
                   name="birthdate"
                   render={({ field }) => {
                     return (
-                      <input {...field} type="date" placeholder="Birthday..." />
+                      <input
+                        {...field}
+                        type="date"
+                        placeholder="Birthday..."
+                        className="input-birtdate"
+                      />
                     );
                   }}
                 />

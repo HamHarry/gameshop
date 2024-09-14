@@ -110,14 +110,14 @@ const LoginPage = () => {
               <button type="submit" className="btn">
                 Log In
               </button>
-              <div
+              <button
                 className="btn"
                 onClick={() => {
                   navigate("/signup");
                 }}
               >
                 Sign In
-              </div>
+              </button>
             </div>
           </form>
         </div>

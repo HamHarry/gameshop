@@ -88,89 +88,92 @@ const HomePage = () => {
 
     return (
       <dialog open={!existGameLibary && openPromotion}>
-        <div className="dialogPromotion-container">
-          <div className="nav-dialogPromotion">
-            <i
-              className="fa-solid fa-circle-xmark"
-              onClick={() => {
-                setOpenPromotion(!openPromotion);
-              }}
-            ></i>
-          </div>
-          <div className="warp-dialogPromotion">
-            {gamePromote && (
-              <>
-                <h1>
-                  New Game <span className="text-red">{gamePromote?.name}</span>
-                </h1>
-                <div className="warp-image">
-                  <div className="animation">
-                    {gamePromote?.imageShow.map((item, index) => {
-                      return (
-                        <img
-                          src={item.image}
-                          alt="logo"
-                          key={index}
-                          className={
-                            slide === index ? "slider" : "sliedr-hidden"
-                          }
-                        />
-                      );
-                    })}
-                  </div>
-                  <span className="indicators">
-                    {gamePromote?.imageShow.map((_, index) => {
-                      return (
-                        <button
-                          key={index}
-                          className={
-                            slide === index ? "indicator" : "indicator-hidden"
-                          }
-                          onClick={() => {
-                            setSlide(index);
-                          }}
-                        />
-                      );
-                    })}
-                  </span>
-                  <i
-                    className="fa-solid fa-circle-left"
-                    onClick={leftSlide}
-                  ></i>
-                  <i
-                    className="fa-solid fa-circle-right"
-                    onClick={rightSlide}
-                  ></i>
-                </div>
-                <div
-                  className="btn-promotion"
-                  onClick={() => {
-                    return console.log(gamePromote);
-                  }}
-                >
-                  <button
-                    onClick={() => {
-                      const prevGame = gameData.find((game) => {
-                        return game.name === gamePromote.name;
-                      });
-                      if (prevGame) {
-                        dispatch(
-                          setErrorMessage(
-                            `Game ${gamePromote.name} is already in the cart.`
-                          )
+        <div className="warp-loding-background">
+          <div className="dialogPromotion-container">
+            <div className="nav-dialogPromotion">
+              <i
+                className="fa-solid fa-circle-xmark"
+                onClick={() => {
+                  setOpenPromotion(!openPromotion);
+                }}
+              ></i>
+            </div>
+            <div className="warp-dialogPromotion">
+              {gamePromote && (
+                <>
+                  <h1>
+                    New Game{" "}
+                    <span className="text-red">{gamePromote?.name}</span>
+                  </h1>
+                  <div className="warp-image">
+                    <div className="animation">
+                      {gamePromote?.imageShow.map((item, index) => {
+                        return (
+                          <img
+                            src={item.image}
+                            alt="logo"
+                            key={index}
+                            className={
+                              slide === index ? "slider" : "sliedr-hidden"
+                            }
+                          />
                         );
-                      } else {
-                        dispatch(setAddGame(gamePromote));
-                        dispatch(setSammary());
-                        navigate("/core/home/payment");
-                      }
+                      })}
+                    </div>
+                    <span className="indicators">
+                      {gamePromote?.imageShow.map((_, index) => {
+                        return (
+                          <button
+                            key={index}
+                            className={
+                              slide === index ? "indicator" : "indicator-hidden"
+                            }
+                            onClick={() => {
+                              setSlide(index);
+                            }}
+                          />
+                        );
+                      })}
+                    </span>
+                    <i
+                      className="fa-solid fa-circle-left"
+                      onClick={leftSlide}
+                    ></i>
+                    <i
+                      className="fa-solid fa-circle-right"
+                      onClick={rightSlide}
+                    ></i>
+                  </div>
+                  <div
+                    className="btn-promotion"
+                    onClick={() => {
+                      return console.log(gamePromote);
                     }}
                   >
-                    Buy
-                  </button>
-                </div>
-              </>
-            )}
+                    <button
+                      onClick={() => {
+                        const prevGame = gameData.find((game) => {
+                          return game.name === gamePromote.name;
+                        });
+                        if (prevGame) {
+                          dispatch(
+                            setErrorMessage(
+                              `Game ${gamePromote.name} is already in the cart.`
+                            )
+                          );
+                        } else {
+                          dispatch(setAddGame(gamePromote));
+                          dispatch(setSammary());
+                          navigate("/core/home/payment");
+                        }
+                      }}
+                    >
+                      Buy
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </dialog>
@@ -193,112 +196,117 @@ const HomePage = () => {
 
     return (
       <dialog open={openDialogGame}>
-        {game && (
-          <div className="dialogGame-container">
-            <div className="dialogGame-nav">
-              <h1>{game.name}</h1>
-              <i
-                className="fa-solid fa-circle-xmark"
-                onClick={() => {
-                  setOpenDialogGame(!openDialogGame);
-                  setDataGame(undefined);
-                  setSlide(0);
-                }}
-              ></i>
-            </div>
-            <div className="warp-image-game">
-              <div className="animation">
-                {game.imageShow.map((item, index) => {
-                  return (
-                    <img
-                      src={item.image}
-                      alt="logo"
-                      key={index}
-                      className={slide === index ? "slider" : "sliedr-hidden"}
-                    />
-                  );
-                })}
-              </div>
-              <span className="indicators-game">
-                {game.imageShow.map((_, index) => {
-                  return (
-                    <button
-                      key={index}
-                      className={
-                        slide === index ? "indicator" : "indicator-hidden"
-                      }
-                      onClick={() => {
-                        setSlide(index);
-                      }}
-                    />
-                  );
-                })}
-              </span>
-              <div className="btn-left-right">
-                <i className="fa-solid fa-circle-left" onClick={leftSlide}></i>
+        <div className="warp-loding-background">
+          {game && (
+            <div className="dialogGame-container">
+              <div className="dialogGame-nav">
+                <h1>{game.name}</h1>
                 <i
-                  className="fa-solid fa-circle-right"
-                  onClick={rightSlide}
+                  className="fa-solid fa-circle-xmark"
+                  onClick={() => {
+                    setOpenDialogGame(!openDialogGame);
+                    setDataGame(undefined);
+                    setSlide(0);
+                  }}
                 ></i>
               </div>
-            </div>
-            <div className="price">
-              <h2>
-                {game.price <= 0
-                  ? "Free"
-                  : `${Intl.NumberFormat().format(game.price)} THB`}
-              </h2>
-            </div>
-            <div className="btn-dialogGame">
-              <button
-                className={game.isExist ? "dis-btn-add" : "btn-add-game"}
-                disabled={game.isExist}
-                onClick={() => {
-                  const prevGame = gameData.find(
-                    (item) => item.name === game.name
-                  );
-                  if (prevGame) {
-                    dispatch(
-                      setErrorMessage(
-                        `Game ${game.name} is already in the cart.`
-                      )
+              <div className="warp-image-game">
+                <div className="animation">
+                  {game.imageShow.map((item, index) => {
+                    return (
+                      <img
+                        src={item.image}
+                        alt="logo"
+                        key={index}
+                        className={slide === index ? "slider" : "sliedr-hidden"}
+                      />
                     );
-                  } else {
-                    setOpenDialogGame(!openDialogGame);
-                    dispatch(setAddGame(game));
-                    dispatch(setSammary());
-                    setDataGame(undefined);
-                  }
-                }}
-              >
-                Add to Cart
-              </button>
-              <button
-                className={game.isExist ? "dis-btn-buy" : "btn-buy-game"}
-                disabled={game.isExist}
-                onClick={() => {
-                  const prevGame = gameData.find((item) => {
-                    return item.name === game.name;
-                  });
-                  if (prevGame) {
-                    dispatch(
-                      setErrorMessage(
-                        `Game ${game.name} is already in the cart.`
-                      )
+                  })}
+                </div>
+                <span className="indicators-game">
+                  {game.imageShow.map((_, index) => {
+                    return (
+                      <button
+                        key={index}
+                        className={
+                          slide === index ? "indicator" : "indicator-hidden"
+                        }
+                        onClick={() => {
+                          setSlide(index);
+                        }}
+                      />
                     );
-                  } else {
-                    dispatch(setAddGame(game));
-                    dispatch(setSammary());
-                    navigate("/core/home/payment");
-                    setDataGame(undefined);
-                  }
-                }}
-              >
-                Buy
-              </button>
+                  })}
+                </span>
+                <div className="btn-left-right">
+                  <i
+                    className="fa-solid fa-circle-left"
+                    onClick={leftSlide}
+                  ></i>
+                  <i
+                    className="fa-solid fa-circle-right"
+                    onClick={rightSlide}
+                  ></i>
+                </div>
+              </div>
+              <div className="price">
+                <h2>
+                  {game.price <= 0
+                    ? "Free"
+                    : `${Intl.NumberFormat().format(game.price)} THB`}
+                </h2>
+              </div>
+              <div className="btn-dialogGame">
+                <button
+                  className={game.isExist ? "dis-btn-add" : "btn-add-game"}
+                  disabled={game.isExist}
+                  onClick={() => {
+                    const prevGame = gameData.find(
+                      (item) => item.name === game.name
+                    );
+                    if (prevGame) {
+                      dispatch(
+                        setErrorMessage(
+                          `Game ${game.name} is already in the cart.`
+                        )
+                      );
+                    } else {
+                      setOpenDialogGame(!openDialogGame);
+                      dispatch(setAddGame(game));
+                      dispatch(setSammary());
+                      setDataGame(undefined);
+                    }
+                  }}
+                >
+                  Add to Cart
+                </button>
+                <button
+                  className={game.isExist ? "dis-btn-buy" : "btn-buy-game"}
+                  disabled={game.isExist}
+                  onClick={() => {
+                    const prevGame = gameData.find((item) => {
+                      return item.name === game.name;
+                    });
+                    if (prevGame) {
+                      dispatch(
+                        setErrorMessage(
+                          `Game ${game.name} is already in the cart.`
+                        )
+                      );
+                    } else {
+                      dispatch(setAddGame(game));
+                      dispatch(setSammary());
+                      navigate("/core/home/payment");
+                      setDataGame(undefined);
+                    }
+                  }}
+                >
+                  Buy
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </dialog>
     );
   };

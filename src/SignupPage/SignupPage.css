@@ -61,7 +61,7 @@
   text-shadow: 5px 5px 10px black;
   font-family: "REM", sans-serif;
   font-size: 24px;
-  border: none;
+  border: 2px solid red;
 }
 .btn {
   display: flex;
@@ -72,6 +72,8 @@
   width: 100px;
   background-color: black;
   border-radius: 10px;
+  font-family: "REM", sans-serif;
+  font-weight: bold;
 }
 .btn:hover {
   color: red;
@@ -80,12 +82,22 @@
 @media (max-width: 393px) {
   .warp-signup {
     width: 350px;
-    height: 800px;
+    height: 600px;
+  }
+  .warp-signup h1 {
+    font-size: 42px;
+  }
+  .warp-signup h2 {
+    font-size: 20px;
   }
   .warp-signup input {
     width: 92%;
   }
+  .signin-birthdate {
+    width: 92%;
+    height: 15px;
+  }
   .btn-signup button {
-    border: 2px solid red;
+    font-size: 20px;
   }
 }

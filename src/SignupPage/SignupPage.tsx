@@ -113,7 +113,12 @@ const SignupPage = () => {
                 return (
                   <>
                     <h2>Birthday</h2>
-                    <input {...field} type="date" placeholder="Birthday..." />
+                    <input
+                      {...field}
+                      type="date"
+                      placeholder="Birthday..."
+                      className="signin-birthdate"
+                    />
                     <p className="error">{errors.birthdate?.message}</p>
                   </>
                 );
@@ -166,14 +171,14 @@ const SignupPage = () => {
               <button type="submit" className="btn">
                 Sign In
               </button>
-              <div
+              <button
                 className="btn"
                 onClick={() => {
                   navigate("/");
                 }}
               >
                 Log In
-              </div>
+              </button>
             </div>
           </form>
         </div>
