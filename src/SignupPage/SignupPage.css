@@ -85,21 +85,28 @@
     height: 600px;
   }
   .warp-signup h1 {
-    font-size: 42px;
+    font-size: 32px;
   }
   .warp-signup h2 {
-    font-size: 20px;
+    font-size: 12px;
+    margin-left: 5px;
   }
   .warp-signup input {
     width: 92%;
+    height: 10px;
   }
   .signin-birthdate {
     width: 92%;
-    height: 15px;
-    -webkit-appearance: textfield;
-    -moz-appearance: textfield;
   }
   .btn-signup button {
-    font-size: 20px;
+    font-size: 17px;
+  }
+  .warp-signup p {
+    font-size: 10px;
+    margin-left: 5px;
+  }
+  .btn {
+    height: 40px;
+    width: 80px;
   }
 }
