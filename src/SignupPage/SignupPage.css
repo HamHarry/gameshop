@@ -96,7 +96,8 @@
   .signin-birthdate {
     width: 92%;
     height: 15px;
-    display: block;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
   }
   .btn-signup button {
     font-size: 20px;
