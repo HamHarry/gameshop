@@ -71,4 +71,7 @@
     border-radius: 50%;
     cursor: pointer;
   }
+  .isnumber {
+    right: 75px;
+  }
 }
