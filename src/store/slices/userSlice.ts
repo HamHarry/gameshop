@@ -25,7 +25,7 @@ export const getUserById = createAsyncThunk("user/getUserById", async () => {
   if (token) {
     const decodedToken = jwtDecode(token);
     const response = await axios.get(
-      `https://phandal-backend.vercel.app/api/user/profile/${decodedToken.sub}`,
+      `${import.meta.env.VITE_API_URL}/api/user/profile/${decodedToken.sub}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

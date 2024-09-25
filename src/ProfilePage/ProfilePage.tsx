@@ -74,7 +74,7 @@ const Profile = () => {
 
       const token = localStorage.getItem("token");
       const res = await axios.put(
-        `https://phandal-backend.vercel.app/api/user/${userData._id}`,
+        `${import.meta.env.VITE_API_URL}/api/user/${userData._id}`,
         item,
         {
           headers: {

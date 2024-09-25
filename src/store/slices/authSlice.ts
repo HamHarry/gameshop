@@ -11,7 +11,7 @@ const authSlice = createSlice({
 
 export const login = createAsyncThunk("login", async (payload: LoginForm) => {
   const response = await axios.post(
-    `https://phandal-backend.vercel.app/api/auth/login`,
+    `${import.meta.env.VITE_API_URL}/api/auth/login`,
     payload
   );
   return response;
@@ -21,7 +21,7 @@ export const signup = createAsyncThunk(
   "signup",
   async (payload: SignupForm) => {
     const response = await axios.post(
-      `https://phandal-backend.vercel.app/api/user/register`,
+      `${import.meta.env.VITE_API_URL}/api/user/register`,
       payload
     );
     return response;
