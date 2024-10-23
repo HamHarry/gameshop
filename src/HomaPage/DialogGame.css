@@ -55,6 +55,8 @@
   opacity: 1;
 }
 .sliedr-hidden {
+  height: 500px;
+  width: 780px;
   display: block;
   opacity: 0;
   transition: all 0.5s ease;

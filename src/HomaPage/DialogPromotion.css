@@ -54,6 +54,13 @@
 .fa-circle-right:hover {
   color: red;
 }
+.animation {
+  height: 500px;
+  width: 780px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .slider {
   height: 500px;
   width: 780px;
@@ -63,6 +70,8 @@
 }
 .sliedr-hidden {
   display: block;
+  height: 500px;
+  width: 780px;
   opacity: 0;
   transition: all 0.5s ease;
   height: 0;
